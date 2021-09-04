@@ -1,0 +1,6 @@
+{
+	"appId": "br.edu.unisuam.peppaciente",
+	"appName": "PEP - Paciente",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}

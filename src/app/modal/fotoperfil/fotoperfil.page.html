@@ -1,0 +1,36 @@
+<ion-content >
+  <div class="content">
+
+    <div class="closebtarea">
+      <ion-button (click)="closeFoto()" [disabled]="loadingPhoto" class="btclose">
+        <ion-icon slot="icon-only" name="close"></ion-icon>
+      </ion-button>
+    </div>
+
+    <div class="areafoto">
+      <img *ngIf="user && user.fotoPerfil && !loadingPhoto" [src]="'data:'+user.fotoPerfil.tipo+';base64,'+user.fotoPerfil.binario" />
+      <img *ngIf="(!user || !user.fotoPerfil) && !loadingPhoto" src="../../assets/nophoto.png"  />
+      <div *ngIf="loadingPhoto" class="preloader-wrapper active">
+        <div class="spinner-layer spinner-blue-only">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div><div class="gap-patch">
+            <div class="circle"></div>
+          </div><div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="areabt row">
+      <div style="padding: 0;" class="col s6">
+        <ion-button [disabled]="loadingPhoto" color="danger" expand="block">Remover Foto</ion-button>
+      </div>
+      <div style="padding: 0;" class="col s6">
+        <ion-button (click)="mudarFoto()" [disabled]="loadingPhoto" color="primary" expand="block">Mudar Foto</ion-button>
+      </div>
+    </div>
+
+  </div>
+</ion-content>

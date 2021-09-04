@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar>
+    <div style="display: flex; justify-content: space-between; padding-right: 10px;">
+    <ion-title>
+      PEP - Paciente
+    </ion-title>
+    <ion-button (click)="logout()" color="danger">Sair</ion-button>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div class="content">
+    <div class="area-identification">
+      <div (click)="openPhoto()" class="fotoarea">
+        <img *ngIf="user && user.fotoPerfil" [src]="'data:'+user.fotoPerfil.tipo+';base64,'+user.fotoPerfil.binario" />
+        <img src="../../assets/nophoto.png" *ngIf="!user || !user.fotoPerfil" />
+      </div>
+      <div class="camera-perfil">
+        <ion-icon name="camera"></ion-icon>
+      </div>
+      <span *ngIf="user">{{user.nome}}</span>
+    </div>
+
+    <div class="menu-sector">
+      <ion-grid>
+        <ion-row>
+          <ion-col size="6">
+            <ion-button class="btHome" expand="block">Exames</ion-button>
+          </ion-col>
+          <ion-col size="6">
+            <ion-button class="btHome" expand="block">Consultas</ion-button>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="12">
+            <ion-button class="btHome" expand="block">Hospitais e Clinicas</ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </div>
+
+</ion-content>

@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Acessar Sistema</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div class="content">
+
+    <form [formGroup]="loginForm">
+      <div class="input-field">
+        <i class="material-icons prefix">account_circle</i>
+        <input id="icon_prefix" formControlName="login" type="text" class="validate">
+        <label for="icon_prefix">Email ou CPF</label>
+      </div>
+      <div class="input-field">
+        <i class="material-icons prefix">lock</i>
+        <input id="icon_telephone" formControlName="senha" type="password" class="validate">
+        <label for="icon_telephone">Senha</label>
+      </div>
+    </form>
+    <div class="row button-area">
+      <div class="col s6">
+        <ion-button (click)="entrar()" expand="block">Entrar</ion-button>
+      </div>
+      <div class="col s6">
+        <ion-button routerLink="/cadastro" expand="block" color="secondary">Criar conta</ion-button>
+      </div>
+    </div>
+
+  </div>
+
+</ion-content>

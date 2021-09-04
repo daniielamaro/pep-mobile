@@ -1,0 +1,7 @@
+{
+  "name": "PEP - Paciente",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

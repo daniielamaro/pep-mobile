@@ -1,0 +1,67 @@
+.content{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.fotoarea{
+  width: 26vw;
+  height: 26vw;
+  background-color: #fff;
+  border: 3px solid rgb(53, 53, 201);
+  border-radius: 13vw;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.fotoarea img{
+  flex-shrink: 0;
+  min-width: 100%;
+  min-height: 100%;
+  object-fit: cover;
+}
+
+.area-identification{
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.area-identification span{
+  margin-top: 25px;
+  font-size: 5vw;
+}
+
+.camera-perfil{
+  font-size: 5vw;
+  background-color: rgb(53, 53, 201);
+  color: #fff;
+  border-radius: 4vw;
+  width: 7vw;
+  height: 7vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: -7vw;
+  margin-left: 18vw;
+}
+
+.menu-sector{
+  padding: 3vh;
+  margin-bottom: 10vh;
+  width: 100%;
+  height: auto;
+}
+
+.btHome{
+  height: 10vh;
+  font-size: 4vw;
+}
