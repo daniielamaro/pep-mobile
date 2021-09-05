@@ -35,7 +35,6 @@ export class HomePage implements OnInit {
       .then(async (data) => {
         const userReturn = data['data'];
         this.user = userReturn;
-        console.log(this.user);
         await this.storage.set("user", this.user);
 
     });

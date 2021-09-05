@@ -41,20 +41,15 @@ export class FotoperfilPage implements OnInit {
       });
   }
 
-  /*removerFoto(){
+  removerFoto(){
     this.loadingPhoto = true;
     this.fotoperfilService.removerFoto(this.user.id)
       .subscribe(async () => {
-        var userTemp = this.user;
-        this.user = {
-          id: userTemp.id,
-          nome: userTemp.nome,
-          photo: null
-        };
+        this.user.fotoPerfil = null;
         this.loadingPhoto = false;
         this.closeFoto();
       });
-  }*/
+  }
 
   getTypePhoto(photo: any): string{
     return photo.split(';')[0].split(':')[1];

@@ -1,7 +1,7 @@
 <ion-content >
   <div class="content">
 
-    <div class="closebtarea">
+    <div *ngIf="!loadingPhoto" class="closebtarea">
       <ion-button (click)="closeFoto()" [disabled]="loadingPhoto" class="btclose">
         <ion-icon slot="icon-only" name="close"></ion-icon>
       </ion-button>
@@ -23,12 +23,18 @@
       </div>
     </div>
 
-    <div class="areabt row">
+    <div *ngIf="user && user.fotoPerfil && !loadingPhoto" class="areabt row">
       <div style="padding: 0;" class="col s6">
-        <ion-button [disabled]="loadingPhoto" color="danger" expand="block">Remover Foto</ion-button>
+        <ion-button (click)="removerFoto()" [disabled]="loadingPhoto" color="danger" expand="block">Remover Foto</ion-button>
       </div>
       <div style="padding: 0;" class="col s6">
         <ion-button (click)="mudarFoto()" [disabled]="loadingPhoto" color="primary" expand="block">Mudar Foto</ion-button>
+      </div>
+    </div>
+
+    <div *ngIf="user && !user.fotoPerfil && !loadingPhoto" class="areabt row">
+      <div style="padding: 0;" class="col s12">
+        <ion-button (click)="mudarFoto()" [disabled]="loadingPhoto" color="primary" expand="block">Adicionar Foto</ion-button>
       </div>
     </div>
 

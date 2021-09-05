@@ -20,7 +20,7 @@ export class FotoperfilService {
     return this.urlService.sendRequestPost("/Paciente/AlterarFotoPerfil", JSON.stringify(request));
   }
 
-  /*removerFoto(id: string){
-    return this.urlService.sendRequestPost("/User/DeletePhotoUser?id="+id);
-  }*/
+  removerFoto(id: string){
+    return this.urlService.sendRequestPost("/Paciente/DeletarFotoPerfil?id="+id);
+  }
 }
