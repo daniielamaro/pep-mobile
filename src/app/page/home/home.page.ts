@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { StorageService } from 'src/app/shared/class/storage.service';
 import { ModalController } from '@ionic/angular';
 import { FotoperfilPage } from 'src/app/modal/fotoperfil/fotoperfil.page';
-import { UrlService } from 'src/app/shared/class/url-service';
 declare const M: any;
 
 @Component({
@@ -18,10 +17,7 @@ export class HomePage implements OnInit {
 
   constructor(
     private storage: StorageService,
-    public modalController: ModalController,
-    private router: Router) {
-
-  }
+    public modalController: ModalController) {}
 
   async ngOnInit(){
     this.user = await this.storage.get("user");
@@ -31,19 +27,15 @@ export class HomePage implements OnInit {
     const loadingScreen = await this.modalController.create({
       component: FotoperfilPage
     });
+
     loadingScreen.onDidDismiss()
       .then(async (data) => {
         const userReturn = data['data'];
         this.user = userReturn;
         await this.storage.set("user", this.user);
+      });
 
-    });
     return await loadingScreen.present();
-  }
-
-  logout(){
-    this.storage.remove("user");
-    this.router.navigateByUrl("");
   }
 
 }

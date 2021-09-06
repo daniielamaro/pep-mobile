@@ -1,0 +1,25 @@
+.content{
+  margin-top: 10vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sector-novo-exame{
+  width: 100%;
+  height: auto;
+}
+
+.area-lista-vazia{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 65vh;
+}
+
+.col-lista-exame{
+  --ion-grid-column-padding: 0 !important;
+}

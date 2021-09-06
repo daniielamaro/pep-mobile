@@ -9,6 +9,6 @@ export class CadastroService {
   constructor(private urlService: UrlService) { }
 
   cadastrar(request: any){
-    return this.urlService.sendRequestPost("/User/CriarConta", JSON.stringify(request));
+    return this.urlService.sendRequestPost("/Paciente/Cadastrar", JSON.stringify(request));
   }
 }

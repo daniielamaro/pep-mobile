@@ -1,5 +1,15 @@
-<ion-tabs>
+<ion-header>
+  <ion-toolbar>
+    <div style="display: flex; justify-content: space-between; padding-right: 10px;">
+    <ion-title>
+      PEP - Paciente
+    </ion-title>
+    <ion-button (click)="logout()" color="danger">Sair</ion-button>
+    </div>
+  </ion-toolbar>
+</ion-header>
 
+<ion-tabs>
   <ion-tab-bar slot="bottom">
 
     <ion-tab-button tab="home">
@@ -12,7 +22,7 @@
       <ion-label>Hospitais e Clinicas</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button tab="exames">
+    <ion-tab-button tab="exame">
       <ion-icon name="clipboard"></ion-icon>
       <ion-label>Exames</ion-label>
     </ion-tab-button>
@@ -23,5 +33,4 @@
     </ion-tab-button>
 
   </ion-tab-bar>
-
 </ion-tabs>

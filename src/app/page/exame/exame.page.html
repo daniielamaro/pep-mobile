@@ -1,0 +1,56 @@
+<ion-content>
+  <div class="content">
+
+    <div class="sector-novo-exame">
+      <ion-grid>
+        <ion-row>
+          <ion-col size="12">
+            <ion-button routerLink="/page/criar-exame" expand="block">salvar novo exame</ion-button>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="12">
+            <div *ngIf="!listaExame || listaExame.length == 0" class="area-lista-vazia">
+              <span *ngIf="!loading">{{mensagem}}</span>
+              <div *ngIf="loading" class="preloader-wrapper big active">
+                <div class="spinner-layer spinner-blue-only">
+                  <div class="circle-clipper left">
+                    <div class="circle"></div>
+                  </div><div class="gap-patch">
+                    <div class="circle"></div>
+                  </div><div class="circle-clipper right">
+                    <div class="circle"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <ion-list *ngIf="listaExame && listaExame.length > 0">
+              <ion-item *ngFor="let item of listaExame">
+                <ion-label class="ion-text-wrap">
+
+                  <ion-grid>
+                    <ion-row>
+                      <ion-col class="col-lista-exame" size="7">
+                        <ion-text color="primary">
+                          <h2>{{item.tipo.nome}}</h2>
+                        </ion-text>
+                      </ion-col>
+                      <ion-col class="col-lista-exame" size="5">
+                        <p>Data de Realização</p>
+                        <ion-text color="secondary">
+                          <p>{{item.diaRealizacao | date: 'dd/MM/yyyy'}}</p>
+                        </ion-text>
+                      </ion-col>
+                    </ion-row>
+                  </ion-grid>
+
+                </ion-label>
+              </ion-item>
+            </ion-list>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+
+  </div>
+</ion-content>

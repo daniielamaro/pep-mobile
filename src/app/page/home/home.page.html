@@ -1,14 +1,3 @@
-<ion-header>
-  <ion-toolbar>
-    <div style="display: flex; justify-content: space-between; padding-right: 10px;">
-    <ion-title>
-      PEP - Paciente
-    </ion-title>
-    <ion-button (click)="logout()" color="danger">Sair</ion-button>
-    </div>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
 
   <div class="content">
@@ -27,7 +16,7 @@
       <ion-grid>
         <ion-row>
           <ion-col size="6">
-            <ion-button class="btHome" expand="block">Exames</ion-button>
+            <ion-button routerLink="/page/exame" class="btHome" expand="block">Exames</ion-button>
           </ion-col>
           <ion-col size="6">
             <ion-button class="btHome" expand="block">Consultas</ion-button>
