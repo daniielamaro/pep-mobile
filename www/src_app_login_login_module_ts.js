@@ -159,7 +159,8 @@ let LoginPage = class LoginPage {
                 this.loginService.entrar(this.loginForm.get("login").value, this.loginForm.get("senha").value)
                     .subscribe((resp) => (0,tslib__WEBPACK_IMPORTED_MODULE_6__.__awaiter)(this, void 0, void 0, function* () {
                     this.closeLoadingScreen();
-                    yield this.storage.set("user", resp);
+                    yield this.storage.set("token", resp.token);
+                    yield this.storage.set("user", resp.paciente);
                     this.loginForm.get("login").setValue("");
                     this.loginForm.get("senha").setValue("");
                     this.router.navigateByUrl('page');
@@ -235,7 +236,7 @@ let LoginService = class LoginService {
         this.urlService = urlService;
     }
     entrar(emailCpf, senha) {
-        return this.urlService.sendRequestPost('/User/GetUserByLoginSenha?emailCpf=' + emailCpf + '&senha=' + senha);
+        return this.urlService.sendRequestPost('/Paciente/AcessarSistema?usuario=' + emailCpf + '&senha=' + senha);
     }
 };
 LoginService.ctorParameters = () => [

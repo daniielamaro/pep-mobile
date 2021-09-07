@@ -461,12 +461,7 @@ let FotoperfilPage = class FotoperfilPage {
         this.loadingPhoto = true;
         this.fotoperfilService.removerFoto(this.user.id)
             .subscribe(() => (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__awaiter)(this, void 0, void 0, function* () {
-            var userTemp = this.user;
-            this.user = {
-                id: userTemp.id,
-                nome: userTemp.nome,
-                photo: null
-            };
+            this.user.fotoPerfil = null;
             this.loadingPhoto = false;
             this.closeFoto();
         }));
@@ -521,16 +516,17 @@ let FotoperfilService = class FotoperfilService {
     }
     mudarFoto(fotoBin, fotoTipo, id) {
         let request = {
-            idUser: id,
+            id: id,
             foto: {
+                nome: Date.now.toString(),
                 tipo: fotoTipo,
                 binario: fotoBin
             }
         };
-        return this.urlService.sendRequestPost("/User/SetPhotoUser", JSON.stringify(request));
+        return this.urlService.sendRequestPost("/Paciente/AlterarFotoPerfil", JSON.stringify(request));
     }
     removerFoto(id) {
-        return this.urlService.sendRequestPost("/User/DeletePhotoUser?id=" + id);
+        return this.urlService.sendRequestPost("/Paciente/DeletarFotoPerfil?id=" + id);
     }
 };
 FotoperfilService.ctorParameters = () => [
@@ -719,11 +715,16 @@ let UrlService = UrlService_1 = class UrlService {
         this.router = router;
         this.storage = storage;
         this.http = http;
+        this.TOKEN = "";
+        this.storage.get("token").then(resp => {
+            this.TOKEN = resp;
+        });
     }
     getHeaders() {
         this.header = {
             headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__.HttpHeaders()
-                .set('Content-Type', 'application/json'),
+                .set('Content-Type', 'application/json')
+                .set('Authorization', 'BEARER ' + this.TOKEN)
         };
         return this.header;
     }
@@ -731,7 +732,7 @@ let UrlService = UrlService_1 = class UrlService {
         return this.http.post(UrlService_1.BACKEND_URL + url, body, this.getHeaders());
     }
 };
-UrlService.BACKEND_URL = 'http://34.72.148.185:8080';
+UrlService.BACKEND_URL = 'http://localhost:54439';
 UrlService.ctorParameters = () => [
     { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__.Router },
     { type: _storage_service__WEBPACK_IMPORTED_MODULE_0__.StorageService },
@@ -1171,7 +1172,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-content >\n  <div class=\"content\">\n\n    <div class=\"closebtarea\">\n      <ion-button (click)=\"closeFoto()\" [disabled]=\"loadingPhoto\" class=\"btclose\">\n        <ion-icon slot=\"icon-only\" name=\"close\"></ion-icon>\n      </ion-button>\n    </div>\n\n    <div class=\"areafoto\">\n      <img *ngIf=\"user && user.photo && !loadingPhoto\" [src]=\"'data:'+user.photo.tipo+';base64,'+user.photo.binario\" />\n      <img *ngIf=\"(!user || !user.photo) && !loadingPhoto\" src=\"../../assets/nophoto.png\"  />\n      <div *ngIf=\"loadingPhoto\" class=\"preloader-wrapper active\">\n        <div class=\"spinner-layer spinner-blue-only\">\n          <div class=\"circle-clipper left\">\n            <div class=\"circle\"></div>\n          </div><div class=\"gap-patch\">\n            <div class=\"circle\"></div>\n          </div><div class=\"circle-clipper right\">\n            <div class=\"circle\"></div>\n          </div>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"areabt row\">\n      <div style=\"padding: 0;\" class=\"col s6\">\n        <ion-button (click)=\"removerFoto()\" [disabled]=\"loadingPhoto\" color=\"danger\" expand=\"block\">Remover Foto</ion-button>\n      </div>\n      <div style=\"padding: 0;\" class=\"col s6\">\n        <ion-button (click)=\"mudarFoto()\" [disabled]=\"loadingPhoto\" color=\"primary\" expand=\"block\">Mudar Foto</ion-button>\n      </div>\n    </div>\n\n  </div>\n</ion-content>\n");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-content >\n  <div class=\"content\">\n\n    <div *ngIf=\"!loadingPhoto\" class=\"closebtarea\">\n      <ion-button (click)=\"closeFoto()\" [disabled]=\"loadingPhoto\" class=\"btclose\">\n        <ion-icon slot=\"icon-only\" name=\"close\"></ion-icon>\n      </ion-button>\n    </div>\n\n    <div class=\"areafoto\">\n      <img *ngIf=\"user && user.fotoPerfil && !loadingPhoto\" [src]=\"'data:'+user.fotoPerfil.tipo+';base64,'+user.fotoPerfil.binario\" />\n      <img *ngIf=\"(!user || !user.fotoPerfil) && !loadingPhoto\" src=\"../../assets/nophoto.png\"  />\n      <div *ngIf=\"loadingPhoto\" class=\"preloader-wrapper active\">\n        <div class=\"spinner-layer spinner-blue-only\">\n          <div class=\"circle-clipper left\">\n            <div class=\"circle\"></div>\n          </div><div class=\"gap-patch\">\n            <div class=\"circle\"></div>\n          </div><div class=\"circle-clipper right\">\n            <div class=\"circle\"></div>\n          </div>\n        </div>\n      </div>\n    </div>\n\n    <div *ngIf=\"user && user.fotoPerfil && !loadingPhoto\" class=\"areabt row\">\n      <div style=\"padding: 0;\" class=\"col s6\">\n        <ion-button (click)=\"removerFoto()\" [disabled]=\"loadingPhoto\" color=\"danger\" expand=\"block\">Remover Foto</ion-button>\n      </div>\n      <div style=\"padding: 0;\" class=\"col s6\">\n        <ion-button (click)=\"mudarFoto()\" [disabled]=\"loadingPhoto\" color=\"primary\" expand=\"block\">Mudar Foto</ion-button>\n      </div>\n    </div>\n\n    <div *ngIf=\"user && !user.fotoPerfil && !loadingPhoto\" class=\"areabt row\">\n      <div style=\"padding: 0;\" class=\"col s12\">\n        <ion-button (click)=\"mudarFoto()\" [disabled]=\"loadingPhoto\" color=\"primary\" expand=\"block\">Adicionar Foto</ion-button>\n      </div>\n    </div>\n\n  </div>\n</ion-content>\n");
 
 /***/ })
 

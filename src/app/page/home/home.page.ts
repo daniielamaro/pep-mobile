@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { StorageService } from 'src/app/shared/class/storage.service';
 import { ModalController } from '@ionic/angular';
 import { FotoperfilPage } from 'src/app/modal/fotoperfil/fotoperfil.page';
@@ -15,11 +15,19 @@ export class HomePage implements OnInit {
   photo: any;
   user: any;
 
-  constructor(
-    private storage: StorageService,
-    public modalController: ModalController) {}
+  constructor(private router: Router, private storage: StorageService, public modalController: ModalController) {
 
-  async ngOnInit(){
+    this.router.events.subscribe((evt) => {
+      if (evt instanceof NavigationEnd && this.router.url == "/page/home") {
+        this.pageEnter();
+      }
+    });
+
+  }
+
+  async ngOnInit(){}
+
+  async pageEnter(){
     this.user = await this.storage.get("user");
   }
 

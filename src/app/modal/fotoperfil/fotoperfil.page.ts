@@ -33,7 +33,7 @@ export class FotoperfilPage implements OnInit {
 
     this.loadingPhoto = true;
 
-    this.fotoperfilService.mudarFoto(this.getBinaryPhoto(photoObj), this.getTypePhoto(photoObj), this.user.id)
+    (await this.fotoperfilService.mudarFoto(this.getBinaryPhoto(photoObj), this.getTypePhoto(photoObj), this.user.id))
       .subscribe(async (resp: any) => {
         this.user = resp;
         this.loadingPhoto = false;
@@ -41,9 +41,9 @@ export class FotoperfilPage implements OnInit {
       });
   }
 
-  removerFoto(){
+  async removerFoto(){
     this.loadingPhoto = true;
-    this.fotoperfilService.removerFoto(this.user.id)
+    (await this.fotoperfilService.removerFoto(this.user.id))
       .subscribe(async () => {
         this.user.fotoPerfil = null;
         this.loadingPhoto = false;

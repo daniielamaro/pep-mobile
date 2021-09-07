@@ -44,9 +44,9 @@ export class LoginPage implements OnInit {
 
   async entrar(){
     this.showLoadingScreen()
-      .then(() => {
+      .then(async () => {
 
-        this.loginService.entrar(this.loginForm.get("login").value, this.loginForm.get("senha").value)
+        (await this.loginService.entrar(this.loginForm.get("login").value, this.loginForm.get("senha").value))
           .subscribe(async (resp: any) => {
             this.closeLoadingScreen();
             await this.storage.set("token", resp.token);

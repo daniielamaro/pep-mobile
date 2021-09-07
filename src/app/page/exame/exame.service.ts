@@ -8,8 +8,8 @@ export class ExameService {
 
   constructor(private urlService: UrlService) { }
 
-  consultarListaExames(id: string){
-    return this.urlService.sendRequestPost("/Exame/ConsultarListaExame?id="+id);
+  async consultarListaExames(id: string){
+    return await this.urlService.sendRequestPost("/Exame/ConsultarListaExame?id="+id);
   }
 
 }

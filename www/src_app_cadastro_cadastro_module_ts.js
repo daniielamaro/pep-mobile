@@ -232,7 +232,7 @@ let CadastroService = class CadastroService {
         this.urlService = urlService;
     }
     cadastrar(request) {
-        return this.urlService.sendRequestPost("/User/CriarConta", JSON.stringify(request));
+        return this.urlService.sendRequestPost("/Paciente/Cadastrar", JSON.stringify(request));
     }
 };
 CadastroService.ctorParameters = () => [

@@ -37,7 +37,7 @@ export class CadastroPage implements OnInit {
   ngOnInit() {
   }
 
-  cadastrar(){
+  async cadastrar(){
     if(this.cadastroForm.get("senha").value != this.cadastroForm.get("confSenha").value){
       this.toastController.create({
         message: "As senhas não coincidem",
@@ -58,7 +58,7 @@ export class CadastroPage implements OnInit {
       senha: this.cadastroForm.get("senha").value,
     };
 
-    this.cadastroService.cadastrar(request)
+    (await this.cadastroService.cadastrar(request))
       .subscribe(() => {
         this.toastController.create({
           message: "Cadastrado!",

@@ -8,8 +8,8 @@ export class LoginService {
 
   constructor(private urlService: UrlService) { }
 
-  entrar(emailCpf: string, senha: string){
-    return this.urlService.sendRequestPost('/Paciente/AcessarSistema?usuario='+emailCpf+'&senha='+senha);
+  async entrar(emailCpf: string, senha: string){
+    return await this.urlService.sendRequestPost('/Paciente/AcessarSistema?usuario='+emailCpf+'&senha='+senha);
   }
 
 }

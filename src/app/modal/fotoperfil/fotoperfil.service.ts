@@ -8,7 +8,7 @@ export class FotoperfilService {
 
   constructor(private urlService: UrlService) { }
 
-  mudarFoto(fotoBin: any, fotoTipo: any, id: string){
+  async mudarFoto(fotoBin: any, fotoTipo: any, id: string){
     let request = {
       id: id,
       foto: {
@@ -17,10 +17,10 @@ export class FotoperfilService {
         binario: fotoBin
       }
     };
-    return this.urlService.sendRequestPost("/Paciente/AlterarFotoPerfil", JSON.stringify(request));
+    return await this.urlService.sendRequestPost("/Paciente/AlterarFotoPerfil", JSON.stringify(request));
   }
 
-  removerFoto(id: string){
-    return this.urlService.sendRequestPost("/Paciente/DeletarFotoPerfil?id="+id);
+  async removerFoto(id: string){
+    return await this.urlService.sendRequestPost("/Paciente/DeletarFotoPerfil?id="+id);
   }
 }

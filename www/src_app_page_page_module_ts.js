@@ -29,6 +29,14 @@ const routes = [
                 loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_page_home_home_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./home/home.module */ 2040)).then(m => m.HomePageModule)
             },
             {
+                path: 'exame',
+                loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_page_exame_exame_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./exame/exame.module */ 7281)).then(m => m.ExamePageModule)
+            },
+            {
+                path: 'criar-exame',
+                loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_page_criar-exame_criar-exame_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./criar-exame/criar-exame.module */ 4475)).then(m => m.CriarExamePageModule)
+            },
+            {
                 path: '',
                 redirectTo: '/page/home',
                 pathMatch: 'full'
@@ -108,22 +116,36 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "PagePage": () => (/* binding */ PagePage)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! tslib */ 4762);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tslib */ 4762);
 /* harmony import */ var _raw_loader_page_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !raw-loader!./page.page.html */ 92);
 /* harmony import */ var _page_page_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./page.page.scss */ 4703);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 7716);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core */ 7716);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ 9895);
+/* harmony import */ var _shared_class_storage_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../shared/class/storage.service */ 6578);
+
+
 
 
 
 
 let PagePage = class PagePage {
-    constructor() { }
+    constructor(storage, router) {
+        this.storage = storage;
+        this.router = router;
+    }
     ngOnInit() {
     }
+    logout() {
+        this.storage.remove("user");
+        this.router.navigateByUrl("");
+    }
 };
-PagePage.ctorParameters = () => [];
-PagePage = (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_3__.Component)({
+PagePage.ctorParameters = () => [
+    { type: _shared_class_storage_service__WEBPACK_IMPORTED_MODULE_2__.StorageService },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_3__.Router }
+];
+PagePage = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_5__.Component)({
         selector: 'app-page',
         template: _raw_loader_page_page_html__WEBPACK_IMPORTED_MODULE_0__.default,
         styles: [_page_page_scss__WEBPACK_IMPORTED_MODULE_1__.default]
@@ -160,7 +182,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-tabs>\n\n  <ion-tab-bar slot=\"bottom\">\n\n    <ion-tab-button tab=\"home\">\n      <ion-icon name=\"home\"></ion-icon>\n      <ion-label>Home</ion-label>\n    </ion-tab-button>\n\n    <ion-tab-button tab=\"hospitaiseclinicas\">\n      <ion-icon name=\"map\"></ion-icon>\n      <ion-label>Hospitais e Clinicas</ion-label>\n    </ion-tab-button>\n\n    <ion-tab-button tab=\"exames\">\n      <ion-icon name=\"clipboard\"></ion-icon>\n      <ion-label>Exames</ion-label>\n    </ion-tab-button>\n\n    <ion-tab-button tab=\"consultas\">\n      <ion-icon name=\"pulse\"></ion-icon>\n      <ion-label>Consultas</ion-label>\n    </ion-tab-button>\n\n  </ion-tab-bar>\n\n</ion-tabs>\n");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-header>\n  <ion-toolbar>\n    <div style=\"display: flex; justify-content: space-between; padding-right: 10px;\">\n    <ion-title>\n      PEP - Paciente\n    </ion-title>\n    <ion-button (click)=\"logout()\" color=\"danger\">Sair</ion-button>\n    </div>\n  </ion-toolbar>\n</ion-header>\n\n<ion-tabs>\n  <ion-tab-bar slot=\"bottom\">\n\n    <ion-tab-button tab=\"home\">\n      <ion-icon name=\"home\"></ion-icon>\n      <ion-label>Home</ion-label>\n    </ion-tab-button>\n\n    <ion-tab-button tab=\"hospitaiseclinicas\">\n      <ion-icon name=\"map\"></ion-icon>\n      <ion-label>Hospitais e Clinicas</ion-label>\n    </ion-tab-button>\n\n    <ion-tab-button tab=\"exame\">\n      <ion-icon name=\"clipboard\"></ion-icon>\n      <ion-label>Exames</ion-label>\n    </ion-tab-button>\n\n    <ion-tab-button tab=\"consultas\">\n      <ion-icon name=\"pulse\"></ion-icon>\n      <ion-label>Consultas</ion-label>\n    </ion-tab-button>\n\n  </ion-tab-bar>\n</ion-tabs>\n");
 
 /***/ })
 

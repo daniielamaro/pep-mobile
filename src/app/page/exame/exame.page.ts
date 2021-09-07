@@ -27,8 +27,9 @@ export class ExamePage implements OnInit {
 
   async pageEnter(){
     let user = await this.storage.get("user");
+    this.listaExame = undefined;
 
-    this.exameService.consultarListaExames(user.id)
+    (await this.exameService.consultarListaExames(user.id))
       .subscribe((resp: any) => {
         this.listaExame = resp;
 
