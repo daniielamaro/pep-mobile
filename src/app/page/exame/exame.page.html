@@ -1,13 +1,19 @@
 <ion-content>
   <div class="content">
-
     <div class="sector-novo-exame">
       <ion-grid>
         <ion-row>
-          <ion-col size="12">
-            <ion-button routerLink="/page/criar-exame" expand="block">salvar novo exame</ion-button>
+          <ion-col size="8">
+            <ion-datetime displayFormat="DD / MMM / YYYY" [(ngModel)]="dataFiltro" (ionChange)="filtroData()" placeholder="Data do Exame"></ion-datetime>
+            <ion-select *ngIf="tiposExames && tiposExames.length > 0" [(ngModel)]="tipoFiltro" (ionChange)="filtroTipo()" class="listaTipo" placeholder="Tipo do Exame">
+              <ion-select-option *ngFor="let tipo of tiposExames" [value]="tipo.id">{{tipo.nome}}</ion-select-option>
+            </ion-select>
+          </ion-col>
+          <ion-col size="4">
+            <ion-button class="btFiltrar" (click)="limparFiltro()" [disabled]="!dataFiltro && !tipoFiltro" color="secondary" expand="block">Limpar Filtro</ion-button>
           </ion-col>
         </ion-row>
+        <ion-item-divider></ion-item-divider>
         <ion-row>
           <ion-col size="12">
             <div *ngIf="!listaExame || listaExame.length == 0" class="area-lista-vazia">
@@ -24,21 +30,24 @@
                 </div>
               </div>
             </div>
-            <ion-list *ngIf="listaExame && listaExame.length > 0">
+            <ion-list class="listaExames" *ngIf="listaExame && listaExame.length > 0">
               <ion-item *ngFor="let item of listaExame">
                 <ion-label class="ion-text-wrap">
-
                   <ion-grid>
                     <ion-row>
-                      <ion-col class="col-lista-exame" size="7">
+                      <ion-col class="col-lista-exame" size="1">
+                        <i *ngIf="!item.publico" style="color:#D63742" class="fa fa-lock"></i>
+                        <i *ngIf="item.publico" style="color:#168A32" class="fa fa-unlock"></i>
+                      </ion-col>
+                      <ion-col class="col-lista-exame" size="6">
                         <ion-text color="primary">
                           <h2>{{item.tipo.nome}}</h2>
                         </ion-text>
                       </ion-col>
-                      <ion-col class="col-lista-exame" size="5">
+                      <ion-col class="col-lista-exame-dia" size="5">
                         <p>Data de Realização</p>
                         <ion-text color="secondary">
-                          <p>{{item.diaRealizacao | date: 'dd/MM/yyyy'}}</p>
+                          <p>{{item.diaRealizacao | date: 'dd/MMM/yyyy'}}</p>
                         </ion-text>
                       </ion-col>
                     </ion-row>
@@ -54,3 +63,8 @@
 
   </div>
 </ion-content>
+<ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab-button routerLink="/page/criar-exame">
+    <ion-icon name="add"></ion-icon>
+  </ion-fab-button>
+</ion-fab>

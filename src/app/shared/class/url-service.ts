@@ -12,7 +12,6 @@ export class UrlService {
 
   async sendRequestPost(url: string, body: string = ""){
     let token = await this.storage.get("token");
-    console.log(token);
     return this.http.post(UrlService.BACKEND_URL+url, body, {
       headers: new HttpHeaders()
         .set('Content-Type', 'application/json')

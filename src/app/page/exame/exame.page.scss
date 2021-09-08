@@ -17,9 +17,29 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 65vh;
+  height: 55vh;
+}
+
+.btFiltrar{
+  height: 100%;
+  font-size: 12px;
+}
+
+.listaExames{
+  --ion-background: green;
 }
 
 .col-lista-exame{
   --ion-grid-column-padding: 0 !important;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.col-lista-exame-dia{
+  --ion-grid-column-padding: 0 !important;
+}
+
+.listaTipo{
+  --placeholder-opacity: 0.5;
 }

@@ -12,4 +12,8 @@ export class ExameService {
     return await this.urlService.sendRequestPost("/Exame/ConsultarListaExame?id="+id);
   }
 
+  async consultarListaTiposExames(){
+    return await this.urlService.sendRequestPost("/Exame/ConsultarListaTiposExame");
+  }
+
 }
