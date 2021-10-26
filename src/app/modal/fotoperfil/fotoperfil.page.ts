@@ -3,6 +3,7 @@ import { ModalController } from '@ionic/angular';
 import { StorageService } from 'src/app/shared/class/storage.service';
 import { FotoperfilService } from './fotoperfil.service';
 import { Camera, CameraDirection, CameraResultType, CameraSource } from '@capacitor/camera';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-fotoperfil',
@@ -14,7 +15,7 @@ export class FotoperfilPage implements OnInit {
   user: any;
   loadingPhoto: boolean = false;
 
-  constructor(private storage: StorageService, private fotoperfilService: FotoperfilService, private modalController: ModalController) { }
+  constructor(private router: Router, private storage: StorageService, private fotoperfilService: FotoperfilService, private modalController: ModalController) { }
 
   async ngOnInit(){
     this.user = await this.storage.get("user");
@@ -38,6 +39,12 @@ export class FotoperfilPage implements OnInit {
         this.user = resp;
         this.loadingPhoto = false;
         this.closeFoto();
+      },
+      error => {
+        if(error.status == 401 || error.status == 403){
+          this.storage.remove("user");
+          this.router.navigateByUrl("");
+        }
       });
   }
 
@@ -48,6 +55,12 @@ export class FotoperfilPage implements OnInit {
         this.user.fotoPerfil = null;
         this.loadingPhoto = false;
         this.closeFoto();
+      },
+      error => {
+        if(error.status == 401 || error.status == 403){
+          this.storage.remove("user");
+          this.router.navigateByUrl("");
+        }
       });
   }
 

@@ -1,12 +1,12 @@
 <ion-content>
   <div class="content">
-    <div class="sector-novo-exame">
+    <div class="sector-nova-consulta">
       <ion-grid>
         <ion-row>
           <ion-col size="8">
-            <ion-datetime displayFormat="DD / MMM / YYYY" [(ngModel)]="dataFiltro" (ionChange)="filtroData()" placeholder="Data do Exame"></ion-datetime>
-            <ion-select *ngIf="tiposExames && tiposExames.length > 0" [(ngModel)]="tipoFiltro" (ionChange)="filtroTipo()" class="listaTipo" placeholder="Tipo do Exame">
-              <ion-select-option *ngFor="let tipo of tiposExames" [value]="tipo.id">{{tipo.nome}}</ion-select-option>
+            <ion-datetime displayFormat="DD / MMM / YYYY" [(ngModel)]="dataFiltro" (ionChange)="filtroData()" placeholder="Data da Consulta"></ion-datetime>
+            <ion-select *ngIf="tiposConsultas && tiposConsultas.length > 0" [(ngModel)]="tipoFiltro" (ionChange)="filtroTipo()" class="listaTipo" placeholder="Especialidade">
+              <ion-select-option *ngFor="let tipo of tiposConsultas" [value]="tipo.id">{{tipo.nome}}</ion-select-option>
             </ion-select>
           </ion-col>
           <ion-col size="4">
@@ -16,7 +16,7 @@
         <ion-item-divider></ion-item-divider>
         <ion-row>
           <ion-col size="12">
-            <div *ngIf="!listaExame || listaExame.length == 0" class="area-lista-vazia">
+            <div *ngIf="!listaConsulta || listaConsulta.length == 0" class="area-lista-vazia">
               <span *ngIf="!loading">{{mensagem}}</span>
               <div *ngIf="loading" class="preloader-wrapper big active">
                 <div class="spinner-layer spinner-blue-only">
@@ -30,21 +30,21 @@
                 </div>
               </div>
             </div>
-            <ion-list *ngIf="listaExame && listaExame.length > 0">
-              <ion-item *ngFor="let item of listaExame">
+            <ion-list *ngIf="listaConsulta && listaConsulta.length > 0">
+              <ion-item *ngFor="let item of listaConsulta">
                 <ion-label class="ion-text-wrap">
                   <ion-grid>
                     <ion-row>
-                      <ion-col class="col-lista-exame" size="1">
+                      <ion-col class="col-lista-consulta" size="1">
                         <i *ngIf="!item.publico" style="color:#D63742" class="fa fa-lock"></i>
                         <i *ngIf="item.publico" style="color:#168A32" class="fa fa-unlock"></i>
                       </ion-col>
-                      <ion-col class="col-lista-exame" size="6">
+                      <ion-col class="col-lista-consulta" size="6">
                         <ion-text color="primary">
                           <h2>{{item.tipo.nome}}</h2>
                         </ion-text>
                       </ion-col>
-                      <ion-col class="col-lista-exame-dia" size="5">
+                      <ion-col class="col-lista-consulta-dia" size="5">
                         <p>Data de Realização</p>
                         <ion-text color="secondary">
                           <p>{{item.diaRealizacao | date: 'dd/MMM/yyyy'}}</p>
@@ -64,7 +64,7 @@
   </div>
 </ion-content>
 <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-  <ion-fab-button routerLink="/page/criar-exame">
+  <ion-fab-button routerLink="/page/criar-consulta">
     <ion-icon name="add"></ion-icon>
   </ion-fab-button>
 </ion-fab>

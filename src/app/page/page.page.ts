@@ -9,10 +9,15 @@ import { StorageService } from '../shared/class/storage.service';
 })
 export class PagePage implements OnInit {
 
-  constructor(private storage: StorageService, private router: Router) {}
+  rotaAtual: any;
 
-  ngOnInit() {
+  constructor(private storage: StorageService, private router: Router) {
+    this.router.events.subscribe((evt) => {
+      this.rotaAtual = this.router.url;
+    });
   }
+
+  ngOnInit() {}
 
   logout(){
     this.storage.remove("user");

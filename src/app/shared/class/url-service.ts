@@ -8,14 +8,17 @@ export class UrlService {
 
   static BACKEND_URL = 'http://localhost:54439';
 
-  constructor(private router: Router, private storage: StorageService, private http: HttpClient) {}
+  constructor(private storage: StorageService, private http: HttpClient) {}
 
   async sendRequestPost(url: string, body: string = ""){
+
     let token = await this.storage.get("token");
+
     return this.http.post(UrlService.BACKEND_URL+url, body, {
       headers: new HttpHeaders()
         .set('Content-Type', 'application/json')
         .set('Authorization', 'BEARER ' + token)
     });
+
   }
 }

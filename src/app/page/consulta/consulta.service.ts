@@ -4,20 +4,19 @@ import { UrlService } from 'src/app/shared/class/url-service';
 @Injectable({
   providedIn: 'root'
 })
-export class ExameService {
+export class ConsultaService {
 
   constructor(private urlService: UrlService) { }
 
-  async consultarListaExames(id: string){
-    return await this.urlService.sendRequestPost("/Exame/ConsultarListaExame?id="+id);
+  async consultarListaConsultas(id: string){
+    return await this.urlService.sendRequestPost("/Consulta/ListaConsulta?idPaciente="+id);
   }
 
-  async consultarListaTiposExames(){
-    return await this.urlService.sendRequestPost("/Exame/ConsultarListaTiposExame");
+  async consultarListaTiposConsultas(){
+    return await this.urlService.sendRequestPost("/Consulta/ListaTiposConsultas");
   }
 
   async salvarExame(request: any){
     return await this.urlService.sendRequestPost("/Exame/CadastroExame", JSON.stringify(request));
   }
-
 }

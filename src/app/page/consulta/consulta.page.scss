@@ -7,7 +7,7 @@
   justify-content: space-between;
 }
 
-.sector-novo-exame{
+.sector-nova-consulta{
   width: 100%;
   height: auto;
 }
@@ -25,14 +25,14 @@
   font-size: 12px;
 }
 
-.col-lista-exame{
+.col-lista-consulta{
   --ion-grid-column-padding: 0 !important;
   display: flex;
   justify-content: flex-start;
   align-items: center;
 }
 
-.col-lista-exame-dia{
+.col-lista-consulta-dia{
   --ion-grid-column-padding: 0 !important;
 }
 

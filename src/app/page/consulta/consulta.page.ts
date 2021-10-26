@@ -1,20 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { NavigationEnd, Router, RouterEvent } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { StorageService } from 'src/app/shared/class/storage.service';
-import { ExameService } from './exame.service';
+import { ConsultaService } from './consulta.service';
 
 @Component({
-  selector: 'app-exame',
-  templateUrl: './exame.page.html',
-  styleUrls: ['./exame.page.scss'],
+  selector: 'app-consulta',
+  templateUrl: './consulta.page.html',
+  styleUrls: ['./consulta.page.scss'],
 })
-export class ExamePage implements OnInit {
+export class ConsultaPage implements OnInit {
 
-  listaExameFull: any;
-  listaExame: any;
+  listaConsultaFull: any;
+  listaConsulta: any;
   loading: boolean = false;
   mensagem: string;
-  tiposExames: any;
+  tiposConsultas: any;
 
   dataFiltrada: boolean = false;
   tipoFiltrado: boolean = false;
@@ -22,31 +22,34 @@ export class ExamePage implements OnInit {
   dataFiltro: Date;
   tipoFiltro: string;
 
-  constructor(private router: Router, private storage: StorageService, private exameService: ExameService) {
+  constructor(private router: Router, private storage: StorageService, private consultaService: ConsultaService) {
     this.router.events.subscribe((evt) => {
-      if (evt instanceof NavigationEnd && this.router.url == "/page/exame") {
+      if (evt instanceof NavigationEnd && this.router.url == "/page/consulta") {
         this.loading = true;
-         this.pageEnter();
+        this.pageEnter();
       }
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
   async pageEnter(){
     let user = await this.storage.get("user");
-    this.listaExameFull = undefined;
-    this.listaExame = undefined;
+    this.listaConsultaFull = undefined;
+    this.listaConsulta = undefined;
 
-    await this.getTiposExames();
+    await this.getTiposConsultas();
 
-    (await this.exameService.consultarListaExames(user.id))
+    (await this.consultaService.consultarListaConsultas(user.id))
       .subscribe((resp: any) => {
-        this.listaExameFull = resp;
-        this.listaExame = resp;
+        this.listaConsultaFull = resp;
+        this.listaConsulta = resp;
 
-        if(this.listaExame.length == 0)
-          this.mensagem = "Nenhum exame salvo";
+        console.log(resp);
+
+        if(this.listaConsulta.length == 0)
+          this.mensagem = "Nenhuma consulta salva";
 
         this.loading = false;
       },
@@ -60,10 +63,10 @@ export class ExamePage implements OnInit {
       });
   }
 
-  async getTiposExames(){
-    (await this.exameService.consultarListaTiposExames())
+  async getTiposConsultas(){
+    (await this.consultaService.consultarListaTiposConsultas())
       .subscribe((resp: any) => {
-        this.tiposExames = resp;
+        this.tiposConsultas = resp;
       },
       error => {
         if(error.status == 401 || error.status == 403){
@@ -75,7 +78,7 @@ export class ExamePage implements OnInit {
 
   filtroData(){
     if(this.dataFiltro && this.tipoFiltrado){
-      this.listaExame = this.listaExameFull.filter((item) => {
+      this.listaConsulta = this.listaConsultaFull.filter((item) => {
         return new Date(item.diaRealizacao).getDate() == new Date(this.dataFiltro).getDate() &&
                new Date(item.diaRealizacao).getMonth() == new Date(this.dataFiltro).getMonth() &&
                new Date(item.diaRealizacao).getFullYear() == new Date(this.dataFiltro).getFullYear() &&
@@ -83,7 +86,7 @@ export class ExamePage implements OnInit {
       });
       this.dataFiltrada = true;
     }else if(this.dataFiltro && !this.tipoFiltrado){
-      this.listaExame = this.listaExameFull.filter((item) => {
+      this.listaConsulta = this.listaConsultaFull.filter((item) => {
         return new Date(item.diaRealizacao).getDate() == new Date(this.dataFiltro).getDate() &&
                new Date(item.diaRealizacao).getMonth() == new Date(this.dataFiltro).getMonth() &&
                new Date(item.diaRealizacao).getFullYear() == new Date(this.dataFiltro).getFullYear();
@@ -94,7 +97,7 @@ export class ExamePage implements OnInit {
 
   filtroTipo(){
     if(this.tipoFiltro && this.dataFiltrada){
-      this.listaExame = this.listaExameFull.filter((item) => {
+      this.listaConsulta = this.listaConsultaFull.filter((item) => {
         return new Date(item.diaRealizacao).getDate() == new Date(this.dataFiltro).getDate() &&
                new Date(item.diaRealizacao).getMonth() == new Date(this.dataFiltro).getMonth() &&
                new Date(item.diaRealizacao).getFullYear() == new Date(this.dataFiltro).getFullYear() &&
@@ -102,7 +105,7 @@ export class ExamePage implements OnInit {
       });
       this.tipoFiltrado = true;
     }else if(this.tipoFiltro && !this.dataFiltrada){
-      this.listaExame = this.listaExameFull.filter((item) => {
+      this.listaConsulta = this.listaConsultaFull.filter((item) => {
         return item.tipo.id == this.tipoFiltro;
       });
       this.tipoFiltrado = true;
@@ -112,7 +115,7 @@ export class ExamePage implements OnInit {
   limparFiltro(){
     this.dataFiltro = undefined;
     this.tipoFiltro = undefined;
-    this.listaExame = this.listaExameFull;
+    this.listaConsulta = this.listaConsultaFull;
     this.dataFiltrada = false;
     this.tipoFiltrado = false;
   }

@@ -48,20 +48,27 @@ export class LoginPage implements OnInit {
 
         (await this.loginService.entrar(this.loginForm.get("login").value, this.loginForm.get("senha").value))
           .subscribe(async (resp: any) => {
+
             this.closeLoadingScreen();
+
             await this.storage.set("token", resp.token);
             await this.storage.set("user", resp.paciente);
             this.loginForm.get("login").setValue("");
             this.loginForm.get("senha").setValue("");
+
             this.router.navigateByUrl('page');
+
           },error => {
+
             this.closeLoadingScreen();
+
             this.toastController.create({
               message: error.error,
               duration: 3000
             }).then(toast => {
               toast.present();
             });
+
           });
 
       });

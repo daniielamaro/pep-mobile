@@ -4,23 +4,23 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { HomePageRoutingModule } from './home-routing.module';
+import { ConsultaPageRoutingModule } from './consulta-routing.module';
 
-import { HomePage } from './home.page';
+import { ConsultaPage } from './consulta.page';
 import { UrlService } from 'src/app/shared/class/url-service';
-import { HomeService } from './home.service';
+import { ConsultaService } from './consulta.service';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    HomePageRoutingModule
+    ConsultaPageRoutingModule
   ],
-  declarations: [HomePage],
+  declarations: [ConsultaPage],
   providers: [
-    HomeService,
+    ConsultaService,
     UrlService
   ]
 })
-export class HomePageModule {}
+export class ConsultaPageModule {}

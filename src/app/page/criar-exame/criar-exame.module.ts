@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { CriarExamePageRoutingModule } from './criar-exame-routing.module';
 
 import { CriarExamePage } from './criar-exame.page';
+import { ExameService } from '../exame/exame.service';
 
 @NgModule({
   imports: [
@@ -15,6 +16,9 @@ import { CriarExamePage } from './criar-exame.page';
     IonicModule,
     CriarExamePageRoutingModule
   ],
-  declarations: [CriarExamePage]
+  declarations: [CriarExamePage],
+  providers: [
+    ExameService
+  ]
 })
 export class CriarExamePageModule {}
