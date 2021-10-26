@@ -46,8 +46,6 @@ export class ConsultaPage implements OnInit {
         this.listaConsultaFull = resp;
         this.listaConsulta = resp;
 
-        console.log(resp);
-
         if(this.listaConsulta.length == 0)
           this.mensagem = "Nenhuma consulta salva";
 
