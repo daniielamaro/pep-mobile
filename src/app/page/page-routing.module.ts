@@ -25,6 +25,10 @@ const routes: Routes = [
         loadChildren: () => import('./consulta/consulta.module').then( m => m.ConsultaPageModule)
       },
       {
+        path: 'criar-consulta',
+        loadChildren: () => import('./criar-consulta/criar-consulta.module').then( m => m.CriarConsultaPageModule)
+      },
+      {
         path: '',
         redirectTo: '/page/home',
         pathMatch: 'full'

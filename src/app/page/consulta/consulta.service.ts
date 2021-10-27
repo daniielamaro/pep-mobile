@@ -16,7 +16,7 @@ export class ConsultaService {
     return await this.urlService.sendRequestPost("/Consulta/ListaTiposConsultas");
   }
 
-  async salvarExame(request: any){
-    return await this.urlService.sendRequestPost("/Exame/CadastroExame", JSON.stringify(request));
+  async salvarConsulta(request: any){
+    return await this.urlService.sendRequestPost("/Consulta/CadastroConsulta", JSON.stringify(request));
   }
 }
