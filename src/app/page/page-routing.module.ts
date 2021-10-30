@@ -29,6 +29,10 @@ const routes: Routes = [
         loadChildren: () => import('./criar-consulta/criar-consulta.module').then( m => m.CriarConsultaPageModule)
       },
       {
+        path: 'medicamento',
+        loadChildren: () => import('./medicamento/medicamento.module').then( m => m.MedicamentoPageModule)
+      },
+      {
         path: '',
         redirectTo: '/page/home',
         pathMatch: 'full'

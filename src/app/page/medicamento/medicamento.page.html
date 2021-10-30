@@ -1,0 +1,64 @@
+<ion-content>
+  <div class="content">
+    <div class="sector-novo-medicamento">
+      <ion-grid>
+        <ion-row>
+          <ion-col size="12">
+            <div *ngIf="!listaMedicamentos || listaMedicamentos.length == 0" class="area-lista-vazia">
+              <span *ngIf="!loading">{{mensagem}}</span>
+              <div *ngIf="loading" class="preloader-wrapper big active">
+                <div class="spinner-layer spinner-blue-only">
+                  <div class="circle-clipper left">
+                    <div class="circle"></div>
+                  </div><div class="gap-patch">
+                    <div class="circle"></div>
+                  </div><div class="circle-clipper right">
+                    <div class="circle"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <ion-list *ngIf="listaMedicamentos && listaMedicamentos.length > 0">
+
+              <ion-item *ngFor="let item of listaMedicamentos">
+                <ion-label class="ion-text-wrap">
+                  <ion-grid>
+                    <ion-row>
+                      <ion-col class="medicamento-nome" size="11">
+                        <ion-text color="primary">
+                          <h2>{{item.nome}}</h2>
+                        </ion-text>
+                      </ion-col>
+                      <ion-col class="medicamento-publico" size="1">
+                        <i *ngIf="!item.publico" style="color:#D63742" class="fa fa-lock"></i>
+                        <i *ngIf="item.publico" style="color:#168A32" class="fa fa-unlock"></i>
+                      </ion-col>
+                    </ion-row>
+                    <ion-row>
+                      <ion-col class="medicamento-quantidade" size="7">
+                        <p>{{item.quantidade}} {{item.intervalo}}</p>
+                      </ion-col>
+                      <ion-col class="medicamento-dataTermino" size="5">
+                        <ion-text color="secondary">
+                          <p *ngIf="!item.usoContinuo">Até: {{item.dataTermino | date: 'dd/MMM/yyyy'}}</p>
+                          <p *ngIf="item.usoContinuo">Uso contínuo</p>
+                        </ion-text>
+                      </ion-col>
+                    </ion-row>
+                  </ion-grid>
+                </ion-label>
+              </ion-item>
+
+            </ion-list>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+
+  </div>
+</ion-content>
+<ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab-button routerLink="/page/criar-medicamento">
+    <ion-icon name="add"></ion-icon>
+  </ion-fab-button>
+</ion-fab>

@@ -22,9 +22,9 @@
       <!-- <ion-label>Hospitais e Clinicas</ion-label> -->
     </ion-tab-button>
 
-    <ion-tab-button tab="medicamentos">
+    <ion-tab-button tab="medicamento">
       <ion-icon name="water"></ion-icon>
-      <!-- <ion-label>Medicamentos</ion-label> -->
+      <ion-label *ngIf="rotaAtual == '/page/medicamento'">Medicamentos</ion-label>
     </ion-tab-button>
 
     <ion-tab-button tab="exame">

@@ -1,0 +1,54 @@
+.content{
+  margin-top: 10vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sector-novo-medicamento{
+  width: 100%;
+  height: auto;
+}
+
+.area-lista-vazia{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 75vh;
+}
+
+.medicamento-nome{
+  --ion-grid-column-padding: 0 !important;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.medicamento-publico{
+  --ion-grid-column-padding: 0 !important;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.medicamento-quantidade{
+  --ion-grid-column-padding: 0 !important;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.medicamento-dataTermino{
+  --ion-grid-column-padding: 0 !important;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  text-align: center;
+}
+
+.listaTipo{
+  --placeholder-opacity: 0.5;
+}
