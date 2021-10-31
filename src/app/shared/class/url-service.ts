@@ -9,7 +9,18 @@ export class UrlService {
   static BACKEND_URL = 'http://localhost:54439';
   //static BACKEND_URL = 'http://34.68.18.75:8080';
 
-  constructor(private storage: StorageService, private http: HttpClient) {}
+  constructor(private storage: StorageService, private router: Router, private http: HttpClient) {}
+
+  async validateToken(token: string){
+    (await this.sendRequestPost("/Paciente/VerificarToken?token="+token))
+      .subscribe(() => {},
+      error => {
+        if(error.status == 400 || error.status == 401 || error.status == 403){
+          this.storage.remove("user");
+          this.router.navigateByUrl("");
+        }
+      })
+  }
 
   async sendRequestPost(url: string, body: string = ""){
 

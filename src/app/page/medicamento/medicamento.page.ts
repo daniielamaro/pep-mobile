@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { StorageService } from 'src/app/shared/class/storage.service';
+import { UrlService } from 'src/app/shared/class/url-service';
 import { ExameService } from '../exame/exame.service';
 import { MedicamentoService } from './medicamento.service';
 
@@ -15,7 +16,12 @@ export class MedicamentoPage implements OnInit {
   loading: boolean = false;
   mensagem: string;
 
-  constructor(private router: Router, private storage: StorageService, private medicamentoService: MedicamentoService) {
+  constructor(
+    private router: Router,
+    private storage: StorageService,
+    private urlService: UrlService,
+    private medicamentoService: MedicamentoService)
+  {
     this.router.events.subscribe((evt) => {
       if (evt instanceof NavigationEnd && this.router.url == "/page/medicamento") {
         this.loading = true;
@@ -28,6 +34,9 @@ export class MedicamentoPage implements OnInit {
 
   async pageEnter(){
     let user = await this.storage.get("user");
+    let token = await this.storage.get("token");
+    await this.urlService.validateToken(token);
+
     this.listaMedicamentos = undefined;
 
     (await this.medicamentoService.consultarListaMedicamentos(user.id))

@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
+import { ModalController, ToastController } from '@ionic/angular';
+import { LoadingPage } from 'src/app/loading/loading.page';
 import { StorageService } from 'src/app/shared/class/storage.service';
+import { UrlService } from 'src/app/shared/class/url-service';
 import { ExameService } from '../exame/exame.service';
 
 @Component({
@@ -19,24 +22,55 @@ export class CriarExamePage implements OnInit {
   arquivo: any;
   observacoes: any;
 
-  constructor(private exameService: ExameService, private router: Router, private storage: StorageService) { }
+  constructor(
+    private exameService: ExameService,
+    public modalController: ModalController,
+    public toastController: ToastController,
+    private urlService: UrlService,
+    private router: Router,
+    private storage: StorageService)
+  {
+    this.router.events.subscribe((evt) => {
+      if (evt instanceof NavigationEnd && this.router.url == "/page/criar-exame") {
+         this.pageEnter();
+      }
+    });
+  }
 
-  async ngOnInit() {
+  async ngOnInit() { }
+
+  async pageEnter(){
     this.getTiposExames();
     this.user = await this.storage.get("user");
+    let token = await this.storage.get("token");
+    await this.urlService.validateToken(token);
   }
 
   async getTiposExames(){
-    (await this.exameService.consultarListaTiposExames())
-      .subscribe((resp: any) => {
-        this.tiposExames = resp;
-      },
-      error => {
-        if(error.status == 401 || error.status == 403){
-          this.storage.remove("user");
-          this.router.navigateByUrl("");
-        }
-      });
+    this.showLoadingScreen()
+      .then(async () => {
+        (await this.exameService.consultarListaTiposExames())
+          .subscribe((resp: any) => {
+            this.tiposExames = resp;
+          },
+          error => {
+            if(error.status == 401 || error.status == 403){
+              this.storage.remove("user");
+              this.router.navigateByUrl("");
+            }
+            else{
+              this.toastController.create({
+                message: error.error,
+                duration: 5000
+              }).then(toast => {
+                toast.present();
+              });
+            }
+          },
+          () => {
+            this.closeLoadingScreen();
+          });
+        });
   }
 
   fileChange(e){
@@ -53,35 +87,63 @@ export class CriarExamePage implements OnInit {
   }
 
   async salvarExame(){
-    let request = {
-      arquivo: this.arquivo == undefined ? null : {
-        nome: this.arquivo.name,
-        tipo: this.arquivo.type,
-        binario: this.arquivo.binary
-      },
-      dataRealizacao: this.dataExame.split("T")[0],
-      idPaciente: this.user.id,
-      idTipoExame: this.tipoExame,
-      publico: this.publico,
-      observacoes: this.observacoes
-    };
+    this.showLoadingScreen()
+      .then(async () => {
+        let request = {
+          arquivo: this.arquivo == undefined ? null : {
+            nome: this.arquivo.name,
+            tipo: this.arquivo.type,
+            binario: this.arquivo.binary
+          },
+          dataRealizacao: this.dataExame.split("T")[0],
+          idPaciente: this.user.id,
+          idTipoExame: this.tipoExame,
+          publico: this.publico,
+          observacoes: this.observacoes
+        };
 
-    this.arquivo = undefined;
-    this.dataExame = undefined;
-    this.tipoExame = undefined;
-    this.publico = false;
-    this.observacoes = undefined;
+        this.arquivo = undefined;
+        this.dataExame = undefined;
+        this.tipoExame = undefined;
+        this.publico = false;
+        this.observacoes = undefined;
 
-    (await this.exameService.salvarExame(request))
-      .subscribe(() => {
-        this.router.navigateByUrl("/page/exame");
-      },
-      error => {
-        if(error.status == 401 || error.status == 403){
-          this.storage.remove("user");
-          this.router.navigateByUrl("");
-        }
+        (await this.exameService.salvarExame(request))
+          .subscribe(() => {
+            this.router.navigateByUrl("/page/exame");
+          },
+          error => {
+            if(error.status == 401 || error.status == 403){
+              this.storage.remove("user");
+              this.router.navigateByUrl("");
+            }else{
+              this.toastController.create({
+                message: error.error,
+                duration: 5000
+              }).then(toast => {
+                toast.present();
+              });
+            }
+          },
+          () => {
+            this.closeLoadingScreen();
+          });
       });
+  }
+
+  async showLoadingScreen() {
+    const loadingScreen = await this.modalController.create({
+      component: LoadingPage
+    });
+    return await loadingScreen.present();
+  }
+
+  async closeLoadingScreen() {
+    this.modalController.getTop().then(loader => {
+      if (loader) {
+        loader.dismiss();
+      }
+    });
   }
 
 }

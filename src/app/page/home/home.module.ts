@@ -8,7 +8,6 @@ import { HomePageRoutingModule } from './home-routing.module';
 
 import { HomePage } from './home.page';
 import { UrlService } from 'src/app/shared/class/url-service';
-import { HomeService } from './home.service';
 
 @NgModule({
   imports: [
@@ -19,7 +18,6 @@ import { HomeService } from './home.service';
   ],
   declarations: [HomePage],
   providers: [
-    HomeService,
     UrlService
   ]
 })

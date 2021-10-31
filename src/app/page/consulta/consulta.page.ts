@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { StorageService } from 'src/app/shared/class/storage.service';
+import { UrlService } from 'src/app/shared/class/url-service';
 import { ConsultaService } from './consulta.service';
 
 @Component({
@@ -22,7 +23,12 @@ export class ConsultaPage implements OnInit {
   dataFiltro: Date;
   tipoFiltro: string;
 
-  constructor(private router: Router, private storage: StorageService, private consultaService: ConsultaService) {
+  constructor(
+    private router: Router,
+    private storage: StorageService,
+    private urlService: UrlService,
+    private consultaService: ConsultaService)
+  {
     this.router.events.subscribe((evt) => {
       if (evt instanceof NavigationEnd && this.router.url == "/page/consulta") {
         this.loading = true;
@@ -36,6 +42,9 @@ export class ConsultaPage implements OnInit {
 
   async pageEnter(){
     let user = await this.storage.get("user");
+    let token = await this.storage.get("token");
+    await this.urlService.validateToken(token);
+
     this.listaConsultaFull = undefined;
     this.listaConsulta = undefined;
 

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router, RouterEvent } from '@angular/router';
 import { StorageService } from 'src/app/shared/class/storage.service';
+import { UrlService } from 'src/app/shared/class/url-service';
 import { ExameService } from './exame.service';
 
 @Component({
@@ -22,7 +23,12 @@ export class ExamePage implements OnInit {
   dataFiltro: Date;
   tipoFiltro: string;
 
-  constructor(private router: Router, private storage: StorageService, private exameService: ExameService) {
+  constructor(
+    private router: Router,
+    private storage: StorageService,
+    private urlService: UrlService,
+    private exameService: ExameService)
+  {
     this.router.events.subscribe((evt) => {
       if (evt instanceof NavigationEnd && this.router.url == "/page/exame") {
         this.loading = true;
@@ -35,6 +41,9 @@ export class ExamePage implements OnInit {
 
   async pageEnter(){
     let user = await this.storage.get("user");
+    let token = await this.storage.get("token");
+    await this.urlService.validateToken(token);
+
     this.listaExameFull = undefined;
     this.listaExame = undefined;
 
