@@ -144,32 +144,34 @@ let CadastroPage = class CadastroPage {
     ngOnInit() {
     }
     cadastrar() {
-        if (this.cadastroForm.get("senha").value != this.cadastroForm.get("confSenha").value) {
-            this.toastController.create({
-                message: "As senhas não coincidem",
-                duration: 2000
-            }).then(toast => {
-                toast.present();
-            });
-            return;
-        }
-        let request = {
-            nome: this.cadastroForm.get("nome").value,
-            rg: this.cadastroForm.get("rg").value,
-            cpf: this.cadastroForm.get("cpf").value,
-            email: this.cadastroForm.get("email").value,
-            dataNasc: this.cadastroForm.get("dataNasc").value,
-            endereco: this.cadastroForm.get("endereco").value,
-            senha: this.cadastroForm.get("senha").value,
-        };
-        this.cadastroService.cadastrar(request)
-            .subscribe(() => {
-            this.toastController.create({
-                message: "Cadastrado!",
-                duration: 2000
-            }).then(toast => {
-                toast.present();
-                this.router.navigateByUrl("/login");
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__awaiter)(this, void 0, void 0, function* () {
+            if (this.cadastroForm.get("senha").value != this.cadastroForm.get("confSenha").value) {
+                this.toastController.create({
+                    message: "As senhas não coincidem",
+                    duration: 2000
+                }).then(toast => {
+                    toast.present();
+                });
+                return;
+            }
+            let request = {
+                nome: this.cadastroForm.get("nome").value,
+                rg: this.cadastroForm.get("rg").value,
+                cpf: this.cadastroForm.get("cpf").value,
+                email: this.cadastroForm.get("email").value,
+                dataNasc: this.cadastroForm.get("dataNasc").value,
+                endereco: this.cadastroForm.get("endereco").value,
+                senha: this.cadastroForm.get("senha").value,
+            };
+            (yield this.cadastroService.cadastrar(request))
+                .subscribe(() => {
+                this.toastController.create({
+                    message: "Cadastrado!",
+                    duration: 2000
+                }).then(toast => {
+                    toast.present();
+                    this.router.navigateByUrl("/login");
+                });
             });
         });
     }
@@ -232,7 +234,9 @@ let CadastroService = class CadastroService {
         this.urlService = urlService;
     }
     cadastrar(request) {
-        return this.urlService.sendRequestPost("/Paciente/Cadastrar", JSON.stringify(request));
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__awaiter)(this, void 0, void 0, function* () {
+            return yield this.urlService.sendRequestPost("/Paciente/Cadastrar", JSON.stringify(request));
+        });
     }
 };
 CadastroService.ctorParameters = () => [

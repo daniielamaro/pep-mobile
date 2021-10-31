@@ -413,11 +413,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! tslib */ 4762);
 /* harmony import */ var _raw_loader_fotoperfil_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !raw-loader!./fotoperfil.page.html */ 6718);
 /* harmony import */ var _fotoperfil_page_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./fotoperfil.page.scss */ 6113);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/core */ 7716);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic/angular */ 476);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/core */ 7716);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ionic/angular */ 476);
 /* harmony import */ var src_app_shared_class_storage_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/shared/class/storage.service */ 6578);
 /* harmony import */ var _fotoperfil_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./fotoperfil.service */ 4621);
 /* harmony import */ var _capacitor_camera__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @capacitor/camera */ 7673);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/router */ 9895);
+
 
 
 
@@ -427,7 +429,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let FotoperfilPage = class FotoperfilPage {
-    constructor(storage, fotoperfilService, modalController) {
+    constructor(router, storage, fotoperfilService, modalController) {
+        this.router = router;
         this.storage = storage;
         this.fotoperfilService = fotoperfilService;
         this.modalController = modalController;
@@ -449,22 +452,34 @@ let FotoperfilPage = class FotoperfilPage {
             });
             const photoObj = image.dataUrl;
             this.loadingPhoto = true;
-            this.fotoperfilService.mudarFoto(this.getBinaryPhoto(photoObj), this.getTypePhoto(photoObj), this.user.id)
+            (yield this.fotoperfilService.mudarFoto(this.getBinaryPhoto(photoObj), this.getTypePhoto(photoObj), this.user.id))
                 .subscribe((resp) => (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__awaiter)(this, void 0, void 0, function* () {
                 this.user = resp;
                 this.loadingPhoto = false;
                 this.closeFoto();
-            }));
+            }), error => {
+                if (error.status == 401 || error.status == 403) {
+                    this.storage.remove("user");
+                    this.router.navigateByUrl("");
+                }
+            });
         });
     }
     removerFoto() {
-        this.loadingPhoto = true;
-        this.fotoperfilService.removerFoto(this.user.id)
-            .subscribe(() => (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__awaiter)(this, void 0, void 0, function* () {
-            this.user.fotoPerfil = null;
-            this.loadingPhoto = false;
-            this.closeFoto();
-        }));
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__awaiter)(this, void 0, void 0, function* () {
+            this.loadingPhoto = true;
+            (yield this.fotoperfilService.removerFoto(this.user.id))
+                .subscribe(() => (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__awaiter)(this, void 0, void 0, function* () {
+                this.user.fotoPerfil = null;
+                this.loadingPhoto = false;
+                this.closeFoto();
+            }), error => {
+                if (error.status == 401 || error.status == 403) {
+                    this.storage.remove("user");
+                    this.router.navigateByUrl("");
+                }
+            });
+        });
     }
     getTypePhoto(photo) {
         return photo.split(';')[0].split(':')[1];
@@ -477,12 +492,13 @@ let FotoperfilPage = class FotoperfilPage {
     }
 };
 FotoperfilPage.ctorParameters = () => [
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_6__.Router },
     { type: src_app_shared_class_storage_service__WEBPACK_IMPORTED_MODULE_2__.StorageService },
     { type: _fotoperfil_service__WEBPACK_IMPORTED_MODULE_3__.FotoperfilService },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_6__.ModalController }
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.ModalController }
 ];
 FotoperfilPage = (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_7__.Component)({
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_8__.Component)({
         selector: 'app-fotoperfil',
         template: _raw_loader_fotoperfil_page_html__WEBPACK_IMPORTED_MODULE_0__.default,
         styles: [_fotoperfil_page_scss__WEBPACK_IMPORTED_MODULE_1__.default]
@@ -515,18 +531,22 @@ let FotoperfilService = class FotoperfilService {
         this.urlService = urlService;
     }
     mudarFoto(fotoBin, fotoTipo, id) {
-        let request = {
-            id: id,
-            foto: {
-                nome: Date.now.toString(),
-                tipo: fotoTipo,
-                binario: fotoBin
-            }
-        };
-        return this.urlService.sendRequestPost("/Paciente/AlterarFotoPerfil", JSON.stringify(request));
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__awaiter)(this, void 0, void 0, function* () {
+            let request = {
+                id: id,
+                foto: {
+                    nome: Date.now.toString(),
+                    tipo: fotoTipo,
+                    binario: fotoBin
+                }
+            };
+            return yield this.urlService.sendRequestPost("/Paciente/AlterarFotoPerfil", JSON.stringify(request));
+        });
     }
     removerFoto(id) {
-        return this.urlService.sendRequestPost("/Paciente/DeletarFotoPerfil?id=" + id);
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__awaiter)(this, void 0, void 0, function* () {
+            return yield this.urlService.sendRequestPost("/Paciente/DeletarFotoPerfil?id=" + id);
+        });
     }
 };
 FotoperfilService.ctorParameters = () => [
@@ -699,47 +719,39 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "UrlService": () => (/* binding */ UrlService)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! tslib */ 4762);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ 9895);
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ 1841);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ 7716);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! tslib */ 4762);
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ 1841);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 7716);
 /* harmony import */ var _storage_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./storage.service */ 6578);
 var UrlService_1;
 
 
 
 
-
 let UrlService = UrlService_1 = class UrlService {
-    constructor(router, storage, http) {
-        this.router = router;
+    constructor(storage, http) {
         this.storage = storage;
         this.http = http;
-        this.TOKEN = "";
-        this.storage.get("token").then(resp => {
-            this.TOKEN = resp;
-        });
-    }
-    getHeaders() {
-        this.header = {
-            headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__.HttpHeaders()
-                .set('Content-Type', 'application/json')
-                .set('Authorization', 'BEARER ' + this.TOKEN)
-        };
-        return this.header;
     }
     sendRequestPost(url, body = "") {
-        return this.http.post(UrlService_1.BACKEND_URL + url, body, this.getHeaders());
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__awaiter)(this, void 0, void 0, function* () {
+            let token = yield this.storage.get("token");
+            return this.http.post(UrlService_1.BACKEND_URL + url, body, {
+                headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__.HttpHeaders()
+                    .set('Content-Type', 'application/json')
+                    .set('Authorization', 'BEARER ' + token)
+            });
+        });
     }
 };
-UrlService.BACKEND_URL = 'http://localhost:54439';
+//static BACKEND_URL = 'http://localhost:54439';
+UrlService.BACKEND_URL = 'http://34.68.18.75:8080';
 UrlService.ctorParameters = () => [
-    { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__.Router },
     { type: _storage_service__WEBPACK_IMPORTED_MODULE_0__.StorageService },
-    { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_1__.HttpClient }
+    { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__.HttpClient }
 ];
-UrlService = UrlService_1 = (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_4__.Injectable)()
+UrlService = UrlService_1 = (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_3__.Injectable)()
 ], UrlService);
 
 

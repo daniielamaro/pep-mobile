@@ -155,8 +155,8 @@ let LoginPage = class LoginPage {
     entrar() {
         return (0,tslib__WEBPACK_IMPORTED_MODULE_6__.__awaiter)(this, void 0, void 0, function* () {
             this.showLoadingScreen()
-                .then(() => {
-                this.loginService.entrar(this.loginForm.get("login").value, this.loginForm.get("senha").value)
+                .then(() => (0,tslib__WEBPACK_IMPORTED_MODULE_6__.__awaiter)(this, void 0, void 0, function* () {
+                (yield this.loginService.entrar(this.loginForm.get("login").value, this.loginForm.get("senha").value))
                     .subscribe((resp) => (0,tslib__WEBPACK_IMPORTED_MODULE_6__.__awaiter)(this, void 0, void 0, function* () {
                     this.closeLoadingScreen();
                     yield this.storage.set("token", resp.token);
@@ -173,7 +173,7 @@ let LoginPage = class LoginPage {
                         toast.present();
                     });
                 });
-            });
+            }));
         });
     }
     showLoadingScreen() {
@@ -236,7 +236,9 @@ let LoginService = class LoginService {
         this.urlService = urlService;
     }
     entrar(emailCpf, senha) {
-        return this.urlService.sendRequestPost('/Paciente/AcessarSistema?usuario=' + emailCpf + '&senha=' + senha);
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__awaiter)(this, void 0, void 0, function* () {
+            return yield this.urlService.sendRequestPost('/Paciente/AcessarSistema?usuario=' + emailCpf + '&senha=' + senha);
+        });
     }
 };
 LoginService.ctorParameters = () => [
@@ -278,7 +280,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-header>\n  <ion-toolbar>\n    <ion-title>Acessar Sistema</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n\n  <div class=\"content\">\n\n    <form [formGroup]=\"loginForm\">\n      <div class=\"input-field\">\n        <i class=\"material-icons prefix\">account_circle</i>\n        <input id=\"icon_prefix\" formControlName=\"login\" type=\"text\" class=\"validate\">\n        <label for=\"icon_prefix\">Email ou CPF</label>\n      </div>\n      <div class=\"input-field\">\n        <i class=\"material-icons prefix\">lock</i>\n        <input id=\"icon_telephone\" formControlName=\"senha\" type=\"password\" class=\"validate\">\n        <label for=\"icon_telephone\">Senha</label>\n      </div>\n    </form>\n    <div class=\"row button-area\">\n      <div class=\"col s6\">\n        <ion-button (click)=\"entrar()\" expand=\"block\">Entrar</ion-button>\n      </div>\n      <div class=\"col s6\">\n        <ion-button routerLink=\"/cadastro\" expand=\"block\" color=\"secondary\">Criar conta</ion-button>\n      </div>\n    </div>\n\n  </div>\n\n</ion-content>\n");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-header>\n  <ion-toolbar>\n    <ion-title>Acessar Sistema</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n\n  <div class=\"content\">\n\n    <form [formGroup]=\"loginForm\">\n      <div class=\"input-field\">\n        <i class=\"material-icons prefix\">account_circle</i>\n        <input id=\"icon_prefix\" formControlName=\"login\" type=\"text\" class=\"validate\">\n        <label for=\"icon_prefix\">Email ou CPF</label>\n      </div>\n      <div class=\"input-field\">\n        <i class=\"material-icons prefix\">lock</i>\n        <input id=\"icon_telephone\" formControlName=\"senha\" type=\"password\" class=\"validate\">\n        <label for=\"icon_telephone\">Senha</label>\n      </div>\n    </form>\n    <div class=\"row button-area\">\n      <div class=\"col s6\">\n        <ion-button routerLink=\"/cadastro\" expand=\"block\" color=\"secondary\">Criar conta</ion-button>\n      </div>\n      <div class=\"col s6\">\n        <ion-button (click)=\"entrar()\" expand=\"block\">Entrar</ion-button>\n      </div>\n    </div>\n\n  </div>\n\n</ion-content>\n");
 
 /***/ })
 

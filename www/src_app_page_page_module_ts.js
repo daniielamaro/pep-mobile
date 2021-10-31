@@ -30,11 +30,27 @@ const routes = [
             },
             {
                 path: 'exame',
-                loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_page_exame_exame_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./exame/exame.module */ 7281)).then(m => m.ExamePageModule)
+                loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_page_exame_exame_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./exame/exame.module */ 7281)).then(m => m.ExamePageModule)
             },
             {
                 path: 'criar-exame',
-                loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_page_criar-exame_criar-exame_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./criar-exame/criar-exame.module */ 4475)).then(m => m.CriarExamePageModule)
+                loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_page_criar-exame_criar-exame_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./criar-exame/criar-exame.module */ 4475)).then(m => m.CriarExamePageModule)
+            },
+            {
+                path: 'consulta',
+                loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_page_consulta_consulta_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./consulta/consulta.module */ 6891)).then(m => m.ConsultaPageModule)
+            },
+            {
+                path: 'criar-consulta',
+                loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_page_criar-consulta_criar-consulta_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./criar-consulta/criar-consulta.module */ 1871)).then(m => m.CriarConsultaPageModule)
+            },
+            {
+                path: 'medicamento',
+                loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_page_medicamento_medicamento_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./medicamento/medicamento.module */ 6285)).then(m => m.MedicamentoPageModule)
+            },
+            {
+                path: 'criar-medicamento',
+                loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_page_criar-medicamento_criar-medicamento_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./criar-medicamento/criar-medicamento.module */ 656)).then(m => m.CriarMedicamentoPageModule)
             },
             {
                 path: '',
@@ -132,9 +148,11 @@ let PagePage = class PagePage {
     constructor(storage, router) {
         this.storage = storage;
         this.router = router;
+        this.router.events.subscribe((evt) => {
+            this.rotaAtual = this.router.url;
+        });
     }
-    ngOnInit() {
-    }
+    ngOnInit() { }
     logout() {
         this.storage.remove("user");
         this.router.navigateByUrl("");
@@ -167,7 +185,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJwYWdlLnBhZ2Uuc2NzcyJ9 */");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("ion-tab-bar {\n  overflow-x: scroll;\n  justify-content: left;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInBhZ2UucGFnZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksa0JBQUE7RUFDQSxxQkFBQTtBQUNKIiwiZmlsZSI6InBhZ2UucGFnZS5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiaW9uLXRhYi1iYXIge1xyXG4gICAgb3ZlcmZsb3cteDogc2Nyb2xsO1xyXG4gICAganVzdGlmeS1jb250ZW50OiBsZWZ0O1xyXG4gfVxyXG4iXX0= */");
 
 /***/ }),
 
@@ -182,7 +200,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-header>\n  <ion-toolbar>\n    <div style=\"display: flex; justify-content: space-between; padding-right: 10px;\">\n    <ion-title>\n      PEP - Paciente\n    </ion-title>\n    <ion-button (click)=\"logout()\" color=\"danger\">Sair</ion-button>\n    </div>\n  </ion-toolbar>\n</ion-header>\n\n<ion-tabs>\n  <ion-tab-bar slot=\"bottom\">\n\n    <ion-tab-button tab=\"home\">\n      <ion-icon name=\"home\"></ion-icon>\n      <ion-label>Home</ion-label>\n    </ion-tab-button>\n\n    <ion-tab-button tab=\"hospitaiseclinicas\">\n      <ion-icon name=\"map\"></ion-icon>\n      <ion-label>Hospitais e Clinicas</ion-label>\n    </ion-tab-button>\n\n    <ion-tab-button tab=\"exame\">\n      <ion-icon name=\"clipboard\"></ion-icon>\n      <ion-label>Exames</ion-label>\n    </ion-tab-button>\n\n    <ion-tab-button tab=\"consultas\">\n      <ion-icon name=\"pulse\"></ion-icon>\n      <ion-label>Consultas</ion-label>\n    </ion-tab-button>\n\n  </ion-tab-bar>\n</ion-tabs>\n");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-header>\n  <ion-toolbar>\n    <div style=\"display: flex; justify-content: space-between; padding-right: 10px;\">\n    <ion-title>\n      PEP - Paciente\n    </ion-title>\n    <ion-button (click)=\"logout()\" color=\"danger\">Sair</ion-button>\n    </div>\n  </ion-toolbar>\n</ion-header>\n\n<ion-tabs>\n  <ion-tab-bar slot=\"bottom\">\n\n    <ion-tab-button tab=\"home\">\n      <ion-icon name=\"home\"></ion-icon>\n      <ion-label *ngIf=\"rotaAtual == '/page/home'\">Home</ion-label>\n    </ion-tab-button>\n\n    <ion-tab-button tab=\"hospitaiseclinicas\">\n      <ion-icon name=\"map\"></ion-icon>\n      <!-- <ion-label>Hospitais e Clinicas</ion-label> -->\n    </ion-tab-button>\n\n    <ion-tab-button tab=\"medicamento\">\n      <ion-icon name=\"water\"></ion-icon>\n      <ion-label *ngIf=\"rotaAtual == '/page/medicamento'\">Medicamentos</ion-label>\n    </ion-tab-button>\n\n    <ion-tab-button tab=\"exame\">\n      <ion-icon name=\"clipboard\"></ion-icon>\n      <ion-label *ngIf=\"rotaAtual == '/page/exame'\">Exames</ion-label>\n    </ion-tab-button>\n\n    <ion-tab-button tab=\"consulta\">\n      <ion-icon name=\"pulse\"></ion-icon>\n      <ion-label *ngIf=\"rotaAtual == '/page/consulta'\">Consultas</ion-label>\n    </ion-tab-button>\n\n  </ion-tab-bar>\n</ion-tabs>\n");
 
 /***/ })
 
