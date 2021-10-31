@@ -100,13 +100,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "ExamePage": () => (/* binding */ ExamePage)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! tslib */ 4762);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! tslib */ 4762);
 /* harmony import */ var _raw_loader_exame_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !raw-loader!./exame.page.html */ 3134);
 /* harmony import */ var _exame_page_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./exame.page.scss */ 7283);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/core */ 7716);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ 9895);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/core */ 7716);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ 9895);
 /* harmony import */ var src_app_shared_class_storage_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/shared/class/storage.service */ 6578);
-/* harmony import */ var _exame_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./exame.service */ 2997);
+/* harmony import */ var src_app_shared_class_url_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/shared/class/url-service */ 2567);
+/* harmony import */ var _exame_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./exame.service */ 2997);
+
 
 
 
@@ -115,15 +117,16 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let ExamePage = class ExamePage {
-    constructor(router, storage, exameService) {
+    constructor(router, storage, urlService, exameService) {
         this.router = router;
         this.storage = storage;
+        this.urlService = urlService;
         this.exameService = exameService;
         this.loading = false;
         this.dataFiltrada = false;
         this.tipoFiltrado = false;
         this.router.events.subscribe((evt) => {
-            if (evt instanceof _angular_router__WEBPACK_IMPORTED_MODULE_4__.NavigationEnd && this.router.url == "/page/exame") {
+            if (evt instanceof _angular_router__WEBPACK_IMPORTED_MODULE_5__.NavigationEnd && this.router.url == "/page/exame") {
                 this.loading = true;
                 this.pageEnter();
             }
@@ -131,8 +134,10 @@ let ExamePage = class ExamePage {
     }
     ngOnInit() { }
     pageEnter() {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_6__.__awaiter)(this, void 0, void 0, function* () {
             let user = yield this.storage.get("user");
+            let token = yield this.storage.get("token");
+            yield this.urlService.validateToken(token);
             this.listaExameFull = undefined;
             this.listaExame = undefined;
             yield this.getTiposExames();
@@ -154,7 +159,7 @@ let ExamePage = class ExamePage {
         });
     }
     getTiposExames() {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_6__.__awaiter)(this, void 0, void 0, function* () {
             (yield this.exameService.consultarListaTiposExames())
                 .subscribe((resp) => {
                 this.tiposExames = resp;
@@ -211,12 +216,13 @@ let ExamePage = class ExamePage {
     }
 };
 ExamePage.ctorParameters = () => [
-    { type: _angular_router__WEBPACK_IMPORTED_MODULE_4__.Router },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_5__.Router },
     { type: src_app_shared_class_storage_service__WEBPACK_IMPORTED_MODULE_2__.StorageService },
-    { type: _exame_service__WEBPACK_IMPORTED_MODULE_3__.ExameService }
+    { type: src_app_shared_class_url_service__WEBPACK_IMPORTED_MODULE_3__.UrlService },
+    { type: _exame_service__WEBPACK_IMPORTED_MODULE_4__.ExameService }
 ];
-ExamePage = (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_6__.Component)({
+ExamePage = (0,tslib__WEBPACK_IMPORTED_MODULE_6__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_7__.Component)({
         selector: 'app-exame',
         template: _raw_loader_exame_page_html__WEBPACK_IMPORTED_MODULE_0__.default,
         styles: [_exame_page_scss__WEBPACK_IMPORTED_MODULE_1__.default]

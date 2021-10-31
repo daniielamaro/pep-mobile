@@ -100,13 +100,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "MedicamentoPage": () => (/* binding */ MedicamentoPage)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! tslib */ 4762);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! tslib */ 4762);
 /* harmony import */ var _raw_loader_medicamento_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !raw-loader!./medicamento.page.html */ 860);
 /* harmony import */ var _medicamento_page_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./medicamento.page.scss */ 503);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/core */ 7716);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ 9895);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/core */ 7716);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ 9895);
 /* harmony import */ var src_app_shared_class_storage_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/shared/class/storage.service */ 6578);
-/* harmony import */ var _medicamento_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./medicamento.service */ 5418);
+/* harmony import */ var src_app_shared_class_url_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/shared/class/url-service */ 2567);
+/* harmony import */ var _medicamento_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./medicamento.service */ 5418);
+
 
 
 
@@ -115,13 +117,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let MedicamentoPage = class MedicamentoPage {
-    constructor(router, storage, medicamentoService) {
+    constructor(router, storage, urlService, medicamentoService) {
         this.router = router;
         this.storage = storage;
+        this.urlService = urlService;
         this.medicamentoService = medicamentoService;
         this.loading = false;
         this.router.events.subscribe((evt) => {
-            if (evt instanceof _angular_router__WEBPACK_IMPORTED_MODULE_4__.NavigationEnd && this.router.url == "/page/medicamento") {
+            if (evt instanceof _angular_router__WEBPACK_IMPORTED_MODULE_5__.NavigationEnd && this.router.url == "/page/medicamento") {
                 this.loading = true;
                 this.pageEnter();
             }
@@ -129,8 +132,10 @@ let MedicamentoPage = class MedicamentoPage {
     }
     ngOnInit() { }
     pageEnter() {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_6__.__awaiter)(this, void 0, void 0, function* () {
             let user = yield this.storage.get("user");
+            let token = yield this.storage.get("token");
+            yield this.urlService.validateToken(token);
             this.listaMedicamentos = undefined;
             (yield this.medicamentoService.consultarListaMedicamentos(user.id))
                 .subscribe((resp) => {
@@ -150,12 +155,13 @@ let MedicamentoPage = class MedicamentoPage {
     }
 };
 MedicamentoPage.ctorParameters = () => [
-    { type: _angular_router__WEBPACK_IMPORTED_MODULE_4__.Router },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_5__.Router },
     { type: src_app_shared_class_storage_service__WEBPACK_IMPORTED_MODULE_2__.StorageService },
-    { type: _medicamento_service__WEBPACK_IMPORTED_MODULE_3__.MedicamentoService }
+    { type: src_app_shared_class_url_service__WEBPACK_IMPORTED_MODULE_3__.UrlService },
+    { type: _medicamento_service__WEBPACK_IMPORTED_MODULE_4__.MedicamentoService }
 ];
-MedicamentoPage = (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_6__.Component)({
+MedicamentoPage = (0,tslib__WEBPACK_IMPORTED_MODULE_6__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_7__.Component)({
         selector: 'app-medicamento',
         template: _raw_loader_medicamento_page_html__WEBPACK_IMPORTED_MODULE_0__.default,
         styles: [_medicamento_page_scss__WEBPACK_IMPORTED_MODULE_1__.default]

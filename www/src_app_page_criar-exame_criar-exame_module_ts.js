@@ -97,13 +97,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "CriarExamePage": () => (/* binding */ CriarExamePage)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tslib */ 4762);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! tslib */ 4762);
 /* harmony import */ var _raw_loader_criar_exame_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !raw-loader!./criar-exame.page.html */ 910);
 /* harmony import */ var _criar_exame_page_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./criar-exame.page.scss */ 4502);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/core */ 7716);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ 9895);
-/* harmony import */ var src_app_shared_class_storage_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/shared/class/storage.service */ 6578);
-/* harmony import */ var _exame_exame_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../exame/exame.service */ 2997);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/core */ 7716);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/router */ 9895);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ionic/angular */ 476);
+/* harmony import */ var src_app_loading_loading_page__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/loading/loading.page */ 8532);
+/* harmony import */ var src_app_shared_class_storage_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/shared/class/storage.service */ 6578);
+/* harmony import */ var src_app_shared_class_url_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/shared/class/url-service */ 2567);
+/* harmony import */ var _exame_exame_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../exame/exame.service */ 2997);
+
+
+
 
 
 
@@ -112,28 +118,54 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let CriarExamePage = class CriarExamePage {
-    constructor(exameService, router, storage) {
+    constructor(exameService, modalController, toastController, urlService, router, storage) {
         this.exameService = exameService;
+        this.modalController = modalController;
+        this.toastController = toastController;
+        this.urlService = urlService;
         this.router = router;
         this.storage = storage;
+        this.router.events.subscribe((evt) => {
+            if (evt instanceof _angular_router__WEBPACK_IMPORTED_MODULE_6__.NavigationEnd && this.router.url == "/page/criar-exame") {
+                this.pageEnter();
+            }
+        });
     }
     ngOnInit() {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_7__.__awaiter)(this, void 0, void 0, function* () { });
+    }
+    pageEnter() {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_7__.__awaiter)(this, void 0, void 0, function* () {
             this.getTiposExames();
             this.user = yield this.storage.get("user");
+            let token = yield this.storage.get("token");
+            yield this.urlService.validateToken(token);
         });
     }
     getTiposExames() {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__awaiter)(this, void 0, void 0, function* () {
-            (yield this.exameService.consultarListaTiposExames())
-                .subscribe((resp) => {
-                this.tiposExames = resp;
-            }, error => {
-                if (error.status == 401 || error.status == 403) {
-                    this.storage.remove("user");
-                    this.router.navigateByUrl("");
-                }
-            });
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_7__.__awaiter)(this, void 0, void 0, function* () {
+            this.showLoadingScreen()
+                .then(() => (0,tslib__WEBPACK_IMPORTED_MODULE_7__.__awaiter)(this, void 0, void 0, function* () {
+                (yield this.exameService.consultarListaTiposExames())
+                    .subscribe((resp) => {
+                    this.tiposExames = resp;
+                }, error => {
+                    if (error.status == 401 || error.status == 403) {
+                        this.storage.remove("user");
+                        this.router.navigateByUrl("");
+                    }
+                    else {
+                        this.toastController.create({
+                            message: error.error,
+                            duration: 5000
+                        }).then(toast => {
+                            toast.present();
+                        });
+                    }
+                }, () => {
+                    this.closeLoadingScreen();
+                });
+            }));
         });
     }
     fileChange(e) {
@@ -149,43 +181,76 @@ let CriarExamePage = class CriarExamePage {
         };
     }
     salvarExame() {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__awaiter)(this, void 0, void 0, function* () {
-            let request = {
-                arquivo: this.arquivo == undefined ? null : {
-                    nome: this.arquivo.name,
-                    tipo: this.arquivo.type,
-                    binario: this.arquivo.binary
-                },
-                dataRealizacao: this.dataExame.split("T")[0],
-                idPaciente: this.user.id,
-                idTipoExame: this.tipoExame,
-                publico: this.publico,
-                observacoes: this.observacoes
-            };
-            this.arquivo = undefined;
-            this.dataExame = undefined;
-            this.tipoExame = undefined;
-            this.publico = false;
-            this.observacoes = undefined;
-            (yield this.exameService.salvarExame(request))
-                .subscribe(() => {
-                this.router.navigateByUrl("/page/exame");
-            }, error => {
-                if (error.status == 401 || error.status == 403) {
-                    this.storage.remove("user");
-                    this.router.navigateByUrl("");
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_7__.__awaiter)(this, void 0, void 0, function* () {
+            this.showLoadingScreen()
+                .then(() => (0,tslib__WEBPACK_IMPORTED_MODULE_7__.__awaiter)(this, void 0, void 0, function* () {
+                let request = {
+                    arquivo: this.arquivo == undefined ? null : {
+                        nome: this.arquivo.name,
+                        tipo: this.arquivo.type,
+                        binario: this.arquivo.binary
+                    },
+                    dataRealizacao: this.dataExame.split("T")[0],
+                    idPaciente: this.user.id,
+                    idTipoExame: this.tipoExame,
+                    publico: this.publico,
+                    observacoes: this.observacoes
+                };
+                this.arquivo = undefined;
+                this.dataExame = undefined;
+                this.tipoExame = undefined;
+                this.publico = false;
+                this.observacoes = undefined;
+                (yield this.exameService.salvarExame(request))
+                    .subscribe(() => {
+                    this.router.navigateByUrl("/page/exame");
+                }, error => {
+                    if (error.status == 401 || error.status == 403) {
+                        this.storage.remove("user");
+                        this.router.navigateByUrl("");
+                    }
+                    else {
+                        this.toastController.create({
+                            message: error.error,
+                            duration: 5000
+                        }).then(toast => {
+                            toast.present();
+                        });
+                    }
+                }, () => {
+                    this.closeLoadingScreen();
+                });
+            }));
+        });
+    }
+    showLoadingScreen() {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_7__.__awaiter)(this, void 0, void 0, function* () {
+            const loadingScreen = yield this.modalController.create({
+                component: src_app_loading_loading_page__WEBPACK_IMPORTED_MODULE_2__.LoadingPage
+            });
+            return yield loadingScreen.present();
+        });
+    }
+    closeLoadingScreen() {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_7__.__awaiter)(this, void 0, void 0, function* () {
+            this.modalController.getTop().then(loader => {
+                if (loader) {
+                    loader.dismiss();
                 }
             });
         });
     }
 };
 CriarExamePage.ctorParameters = () => [
-    { type: _exame_exame_service__WEBPACK_IMPORTED_MODULE_3__.ExameService },
-    { type: _angular_router__WEBPACK_IMPORTED_MODULE_5__.Router },
-    { type: src_app_shared_class_storage_service__WEBPACK_IMPORTED_MODULE_2__.StorageService }
+    { type: _exame_exame_service__WEBPACK_IMPORTED_MODULE_5__.ExameService },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_8__.ModalController },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_8__.ToastController },
+    { type: src_app_shared_class_url_service__WEBPACK_IMPORTED_MODULE_4__.UrlService },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_6__.Router },
+    { type: src_app_shared_class_storage_service__WEBPACK_IMPORTED_MODULE_3__.StorageService }
 ];
-CriarExamePage = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_6__.Component)({
+CriarExamePage = (0,tslib__WEBPACK_IMPORTED_MODULE_7__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_9__.Component)({
         selector: 'app-criar-exame',
         template: _raw_loader_criar_exame_page_html__WEBPACK_IMPORTED_MODULE_0__.default,
         styles: [_criar_exame_page_scss__WEBPACK_IMPORTED_MODULE_1__.default]

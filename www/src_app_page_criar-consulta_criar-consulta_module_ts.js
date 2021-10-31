@@ -92,13 +92,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "CriarConsultaPage": () => (/* binding */ CriarConsultaPage)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tslib */ 4762);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! tslib */ 4762);
 /* harmony import */ var _raw_loader_criar_consulta_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !raw-loader!./criar-consulta.page.html */ 6045);
 /* harmony import */ var _criar_consulta_page_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./criar-consulta.page.scss */ 9644);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/core */ 7716);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ 9895);
-/* harmony import */ var src_app_shared_class_storage_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/shared/class/storage.service */ 6578);
-/* harmony import */ var _consulta_consulta_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../consulta/consulta.service */ 1493);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/core */ 7716);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/router */ 9895);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ionic/angular */ 476);
+/* harmony import */ var src_app_loading_loading_page__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/loading/loading.page */ 8532);
+/* harmony import */ var src_app_shared_class_storage_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/shared/class/storage.service */ 6578);
+/* harmony import */ var src_app_shared_class_url_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/shared/class/url-service */ 2567);
+/* harmony import */ var _consulta_consulta_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../consulta/consulta.service */ 1493);
+
+
+
 
 
 
@@ -107,64 +113,123 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let CriarConsultaPage = class CriarConsultaPage {
-    constructor(consultaService, router, storage) {
+    constructor(consultaService, modalController, toastController, urlService, router, storage) {
         this.consultaService = consultaService;
+        this.modalController = modalController;
+        this.toastController = toastController;
+        this.urlService = urlService;
         this.router = router;
         this.storage = storage;
+        this.router.events.subscribe((evt) => {
+            if (evt instanceof _angular_router__WEBPACK_IMPORTED_MODULE_6__.NavigationEnd && this.router.url == "/page/criar-consulta") {
+                this.pageEnter();
+            }
+        });
     }
     ngOnInit() {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_7__.__awaiter)(this, void 0, void 0, function* () { });
+    }
+    pageEnter() {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_7__.__awaiter)(this, void 0, void 0, function* () {
             this.getTiposExames();
             this.user = yield this.storage.get("user");
+            let token = yield this.storage.get("token");
+            yield this.urlService.validateToken(token);
         });
     }
     getTiposExames() {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__awaiter)(this, void 0, void 0, function* () {
-            (yield this.consultaService.consultarListaTiposConsultas())
-                .subscribe((resp) => {
-                this.tiposConsultas = resp;
-            }, error => {
-                if (error.status == 401 || error.status == 403) {
-                    this.storage.remove("user");
-                    this.router.navigateByUrl("");
-                }
-            });
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_7__.__awaiter)(this, void 0, void 0, function* () {
+            this.showLoadingScreen()
+                .then(() => (0,tslib__WEBPACK_IMPORTED_MODULE_7__.__awaiter)(this, void 0, void 0, function* () {
+                (yield this.consultaService.consultarListaTiposConsultas())
+                    .subscribe((resp) => {
+                    this.tiposConsultas = resp;
+                }, error => {
+                    if (error.status == 401 || error.status == 403) {
+                        this.storage.remove("user");
+                        this.router.navigateByUrl("");
+                    }
+                    else {
+                        this.toastController.create({
+                            message: error.error,
+                            duration: 5000
+                        }).then(toast => {
+                            toast.present();
+                        });
+                    }
+                }, () => {
+                    this.closeLoadingScreen();
+                });
+            }));
         });
     }
     salvarConsulta() {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__awaiter)(this, void 0, void 0, function* () {
-            let request = {
-                idPaciente: this.user.id,
-                idTipoConsulta: this.tipoConsulta,
-                diaRealizacao: this.dataConsulta.split("T")[0],
-                publico: this.publico,
-                resumo: this.resumo,
-                observacoes: this.observacoes
-            };
-            this.dataConsulta = undefined;
-            this.tipoConsulta = undefined;
-            this.publico = false;
-            this.resumo = undefined;
-            this.observacoes = undefined;
-            (yield this.consultaService.salvarConsulta(request))
-                .subscribe(() => {
-                this.router.navigateByUrl("/page/consulta");
-            }, error => {
-                if (error.status == 401 || error.status == 403) {
-                    this.storage.remove("user");
-                    this.router.navigateByUrl("");
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_7__.__awaiter)(this, void 0, void 0, function* () {
+            this.showLoadingScreen()
+                .then(() => (0,tslib__WEBPACK_IMPORTED_MODULE_7__.__awaiter)(this, void 0, void 0, function* () {
+                let request = {
+                    idPaciente: this.user.id,
+                    idTipoConsulta: this.tipoConsulta,
+                    diaRealizacao: this.dataConsulta.split("T")[0],
+                    publico: this.publico,
+                    resumo: this.resumo,
+                    observacoes: this.observacoes
+                };
+                this.dataConsulta = undefined;
+                this.tipoConsulta = undefined;
+                this.publico = false;
+                this.resumo = undefined;
+                this.observacoes = undefined;
+                (yield this.consultaService.salvarConsulta(request))
+                    .subscribe(() => {
+                    this.router.navigateByUrl("/page/consulta");
+                }, error => {
+                    if (error.status == 401 || error.status == 403) {
+                        this.storage.remove("user");
+                        this.router.navigateByUrl("");
+                    }
+                    else {
+                        this.toastController.create({
+                            message: error.error,
+                            duration: 5000
+                        }).then(toast => {
+                            toast.present();
+                        });
+                    }
+                }, () => {
+                    this.closeLoadingScreen();
+                });
+            }));
+        });
+    }
+    showLoadingScreen() {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_7__.__awaiter)(this, void 0, void 0, function* () {
+            const loadingScreen = yield this.modalController.create({
+                component: src_app_loading_loading_page__WEBPACK_IMPORTED_MODULE_2__.LoadingPage
+            });
+            return yield loadingScreen.present();
+        });
+    }
+    closeLoadingScreen() {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_7__.__awaiter)(this, void 0, void 0, function* () {
+            this.modalController.getTop().then(loader => {
+                if (loader) {
+                    loader.dismiss();
                 }
             });
         });
     }
 };
 CriarConsultaPage.ctorParameters = () => [
-    { type: _consulta_consulta_service__WEBPACK_IMPORTED_MODULE_3__.ConsultaService },
-    { type: _angular_router__WEBPACK_IMPORTED_MODULE_5__.Router },
-    { type: src_app_shared_class_storage_service__WEBPACK_IMPORTED_MODULE_2__.StorageService }
+    { type: _consulta_consulta_service__WEBPACK_IMPORTED_MODULE_5__.ConsultaService },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_8__.ModalController },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_8__.ToastController },
+    { type: src_app_shared_class_url_service__WEBPACK_IMPORTED_MODULE_4__.UrlService },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_6__.Router },
+    { type: src_app_shared_class_storage_service__WEBPACK_IMPORTED_MODULE_3__.StorageService }
 ];
-CriarConsultaPage = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_6__.Component)({
+CriarConsultaPage = (0,tslib__WEBPACK_IMPORTED_MODULE_7__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_9__.Component)({
         selector: 'app-criar-consulta',
         template: _raw_loader_criar_consulta_page_html__WEBPACK_IMPORTED_MODULE_0__.default,
         styles: [_criar_consulta_page_scss__WEBPACK_IMPORTED_MODULE_1__.default]

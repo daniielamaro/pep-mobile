@@ -720,18 +720,32 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "UrlService": () => (/* binding */ UrlService)
 /* harmony export */ });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! tslib */ 4762);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ 9895);
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ 1841);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 7716);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ 7716);
 /* harmony import */ var _storage_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./storage.service */ 6578);
 var UrlService_1;
 
 
 
 
+
 let UrlService = UrlService_1 = class UrlService {
-    constructor(storage, http) {
+    constructor(storage, router, http) {
         this.storage = storage;
+        this.router = router;
         this.http = http;
+    }
+    validateToken(token) {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__awaiter)(this, void 0, void 0, function* () {
+            (yield this.sendRequestPost("/Paciente/VerificarToken?token=" + token))
+                .subscribe(() => { }, error => {
+                if (error.status == 400 || error.status == 401 || error.status == 403) {
+                    this.storage.remove("user");
+                    this.router.navigateByUrl("");
+                }
+            });
+        });
     }
     sendRequestPost(url, body = "") {
         return (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__awaiter)(this, void 0, void 0, function* () {
@@ -748,10 +762,11 @@ let UrlService = UrlService_1 = class UrlService {
 UrlService.BACKEND_URL = 'http://34.68.18.75:8080';
 UrlService.ctorParameters = () => [
     { type: _storage_service__WEBPACK_IMPORTED_MODULE_0__.StorageService },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_3__.Router },
     { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__.HttpClient }
 ];
 UrlService = UrlService_1 = (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_3__.Injectable)()
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_4__.Injectable)()
 ], UrlService);
 
 

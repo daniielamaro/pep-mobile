@@ -100,13 +100,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "ConsultaPage": () => (/* binding */ ConsultaPage)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! tslib */ 4762);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! tslib */ 4762);
 /* harmony import */ var _raw_loader_consulta_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !raw-loader!./consulta.page.html */ 9483);
 /* harmony import */ var _consulta_page_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./consulta.page.scss */ 5378);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/core */ 7716);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ 9895);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/core */ 7716);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ 9895);
 /* harmony import */ var src_app_shared_class_storage_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/shared/class/storage.service */ 6578);
-/* harmony import */ var _consulta_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./consulta.service */ 1493);
+/* harmony import */ var src_app_shared_class_url_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/shared/class/url-service */ 2567);
+/* harmony import */ var _consulta_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./consulta.service */ 1493);
+
 
 
 
@@ -115,15 +117,16 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let ConsultaPage = class ConsultaPage {
-    constructor(router, storage, consultaService) {
+    constructor(router, storage, urlService, consultaService) {
         this.router = router;
         this.storage = storage;
+        this.urlService = urlService;
         this.consultaService = consultaService;
         this.loading = false;
         this.dataFiltrada = false;
         this.tipoFiltrado = false;
         this.router.events.subscribe((evt) => {
-            if (evt instanceof _angular_router__WEBPACK_IMPORTED_MODULE_4__.NavigationEnd && this.router.url == "/page/consulta") {
+            if (evt instanceof _angular_router__WEBPACK_IMPORTED_MODULE_5__.NavigationEnd && this.router.url == "/page/consulta") {
                 this.loading = true;
                 this.pageEnter();
             }
@@ -132,8 +135,10 @@ let ConsultaPage = class ConsultaPage {
     ngOnInit() {
     }
     pageEnter() {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_6__.__awaiter)(this, void 0, void 0, function* () {
             let user = yield this.storage.get("user");
+            let token = yield this.storage.get("token");
+            yield this.urlService.validateToken(token);
             this.listaConsultaFull = undefined;
             this.listaConsulta = undefined;
             yield this.getTiposConsultas();
@@ -155,7 +160,7 @@ let ConsultaPage = class ConsultaPage {
         });
     }
     getTiposConsultas() {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_6__.__awaiter)(this, void 0, void 0, function* () {
             (yield this.consultaService.consultarListaTiposConsultas())
                 .subscribe((resp) => {
                 this.tiposConsultas = resp;
@@ -212,12 +217,13 @@ let ConsultaPage = class ConsultaPage {
     }
 };
 ConsultaPage.ctorParameters = () => [
-    { type: _angular_router__WEBPACK_IMPORTED_MODULE_4__.Router },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_5__.Router },
     { type: src_app_shared_class_storage_service__WEBPACK_IMPORTED_MODULE_2__.StorageService },
-    { type: _consulta_service__WEBPACK_IMPORTED_MODULE_3__.ConsultaService }
+    { type: src_app_shared_class_url_service__WEBPACK_IMPORTED_MODULE_3__.UrlService },
+    { type: _consulta_service__WEBPACK_IMPORTED_MODULE_4__.ConsultaService }
 ];
-ConsultaPage = (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_6__.Component)({
+ConsultaPage = (0,tslib__WEBPACK_IMPORTED_MODULE_6__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_7__.Component)({
         selector: 'app-consulta',
         template: _raw_loader_consulta_page_html__WEBPACK_IMPORTED_MODULE_0__.default,
         styles: [_consulta_page_scss__WEBPACK_IMPORTED_MODULE_1__.default]

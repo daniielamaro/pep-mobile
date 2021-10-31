@@ -49,16 +49,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "HomePageModule": () => (/* binding */ HomePageModule)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tslib */ 4762);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core */ 7716);
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/common */ 8583);
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/forms */ 3679);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ionic/angular */ 476);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! tslib */ 4762);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ 7716);
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/common */ 8583);
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/forms */ 3679);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ionic/angular */ 476);
 /* harmony import */ var _home_routing_module__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./home-routing.module */ 6455);
 /* harmony import */ var _home_page__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./home.page */ 8261);
 /* harmony import */ var src_app_shared_class_url_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/shared/class/url-service */ 2567);
-/* harmony import */ var _home_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./home.service */ 5699);
-
 
 
 
@@ -69,17 +67,16 @@ __webpack_require__.r(__webpack_exports__);
 
 let HomePageModule = class HomePageModule {
 };
-HomePageModule = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_5__.NgModule)({
+HomePageModule = (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_4__.NgModule)({
         imports: [
-            _angular_common__WEBPACK_IMPORTED_MODULE_6__.CommonModule,
-            _angular_forms__WEBPACK_IMPORTED_MODULE_7__.FormsModule,
-            _ionic_angular__WEBPACK_IMPORTED_MODULE_8__.IonicModule,
+            _angular_common__WEBPACK_IMPORTED_MODULE_5__.CommonModule,
+            _angular_forms__WEBPACK_IMPORTED_MODULE_6__.FormsModule,
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.IonicModule,
             _home_routing_module__WEBPACK_IMPORTED_MODULE_0__.HomePageRoutingModule
         ],
         declarations: [_home_page__WEBPACK_IMPORTED_MODULE_1__.HomePage],
         providers: [
-            _home_service__WEBPACK_IMPORTED_MODULE_3__.HomeService,
             src_app_shared_class_url_service__WEBPACK_IMPORTED_MODULE_2__.UrlService
         ]
     })
@@ -108,7 +105,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var src_app_shared_class_storage_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/shared/class/storage.service */ 6578);
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ionic/angular */ 476);
 /* harmony import */ var src_app_modal_fotoperfil_fotoperfil_page__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/modal/fotoperfil/fotoperfil.page */ 5751);
-/* harmony import */ var _home_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./home.service */ 5699);
+/* harmony import */ var src_app_shared_class_url_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/shared/class/url-service */ 2567);
 
 
 
@@ -119,10 +116,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let HomePage = class HomePage {
-    constructor(router, storage, homeService, modalController) {
+    constructor(router, storage, urlService, modalController) {
         this.router = router;
         this.storage = storage;
-        this.homeService = homeService;
+        this.urlService = urlService;
         this.modalController = modalController;
         this.router.events.subscribe((evt) => {
             if (evt instanceof _angular_router__WEBPACK_IMPORTED_MODULE_5__.NavigationEnd && this.router.url == "/page/home") {
@@ -131,20 +128,13 @@ let HomePage = class HomePage {
         });
     }
     ngOnInit() {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_6__.__awaiter)(this, void 0, void 0, function* () {
-            let token = yield this.storage.get("token");
-            (yield this.homeService.verificarValidadeToken(token))
-                .subscribe(() => { }, error => {
-                if (error.status == 400 || error.status == 401 || error.status == 403) {
-                    this.storage.remove("user");
-                    this.router.navigateByUrl("");
-                }
-            });
-        });
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_6__.__awaiter)(this, void 0, void 0, function* () { });
     }
     pageEnter() {
         return (0,tslib__WEBPACK_IMPORTED_MODULE_6__.__awaiter)(this, void 0, void 0, function* () {
             this.user = yield this.storage.get("user");
+            let token = yield this.storage.get("token");
+            yield this.urlService.validateToken(token);
         });
     }
     openPhoto() {
@@ -165,7 +155,7 @@ let HomePage = class HomePage {
 HomePage.ctorParameters = () => [
     { type: _angular_router__WEBPACK_IMPORTED_MODULE_5__.Router },
     { type: src_app_shared_class_storage_service__WEBPACK_IMPORTED_MODULE_2__.StorageService },
-    { type: _home_service__WEBPACK_IMPORTED_MODULE_4__.HomeService },
+    { type: src_app_shared_class_url_service__WEBPACK_IMPORTED_MODULE_4__.UrlService },
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.ModalController }
 ];
 HomePage = (0,tslib__WEBPACK_IMPORTED_MODULE_6__.__decorate)([
@@ -175,46 +165,6 @@ HomePage = (0,tslib__WEBPACK_IMPORTED_MODULE_6__.__decorate)([
         styles: [_home_page_scss__WEBPACK_IMPORTED_MODULE_1__.default]
     })
 ], HomePage);
-
-
-
-/***/ }),
-
-/***/ 5699:
-/*!*******************************************!*\
-  !*** ./src/app/page/home/home.service.ts ***!
-  \*******************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "HomeService": () => (/* binding */ HomeService)
-/* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! tslib */ 4762);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 7716);
-/* harmony import */ var src_app_shared_class_url_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/app/shared/class/url-service */ 2567);
-
-
-
-let HomeService = class HomeService {
-    constructor(urlService) {
-        this.urlService = urlService;
-    }
-    verificarValidadeToken(token) {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__awaiter)(this, void 0, void 0, function* () {
-            return yield this.urlService.sendRequestPost("/Paciente/VerificarToken?token=" + token);
-        });
-    }
-};
-HomeService.ctorParameters = () => [
-    { type: src_app_shared_class_url_service__WEBPACK_IMPORTED_MODULE_0__.UrlService }
-];
-HomeService = (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_2__.Injectable)({
-        providedIn: 'root'
-    })
-], HomeService);
 
 
 
@@ -246,7 +196,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-content>\n\n  <div class=\"content\">\n    <div class=\"area-identification\">\n      <div (click)=\"openPhoto()\" class=\"fotoarea\">\n        <img *ngIf=\"user && user.fotoPerfil\" [src]=\"'data:'+user.fotoPerfil.tipo+';base64,'+user.fotoPerfil.binario\" />\n        <img src=\"../../assets/nophoto.png\" *ngIf=\"!user || !user.fotoPerfil\" />\n      </div>\n      <div class=\"camera-perfil\">\n        <ion-icon name=\"camera\"></ion-icon>\n      </div>\n      <span *ngIf=\"user\">{{user.nome}}</span>\n    </div>\n\n    <div class=\"menu-sector\">\n      <ion-grid>\n        <ion-row>\n          <ion-col size=\"12\">\n            <ion-button class=\"btHome\" expand=\"block\">Clinicas</ion-button>\n          </ion-col>\n        </ion-row>\n        <ion-row>\n          <ion-col size=\"6\">\n            <ion-button routerLink=\"/page/exame\" class=\"btHome\" expand=\"block\">Exames</ion-button>\n          </ion-col>\n          <ion-col size=\"6\">\n            <ion-button routerLink=\"/page/consulta\" class=\"btHome\" expand=\"block\">Consultas</ion-button>\n          </ion-col>\n        </ion-row>\n        <ion-row>\n          <ion-col size=\"12\">\n            <ion-button routerLink=\"/page/medicamento\" class=\"btHome\" expand=\"block\">Medicamentos</ion-button>\n          </ion-col>\n        </ion-row>\n      </ion-grid>\n    </div>\n  </div>\n\n</ion-content>\n");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-content>\n\n  <div class=\"content\">\n    <div class=\"area-identification\">\n      <div (click)=\"openPhoto()\" class=\"fotoarea\">\n        <img *ngIf=\"user && user.fotoPerfil\" [src]=\"'data:'+user.fotoPerfil.tipo+';base64,'+user.fotoPerfil.binario\" />\n        <img src=\"../../assets/nophoto.png\" *ngIf=\"!user || !user.fotoPerfil\" />\n      </div>\n      <div class=\"camera-perfil\">\n        <ion-icon name=\"camera\"></ion-icon>\n      </div>\n      <span *ngIf=\"user\">{{user.nome}}</span>\n    </div>\n\n    <div class=\"menu-sector\">\n      <ion-grid>\n        <ion-row>\n          <ion-col size=\"12\">\n            <ion-button class=\"btHome\" expand=\"block\">Clinicas da Familia</ion-button>\n          </ion-col>\n        </ion-row>\n        <ion-row>\n          <ion-col size=\"6\">\n            <ion-button routerLink=\"/page/exame\" class=\"btHome\" expand=\"block\">Exames</ion-button>\n          </ion-col>\n          <ion-col size=\"6\">\n            <ion-button routerLink=\"/page/consulta\" class=\"btHome\" expand=\"block\">Consultas</ion-button>\n          </ion-col>\n        </ion-row>\n        <ion-row>\n          <ion-col size=\"12\">\n            <ion-button routerLink=\"/page/medicamento\" class=\"btHome\" expand=\"block\">Medicamentos</ion-button>\n          </ion-col>\n        </ion-row>\n      </ion-grid>\n    </div>\n  </div>\n\n</ion-content>\n");
 
 /***/ })
 
