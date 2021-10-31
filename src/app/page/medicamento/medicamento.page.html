@@ -36,7 +36,8 @@
                     </ion-row>
                     <ion-row>
                       <ion-col class="medicamento-quantidade" size="7">
-                        <p>{{item.quantidade}} {{item.intervalo}}</p>
+                        <p>{{(item.tipoQuantidade != "Outro" ? item.numQuantidade + " " + item.tipoQuantidade : item.outraQuantidade)}}
+                          {{(item.tipoIntervalo != "Outro" ? "a cada " + item.numIntervalo + " " + item.tipoIntervalo : item.outroIntervalo)}}</p>
                       </ion-col>
                       <ion-col class="medicamento-dataTermino" size="5">
                         <ion-text color="secondary">
