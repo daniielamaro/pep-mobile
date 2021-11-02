@@ -124,7 +124,7 @@ let MedicamentoPage = class MedicamentoPage {
         this.medicamentoService = medicamentoService;
         this.loading = false;
         this.router.events.subscribe((evt) => {
-            if (evt instanceof _angular_router__WEBPACK_IMPORTED_MODULE_5__.NavigationEnd && this.router.url == "/page/medicamento") {
+            if (evt instanceof _angular_router__WEBPACK_IMPORTED_MODULE_5__.NavigationEnd && this.router.url == "/page/medicamentos") {
                 this.loading = true;
                 this.pageEnter();
             }

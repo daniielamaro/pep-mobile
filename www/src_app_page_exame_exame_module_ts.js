@@ -126,7 +126,7 @@ let ExamePage = class ExamePage {
         this.dataFiltrada = false;
         this.tipoFiltrado = false;
         this.router.events.subscribe((evt) => {
-            if (evt instanceof _angular_router__WEBPACK_IMPORTED_MODULE_5__.NavigationEnd && this.router.url == "/page/exame") {
+            if (evt instanceof _angular_router__WEBPACK_IMPORTED_MODULE_5__.NavigationEnd && this.router.url == "/page/exames") {
                 this.loading = true;
                 this.pageEnter();
             }

@@ -1,0 +1,41 @@
+<ion-content>
+  <div class="content">
+    <ion-grid style="width: 90%;">
+      <ion-row>
+        <ion-col class="item-form" size="12">
+          <ion-label color="primary">Especialidade: </ion-label>
+          <ion-select *ngIf="tiposConsultas && tiposConsultas.length > 0" [(ngModel)]="tipoConsulta" class="listaTipo" placeholder="Selecione...">
+            <ion-select-option *ngFor="let tipo of tiposConsultas" [value]="tipo.id">{{tipo.nome}}</ion-select-option>
+          </ion-select>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="item-form" size="12">
+          <ion-label color="primary">Data da Consulta: </ion-label>
+          <ion-datetime displayFormat="DD / MMM / YYYY" [(ngModel)]="dataConsulta" placeholder="Selecione..."></ion-datetime>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="item-form" size="12">
+          <ion-label color="primary">Publico:</ion-label>
+          <ion-toggle [(ngModel)]="publico"></ion-toggle>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="item-form" size="12">
+          <ion-textarea [(ngModel)]="resumo" rows="4" style="--padding-start: 0; --padding-end: 0" placeholder="Resumo da consulta..."></ion-textarea>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="item-form" size="12">
+          <ion-textarea [(ngModel)]="observacoes" rows="4" style="--padding-start: 0; --padding-end: 0" placeholder="Escreva as suas observações..."></ion-textarea>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="item-form-center" size="12">
+          <ion-button (click)="salvarConsulta()" color="primary" expand="block">Salvar Consulta</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>

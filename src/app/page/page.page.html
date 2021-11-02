@@ -17,24 +17,24 @@
       <ion-label *ngIf="rotaAtual == '/page/home'">Home</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button tab="hospitaiseclinicas">
+    <ion-tab-button tab="clinicas">
       <ion-icon name="map"></ion-icon>
-      <!-- <ion-label>Hospitais e Clinicas</ion-label> -->
+      <ion-label *ngIf="rotaAtual == '/page/clinicas'">Clinicas da Familia</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button tab="medicamento">
+    <ion-tab-button tab="medicamentos">
       <ion-icon name="water"></ion-icon>
-      <ion-label *ngIf="rotaAtual == '/page/medicamento'">Medicamentos</ion-label>
+      <ion-label *ngIf="rotaAtual == '/page/medicamentos'">Medicamentos</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button tab="exame">
+    <ion-tab-button tab="exames">
       <ion-icon name="clipboard"></ion-icon>
-      <ion-label *ngIf="rotaAtual == '/page/exame'">Exames</ion-label>
+      <ion-label *ngIf="rotaAtual == '/page/exames'">Exames</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button tab="consulta">
+    <ion-tab-button tab="consultas">
       <ion-icon name="pulse"></ion-icon>
-      <ion-label *ngIf="rotaAtual == '/page/consulta'">Consultas</ion-label>
+      <ion-label *ngIf="rotaAtual == '/page/consultas'">Consultas</ion-label>
     </ion-tab-button>
 
   </ion-tab-bar>

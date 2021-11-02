@@ -30,7 +30,7 @@ export class ConsultaPage implements OnInit {
     private consultaService: ConsultaService)
   {
     this.router.events.subscribe((evt) => {
-      if (evt instanceof NavigationEnd && this.router.url == "/page/consulta") {
+      if (evt instanceof NavigationEnd && this.router.url == "/page/consultas") {
         this.loading = true;
         this.pageEnter();
       }

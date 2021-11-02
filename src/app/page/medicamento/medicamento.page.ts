@@ -23,7 +23,7 @@ export class MedicamentoPage implements OnInit {
     private medicamentoService: MedicamentoService)
   {
     this.router.events.subscribe((evt) => {
-      if (evt instanceof NavigationEnd && this.router.url == "/page/medicamento") {
+      if (evt instanceof NavigationEnd && this.router.url == "/page/medicamentos") {
         this.loading = true;
          this.pageEnter();
       }

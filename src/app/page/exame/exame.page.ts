@@ -30,7 +30,7 @@ export class ExamePage implements OnInit {
     private exameService: ExameService)
   {
     this.router.events.subscribe((evt) => {
-      if (evt instanceof NavigationEnd && this.router.url == "/page/exame") {
+      if (evt instanceof NavigationEnd && this.router.url == "/page/exames") {
         this.loading = true;
          this.pageEnter();
       }
