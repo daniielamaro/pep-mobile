@@ -1,9 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
-import { Geolocation } from '@capacitor/geolocation';
 import { StorageService } from 'src/app/shared/class/storage.service';
 import { UrlService } from 'src/app/shared/class/url-service';
 import { ClinicasService } from './clinicas.service';
+
+import { LocationAccuracy } from '@ionic-native/location-accuracy/ngx';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
+import { Platform } from '@ionic/angular';
 
 @Component({
   selector: 'app-clinicas',
@@ -16,30 +20,105 @@ export class ClinicasPage implements OnInit {
   loading: boolean = false;
   mensagem: string;
 
+  locationCordinates: any;
+
+  plataformas: any;
+
   constructor(
     private router: Router,
     private storage: StorageService,
+    private locationAccuracy: LocationAccuracy,
+    private geolocation: Geolocation,
+    public plt: Platform,
+    private androidPermissions: AndroidPermissions,
     private urlService: UrlService,
     private clinicasService: ClinicasService)
   {
+    this.locationCordinates = {
+      latitude: "",
+      longitude: "",
+      accuracy: "",
+      timestamp: ""
+    }
+
     this.router.events.subscribe((evt) => {
       if (evt instanceof NavigationEnd && this.router.url == "/page/clinicas") {
         this.loading = true;
-         this.pageEnter();
+        this.plataformas = this.plt.platforms();
+        this.pageEnter();
       }
     });
   }
 
+  checkPermission() {
+    if(this.plataformas.includes("cordova")){
+      this.androidPermissions.checkPermission(this.androidPermissions.PERMISSION.ACCESS_COARSE_LOCATION).then(
+        result => {
+          if (result.hasPermission) {
+            this.enableGPS();
+          } else {
+            this.locationAccPermission();
+          }
+        },
+        error => {
+          alert(error);
+        }
+      );
+    }else{
+      this.currentLocPosition();
+    }
+  }
+
+  locationAccPermission() {
+    this.locationAccuracy.canRequest().then((canRequest: boolean) => {
+      if (canRequest) {
+        this.enableGPS();
+      } else {
+        this.androidPermissions.requestPermission(this.androidPermissions.PERMISSION.ACCESS_COARSE_LOCATION)
+          .then(
+            () => {
+              this.enableGPS();
+            },
+            error => {
+              alert(error)
+            }
+          );
+      }
+    });
+  }
+
+  enableGPS() {
+    this.locationAccuracy.request(this.locationAccuracy.REQUEST_PRIORITY_HIGH_ACCURACY).then(
+      () => {
+        this.currentLocPosition()
+      },
+      error => this.router.navigateByUrl("/page/home")
+    );
+  }
+
+  currentLocPosition() {
+    this.geolocation.getCurrentPosition().then((response) => {
+      this.locationCordinates.latitude = response.coords.latitude;
+      this.locationCordinates.longitude = response.coords.longitude;
+      this.locationCordinates.accuracy = response.coords.accuracy;
+      this.locationCordinates.timestamp = response.timestamp;
+      this.getListaClinicas();
+    }).catch((error) => {
+      alert('Error: ' + error);
+    });
+  }
+
   async pageEnter(){
-    let user = await this.storage.get("user");
     let token = await this.storage.get("token");
     await this.urlService.validateToken(token);
 
+    this.checkPermission();
+  }
+
+  async getListaClinicas(){
     this.listaClinicas = undefined;
 
-    const coordinates = await Geolocation.getCurrentPosition();
-
-    (await this.clinicasService.consultarListaClinica(coordinates.coords.latitude+","+coordinates.coords.longitude))
+    (await this.clinicasService.consultarListaClinica(this.locationCordinates.latitude+","+this.locationCordinates.longitude))
       .subscribe((resp: any) => {
         this.listaClinicas = resp;
 

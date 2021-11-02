@@ -14,6 +14,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoadingPageModule } from './loading/loading.module';
 import { FotoperfilPageModule } from './modal/fotoperfil/fotoperfil.module';
 
+import { LocationAccuracy } from '@ionic-native/location-accuracy/ngx';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -34,6 +38,9 @@ import { FotoperfilPageModule } from './modal/fotoperfil/fotoperfil.module';
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     UrlService,
+    LocationAccuracy,
+    Geolocation,
+    AndroidPermissions,
     AuthGuard,
     StorageService
   ],
