@@ -1,0 +1,46 @@
+<ion-content >
+  <div class="content">
+
+    <div *ngIf="!loading" class="closebtarea">
+      <ion-button (click)="closeModal()" [disabled]="loading" class="btclose">
+        <ion-icon slot="icon-only" name="close"></ion-icon>
+      </ion-button>
+    </div>
+
+    <div class="areaendereco">
+      <h3 *ngIf="!loading">Endereço de partida:</h3>
+      <span *ngIf="!loading && !editandoEnd">{{endereco}}</span>
+      <ion-input type="text" *ngIf="!loading && editandoEnd" [(ngModel)]="enderecoPre" placeholder="Digite o endereço..."></ion-input>
+      <div *ngIf="loading" class="preloader-wrapper active">
+        <div class="spinner-layer spinner-blue-only">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div><div class="gap-patch">
+            <div class="circle"></div>
+          </div><div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="!loading && editandoEnd" class="areabt row">
+      <div style="padding: 0;" class="col s6">
+        <ion-button (click)="editandoEnd = false" color="danger" expand="block">Cancelar</ion-button>
+      </div>
+      <div style="padding: 0;" class="col s6">
+        <ion-button (click)="editarEndereco()" color="primary" expand="block">Confirmar</ion-button>
+      </div>
+    </div>
+
+    <div *ngIf="!loading && !editandoEnd" class="areabt row">
+      <div style="padding: 0;" class="col s6">
+        <ion-button (click)="editandoEnd = true; enderecoPre = undefined;" color="secondary" expand="block">Editar</ion-button>
+      </div>
+      <div style="padding: 0;" class="col s6">
+        <ion-button (click)="closeModal(coords)" color="primary" expand="block">Confirmar</ion-button>
+      </div>
+    </div>
+
+  </div>
+</ion-content>

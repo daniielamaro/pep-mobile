@@ -4,7 +4,8 @@
       <ion-grid>
         <ion-row>
           <ion-col size="12">
-            <div *ngIf="!listaClinicas || listaClinicas.length == 0" class="area-lista-vazia">
+            <ion-button (click)="editarEndereco()" color="primary" expand="block">Editar endereço</ion-button>
+            <div *ngIf="!listaClinicas || listaClinicas.length == 0 || loading" class="area-lista-vazia">
               <span *ngIf="!loading">{{mensagem}}</span>
               <div *ngIf="loading" class="preloader-wrapper big active">
                 <div class="spinner-layer spinner-blue-only">
@@ -18,10 +19,7 @@
                 </div>
               </div>
             </div>
-            <ion-list *ngIf="listaClinicas && listaClinicas.length > 0">
-              <ion-item>
-                <p>Seu endereço atual: {{listaClinicas[0].origem}}</p>
-              </ion-item>
+            <ion-list *ngIf="!loading && listaClinicas && listaClinicas.length > 0">
               <ion-item *ngFor="let item of listaClinicas">
                 <ion-label class="ion-text-wrap">
                   <ion-grid>

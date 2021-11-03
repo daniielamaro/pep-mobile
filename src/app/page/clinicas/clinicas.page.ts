@@ -7,7 +7,8 @@ import { ClinicasService } from './clinicas.service';
 import { LocationAccuracy } from '@ionic-native/location-accuracy/ngx';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
-import { Platform } from '@ionic/angular';
+import { ModalController, Platform } from '@ionic/angular';
+import { EnderecoAtualPage } from 'src/app/modal/endereco-atual/endereco-atual.page';
 
 @Component({
   selector: 'app-clinicas',
@@ -21,6 +22,7 @@ export class ClinicasPage implements OnInit {
   mensagem: string;
 
   locationCordinates: any;
+  coords: string;
 
   plataformas: any;
 
@@ -28,6 +30,7 @@ export class ClinicasPage implements OnInit {
     private router: Router,
     private storage: StorageService,
     private locationAccuracy: LocationAccuracy,
+    public modalController: ModalController,
     private geolocation: Geolocation,
     public plt: Platform,
     private androidPermissions: AndroidPermissions,
@@ -43,7 +46,6 @@ export class ClinicasPage implements OnInit {
 
     this.router.events.subscribe((evt) => {
       if (evt instanceof NavigationEnd && this.router.url == "/page/clinicas") {
-        this.loading = true;
         this.plataformas = this.plt.platforms();
         this.pageEnter();
       }
@@ -97,28 +99,57 @@ export class ClinicasPage implements OnInit {
   }
 
   currentLocPosition() {
-    this.geolocation.getCurrentPosition().then((response) => {
+    this.geolocation.getCurrentPosition().then(async (response) => {
       this.locationCordinates.latitude = response.coords.latitude;
       this.locationCordinates.longitude = response.coords.longitude;
       this.locationCordinates.accuracy = response.coords.accuracy;
       this.locationCordinates.timestamp = response.timestamp;
-      this.getListaClinicas();
+
+      this.coords = this.locationCordinates.latitude+","+this.locationCordinates.longitude;
+
+      this.exibirModal(this.coords);
     }).catch((error) => {
       alert('Error: ' + error);
     });
   }
 
+  async exibirModal(coords: string){
+    const loadingScreen = await this.modalController.create({
+      component: EnderecoAtualPage,
+      componentProps: {
+        coords: coords
+      }
+    });
+
+    loadingScreen.onDidDismiss()
+      .then(async (data) => {
+        const coords = data['data'];
+        this.coords = coords;
+        if(this.coords == null)
+          this.router.navigateByUrl("/page/home");
+        else{
+          this.getListaClinicas(this.coords);
+        }
+      });
+
+    return await loadingScreen.present();
+  }
+
   async pageEnter(){
     let token = await this.storage.get("token");
     await this.urlService.validateToken(token);
-
+    this.listaClinicas = undefined;
     this.checkPermission();
   }
 
-  async getListaClinicas(){
-    this.listaClinicas = undefined;
+  editarEndereco(){
+    this.exibirModal(this.coords);
+  }
 
-    (await this.clinicasService.consultarListaClinica(this.locationCordinates.latitude+","+this.locationCordinates.longitude))
+  async getListaClinicas(coords: string){
+    this.loading = true;
+
+    (await this.clinicasService.consultarListaClinica(coords))
       .subscribe((resp: any) => {
         this.listaClinicas = resp;
 

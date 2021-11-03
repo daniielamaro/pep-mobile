@@ -123,25 +123,27 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "AppModule": () => (/* binding */ AppModule)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! tslib */ 4762);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/core */ 7716);
-/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @angular/platform-browser */ 9075);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @angular/router */ 9895);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! tslib */ 4762);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @angular/core */ 7716);
+/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @angular/platform-browser */ 9075);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @angular/router */ 9895);
 /* harmony import */ var _ionic_storage__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @ionic/storage */ 1628);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @ionic/angular */ 476);
-/* harmony import */ var _ionic_storage_angular__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @ionic/storage-angular */ 4925);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @ionic/angular */ 476);
+/* harmony import */ var _ionic_storage_angular__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @ionic/storage-angular */ 4925);
 /* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./app.component */ 5041);
 /* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./app-routing.module */ 158);
 /* harmony import */ var _shared_class_url_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./shared/class/url-service */ 2567);
 /* harmony import */ var _shared_class_storage_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./shared/class/storage.service */ 6578);
 /* harmony import */ var _shared_auth_auth_guard__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./shared/auth/auth.guard */ 5337);
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @angular/common/http */ 1841);
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @angular/forms */ 3679);
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @angular/common/http */ 1841);
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @angular/forms */ 3679);
 /* harmony import */ var _loading_loading_module__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./loading/loading.module */ 3416);
 /* harmony import */ var _modal_fotoperfil_fotoperfil_module__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./modal/fotoperfil/fotoperfil.module */ 9737);
 /* harmony import */ var _ionic_native_location_accuracy_ngx__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ionic-native/location-accuracy/ngx */ 6030);
 /* harmony import */ var _ionic_native_geolocation_ngx__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @ionic-native/geolocation/ngx */ 7152);
 /* harmony import */ var _ionic_native_android_permissions_ngx__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @ionic-native/android-permissions/ngx */ 9315);
+/* harmony import */ var _modal_endereco_atual_endereco_atual_module__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./modal/endereco-atual/endereco-atual.module */ 9102);
+
 
 
 
@@ -163,26 +165,27 @@ __webpack_require__.r(__webpack_exports__);
 
 let AppModule = class AppModule {
 };
-AppModule = (0,tslib__WEBPACK_IMPORTED_MODULE_11__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_12__.NgModule)({
+AppModule = (0,tslib__WEBPACK_IMPORTED_MODULE_12__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_13__.NgModule)({
         declarations: [_app_component__WEBPACK_IMPORTED_MODULE_1__.AppComponent],
         entryComponents: [],
         imports: [
-            _angular_platform_browser__WEBPACK_IMPORTED_MODULE_13__.BrowserModule,
-            _ionic_angular__WEBPACK_IMPORTED_MODULE_14__.IonicModule.forRoot(),
-            _ionic_storage_angular__WEBPACK_IMPORTED_MODULE_15__.IonicStorageModule.forRoot({
+            _angular_platform_browser__WEBPACK_IMPORTED_MODULE_14__.BrowserModule,
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_15__.IonicModule.forRoot(),
+            _ionic_storage_angular__WEBPACK_IMPORTED_MODULE_16__.IonicStorageModule.forRoot({
                 name: '__mydb',
                 driverOrder: [_ionic_storage__WEBPACK_IMPORTED_MODULE_0__.Drivers.IndexedDB, _ionic_storage__WEBPACK_IMPORTED_MODULE_0__.Drivers.LocalStorage]
             }),
             _app_routing_module__WEBPACK_IMPORTED_MODULE_2__.AppRoutingModule,
-            _angular_common_http__WEBPACK_IMPORTED_MODULE_16__.HttpClientModule,
-            _angular_forms__WEBPACK_IMPORTED_MODULE_17__.FormsModule,
-            _angular_forms__WEBPACK_IMPORTED_MODULE_17__.ReactiveFormsModule,
+            _angular_common_http__WEBPACK_IMPORTED_MODULE_17__.HttpClientModule,
+            _angular_forms__WEBPACK_IMPORTED_MODULE_18__.FormsModule,
+            _angular_forms__WEBPACK_IMPORTED_MODULE_18__.ReactiveFormsModule,
             _loading_loading_module__WEBPACK_IMPORTED_MODULE_6__.LoadingPageModule,
-            _modal_fotoperfil_fotoperfil_module__WEBPACK_IMPORTED_MODULE_7__.FotoperfilPageModule
+            _modal_fotoperfil_fotoperfil_module__WEBPACK_IMPORTED_MODULE_7__.FotoperfilPageModule,
+            _modal_endereco_atual_endereco_atual_module__WEBPACK_IMPORTED_MODULE_11__.EnderecoAtualPageModule
         ],
         providers: [
-            { provide: _angular_router__WEBPACK_IMPORTED_MODULE_18__.RouteReuseStrategy, useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_14__.IonicRouteStrategy },
+            { provide: _angular_router__WEBPACK_IMPORTED_MODULE_19__.RouteReuseStrategy, useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_15__.IonicRouteStrategy },
             _shared_class_url_service__WEBPACK_IMPORTED_MODULE_3__.UrlService,
             _ionic_native_location_accuracy_ngx__WEBPACK_IMPORTED_MODULE_8__.LocationAccuracy,
             _ionic_native_geolocation_ngx__WEBPACK_IMPORTED_MODULE_9__.Geolocation,
@@ -311,6 +314,216 @@ LoadingPage = (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__decorate)([
         styles: [_loading_page_scss__WEBPACK_IMPORTED_MODULE_1__.default]
     })
 ], LoadingPage);
+
+
+
+/***/ }),
+
+/***/ 2977:
+/*!***********************************************************************!*\
+  !*** ./src/app/modal/endereco-atual/endereco-atual-routing.module.ts ***!
+  \***********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "EnderecoAtualPageRoutingModule": () => (/* binding */ EnderecoAtualPageRoutingModule)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! tslib */ 4762);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 7716);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ 9895);
+/* harmony import */ var _endereco_atual_page__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./endereco-atual.page */ 4136);
+
+
+
+
+const routes = [
+    {
+        path: '',
+        component: _endereco_atual_page__WEBPACK_IMPORTED_MODULE_0__.EnderecoAtualPage
+    }
+];
+let EnderecoAtualPageRoutingModule = class EnderecoAtualPageRoutingModule {
+};
+EnderecoAtualPageRoutingModule = (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_2__.NgModule)({
+        imports: [_angular_router__WEBPACK_IMPORTED_MODULE_3__.RouterModule.forChild(routes)],
+        exports: [_angular_router__WEBPACK_IMPORTED_MODULE_3__.RouterModule],
+    })
+], EnderecoAtualPageRoutingModule);
+
+
+
+/***/ }),
+
+/***/ 9102:
+/*!***************************************************************!*\
+  !*** ./src/app/modal/endereco-atual/endereco-atual.module.ts ***!
+  \***************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "EnderecoAtualPageModule": () => (/* binding */ EnderecoAtualPageModule)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tslib */ 4762);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core */ 7716);
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/common */ 8583);
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/forms */ 3679);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ionic/angular */ 476);
+/* harmony import */ var _endereco_atual_routing_module__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./endereco-atual-routing.module */ 2977);
+/* harmony import */ var _endereco_atual_page__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./endereco-atual.page */ 4136);
+/* harmony import */ var src_app_shared_class_url_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/shared/class/url-service */ 2567);
+/* harmony import */ var _endereco_atual_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./endereco-atual.service */ 9371);
+
+
+
+
+
+
+
+
+
+let EnderecoAtualPageModule = class EnderecoAtualPageModule {
+};
+EnderecoAtualPageModule = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_5__.NgModule)({
+        imports: [
+            _angular_common__WEBPACK_IMPORTED_MODULE_6__.CommonModule,
+            _angular_forms__WEBPACK_IMPORTED_MODULE_7__.FormsModule,
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_8__.IonicModule,
+            _endereco_atual_routing_module__WEBPACK_IMPORTED_MODULE_0__.EnderecoAtualPageRoutingModule
+        ],
+        declarations: [_endereco_atual_page__WEBPACK_IMPORTED_MODULE_1__.EnderecoAtualPage],
+        providers: [
+            _endereco_atual_service__WEBPACK_IMPORTED_MODULE_3__.EnderecoAtualService,
+            src_app_shared_class_url_service__WEBPACK_IMPORTED_MODULE_2__.UrlService
+        ]
+    })
+], EnderecoAtualPageModule);
+
+
+
+/***/ }),
+
+/***/ 4136:
+/*!*************************************************************!*\
+  !*** ./src/app/modal/endereco-atual/endereco-atual.page.ts ***!
+  \*************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "EnderecoAtualPage": () => (/* binding */ EnderecoAtualPage)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! tslib */ 4762);
+/* harmony import */ var _raw_loader_endereco_atual_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !raw-loader!./endereco-atual.page.html */ 3382);
+/* harmony import */ var _endereco_atual_page_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./endereco-atual.page.scss */ 3464);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core */ 7716);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic/angular */ 476);
+/* harmony import */ var _endereco_atual_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./endereco-atual.service */ 9371);
+
+
+
+
+
+
+let EnderecoAtualPage = class EnderecoAtualPage {
+    constructor(enderecoAtualService, modalController) {
+        this.enderecoAtualService = enderecoAtualService;
+        this.modalController = modalController;
+        this.editandoEnd = false;
+    }
+    ngOnInit() {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__awaiter)(this, void 0, void 0, function* () {
+            this.loading = true;
+            (yield this.enderecoAtualService.getEnderecoByCoords(this.coords))
+                .subscribe((resp) => {
+                this.loading = false;
+                if (resp.results.length > 0) {
+                    this.endereco = resp.results[0].formatted_address;
+                }
+            });
+        });
+    }
+    editarEndereco() {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__awaiter)(this, void 0, void 0, function* () {
+            this.loading = true;
+            (yield this.enderecoAtualService.getEnderecoByAddress(this.enderecoPre))
+                .subscribe((resp) => {
+                this.loading = false;
+                if (resp.results.length > 0) {
+                    this.endereco = resp.results[0].formatted_address;
+                    let location = resp.results[0].geometry.location;
+                    this.coords = location.lat + "," + location.lng;
+                    this.editandoEnd = false;
+                }
+            });
+        });
+    }
+    closeModal(coords = null) {
+        this.modalController.dismiss(coords);
+    }
+};
+EnderecoAtualPage.ctorParameters = () => [
+    { type: _endereco_atual_service__WEBPACK_IMPORTED_MODULE_2__.EnderecoAtualService },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__.ModalController }
+];
+EnderecoAtualPage = (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_5__.Component)({
+        selector: 'app-endereco-atual',
+        template: _raw_loader_endereco_atual_page_html__WEBPACK_IMPORTED_MODULE_0__.default,
+        styles: [_endereco_atual_page_scss__WEBPACK_IMPORTED_MODULE_1__.default]
+    })
+], EnderecoAtualPage);
+
+
+
+/***/ }),
+
+/***/ 9371:
+/*!****************************************************************!*\
+  !*** ./src/app/modal/endereco-atual/endereco-atual.service.ts ***!
+  \****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "EnderecoAtualService": () => (/* binding */ EnderecoAtualService)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! tslib */ 4762);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 7716);
+/* harmony import */ var src_app_shared_class_url_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/app/shared/class/url-service */ 2567);
+
+
+
+let EnderecoAtualService = class EnderecoAtualService {
+    constructor(urlService) {
+        this.urlService = urlService;
+    }
+    getEnderecoByCoords(coords) {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__awaiter)(this, void 0, void 0, function* () {
+            return yield this.urlService.sendRequestPostCustom("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + coords + "&result_type=street_address&language=pt-BR&key=" + src_app_shared_class_url_service__WEBPACK_IMPORTED_MODULE_0__.UrlService.GMKey);
+        });
+    }
+    getEnderecoByAddress(address) {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__awaiter)(this, void 0, void 0, function* () {
+            return yield this.urlService.sendRequestPostCustom("https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&result_type=street_address&language=pt-BR&key=" + src_app_shared_class_url_service__WEBPACK_IMPORTED_MODULE_0__.UrlService.GMKey);
+        });
+    }
+};
+EnderecoAtualService.ctorParameters = () => [
+    { type: src_app_shared_class_url_service__WEBPACK_IMPORTED_MODULE_0__.UrlService }
+];
+EnderecoAtualService = (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_2__.Injectable)({
+        providedIn: 'root'
+    })
+], EnderecoAtualService);
 
 
 
@@ -766,9 +979,15 @@ let UrlService = UrlService_1 = class UrlService {
             });
         });
     }
+    sendRequestPostCustom(url) {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__awaiter)(this, void 0, void 0, function* () {
+            return this.http.post(url, "");
+        });
+    }
 };
 //static BACKEND_URL = 'http://localhost:54439';
 UrlService.BACKEND_URL = 'http://34.68.18.75:8080';
+UrlService.GMKey = 'AIzaSyA80PyFxRJVIlrTgA_beY_r_YOZtAFK-6w';
 UrlService.ctorParameters = () => [
     { type: _storage_service__WEBPACK_IMPORTED_MODULE_0__.StorageService },
     { type: _angular_router__WEBPACK_IMPORTED_MODULE_3__.Router },
@@ -1152,6 +1371,21 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ 3464:
+/*!***************************************************************!*\
+  !*** ./src/app/modal/endereco-atual/endereco-atual.page.scss ***!
+  \***************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("ion-content {\n  --background: transparent;\n}\n\n.content {\n  width: 100%;\n  height: 100%;\n  padding: 5vw;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n}\n\n.areaendereco {\n  background-color: #fff;\n  width: 100%;\n  height: auto;\n  padding: 3vw;\n  border-radius: 4vw;\n  z-index: 1000;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-direction: column;\n  color: #000;\n}\n\n.areaendereco h3 {\n  margin-top: 0;\n  margin-bottom: 10px;\n}\n\n.btclose {\n  --border-radius: 6vw;\n  --padding: 0;\n  --padding-start: 0;\n  --padding-end: 0;\n  width: 12vw;\n  height: 12vw;\n  --background:white;\n  color: var(--ion-color-primary);\n}\n\n.closebtarea {\n  display: flex;\n  justify-content: flex-end;\n  align-items: center;\n  width: 100%;\n}\n\n.areabt {\n  margin-top: 3vw;\n  width: 100%;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  width: 100%;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImVuZGVyZWNvLWF0dWFsLnBhZ2Uuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLHlCQUFBO0FBQ0Y7O0FBRUE7RUFDRSxXQUFBO0VBQ0EsWUFBQTtFQUNBLFlBQUE7RUFDQSxhQUFBO0VBQ0Esc0JBQUE7RUFDQSx1QkFBQTtFQUNBLG1CQUFBO0FBQ0Y7O0FBRUE7RUFDRSxzQkFBQTtFQUNBLFdBQUE7RUFDQSxZQUFBO0VBQ0EsWUFBQTtFQUNBLGtCQUFBO0VBQ0EsYUFBQTtFQUNBLGFBQUE7RUFDQSx1QkFBQTtFQUNBLG1CQUFBO0VBQ0Esc0JBQUE7RUFDQSxXQUFBO0FBQ0Y7O0FBRUE7RUFDRSxhQUFBO0VBQ0EsbUJBQUE7QUFDRjs7QUFFQTtFQUNFLG9CQUFBO0VBQ0EsWUFBQTtFQUNBLGtCQUFBO0VBQ0EsZ0JBQUE7RUFDQSxXQUFBO0VBQ0EsWUFBQTtFQUNBLGtCQUFBO0VBQ0EsK0JBQUE7QUFDRjs7QUFFQTtFQUNFLGFBQUE7RUFDQSx5QkFBQTtFQUNBLG1CQUFBO0VBQ0EsV0FBQTtBQUNGOztBQUVBO0VBQ0UsZUFBQTtFQUNBLFdBQUE7RUFDQSxhQUFBO0VBQ0EsdUJBQUE7RUFDQSxtQkFBQTtFQUNBLFdBQUE7QUFDRiIsImZpbGUiOiJlbmRlcmVjby1hdHVhbC5wYWdlLnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJpb24tY29udGVudHtcclxuICAtLWJhY2tncm91bmQ6IHRyYW5zcGFyZW50O1xyXG59XHJcblxyXG4uY29udGVudHtcclxuICB3aWR0aDogMTAwJTtcclxuICBoZWlnaHQ6IDEwMCU7XHJcbiAgcGFkZGluZzogNXZ3O1xyXG4gIGRpc3BsYXk6IGZsZXg7XHJcbiAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcclxuICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcclxuICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG59XHJcblxyXG4uYXJlYWVuZGVyZWNve1xyXG4gIGJhY2tncm91bmQtY29sb3I6ICNmZmY7XHJcbiAgd2lkdGg6IDEwMCU7XHJcbiAgaGVpZ2h0OiBhdXRvO1xyXG4gIHBhZGRpbmc6IDN2dztcclxuICBib3JkZXItcmFkaXVzOiA0dnc7XHJcbiAgei1pbmRleDogMTAwMDtcclxuICBkaXNwbGF5OiBmbGV4O1xyXG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xyXG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XHJcbiAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcclxuICBjb2xvcjogIzAwMDtcclxufVxyXG5cclxuLmFyZWFlbmRlcmVjbyBoM3tcclxuICBtYXJnaW4tdG9wOiAwO1xyXG4gIG1hcmdpbi1ib3R0b206IDEwcHg7XHJcbn1cclxuXHJcbi5idGNsb3Nle1xyXG4gIC0tYm9yZGVyLXJhZGl1czogNnZ3O1xyXG4gIC0tcGFkZGluZzogMDtcclxuICAtLXBhZGRpbmctc3RhcnQ6IDA7XHJcbiAgLS1wYWRkaW5nLWVuZDogMDtcclxuICB3aWR0aDogMTJ2dztcclxuICBoZWlnaHQ6IDEydnc7XHJcbiAgLS1iYWNrZ3JvdW5kOndoaXRlO1xyXG4gIGNvbG9yOiB2YXIoLS1pb24tY29sb3ItcHJpbWFyeSk7XHJcbn1cclxuXHJcbi5jbG9zZWJ0YXJlYXtcclxuICBkaXNwbGF5OiBmbGV4O1xyXG4gIGp1c3RpZnktY29udGVudDogZmxleC1lbmQ7XHJcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcclxuICB3aWR0aDogMTAwJTtcclxufVxyXG5cclxuLmFyZWFidHtcclxuICBtYXJnaW4tdG9wOiAzdnc7XHJcbiAgd2lkdGg6IDEwMCU7XHJcbiAgZGlzcGxheTogZmxleDtcclxuICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcclxuICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG4gIHdpZHRoOiAxMDAlO1xyXG59XHJcbiJdfQ== */");
+
+/***/ }),
+
 /***/ 6113:
 /*!*******************************************************!*\
   !*** ./src/app/modal/fotoperfil/fotoperfil.page.scss ***!
@@ -1194,6 +1428,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-content>\n  <div class=\"content\">\n    <div class=\"preloader-wrapper big active\">\n      <div class=\"spinner-layer spinner-blue-only\">\n        <div class=\"circle-clipper left\">\n          <div class=\"circle\"></div>\n        </div><div class=\"gap-patch\">\n          <div class=\"circle\"></div>\n        </div><div class=\"circle-clipper right\">\n          <div class=\"circle\"></div>\n        </div>\n      </div>\n    </div>\n  </div>\n</ion-content>\n");
+
+/***/ }),
+
+/***/ 3382:
+/*!*****************************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/modal/endereco-atual/endereco-atual.page.html ***!
+  \*****************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-content >\n  <div class=\"content\">\n\n    <div *ngIf=\"!loading\" class=\"closebtarea\">\n      <ion-button (click)=\"closeModal()\" [disabled]=\"loading\" class=\"btclose\">\n        <ion-icon slot=\"icon-only\" name=\"close\"></ion-icon>\n      </ion-button>\n    </div>\n\n    <div class=\"areaendereco\">\n      <h3 *ngIf=\"!loading\">Endereço de partida:</h3>\n      <span *ngIf=\"!loading && !editandoEnd\">{{endereco}}</span>\n      <ion-input type=\"text\" *ngIf=\"!loading && editandoEnd\" [(ngModel)]=\"enderecoPre\" placeholder=\"Digite o endereço...\"></ion-input>\n      <div *ngIf=\"loading\" class=\"preloader-wrapper active\">\n        <div class=\"spinner-layer spinner-blue-only\">\n          <div class=\"circle-clipper left\">\n            <div class=\"circle\"></div>\n          </div><div class=\"gap-patch\">\n            <div class=\"circle\"></div>\n          </div><div class=\"circle-clipper right\">\n            <div class=\"circle\"></div>\n          </div>\n        </div>\n      </div>\n    </div>\n\n    <div *ngIf=\"!loading && editandoEnd\" class=\"areabt row\">\n      <div style=\"padding: 0;\" class=\"col s6\">\n        <ion-button (click)=\"editandoEnd = false\" color=\"danger\" expand=\"block\">Cancelar</ion-button>\n      </div>\n      <div style=\"padding: 0;\" class=\"col s6\">\n        <ion-button (click)=\"editarEndereco()\" color=\"primary\" expand=\"block\">Confirmar</ion-button>\n      </div>\n    </div>\n\n    <div *ngIf=\"!loading && !editandoEnd\" class=\"areabt row\">\n      <div style=\"padding: 0;\" class=\"col s6\">\n        <ion-button (click)=\"editandoEnd = true; enderecoPre = undefined;\" color=\"secondary\" expand=\"block\">Editar</ion-button>\n      </div>\n      <div style=\"padding: 0;\" class=\"col s6\">\n        <ion-button (click)=\"closeModal(coords)\" color=\"primary\" expand=\"block\">Confirmar</ion-button>\n      </div>\n    </div>\n\n  </div>\n</ion-content>\n");
 
 /***/ }),
 

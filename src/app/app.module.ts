@@ -17,6 +17,7 @@ import { FotoperfilPageModule } from './modal/fotoperfil/fotoperfil.module';
 import { LocationAccuracy } from '@ionic-native/location-accuracy/ngx';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
+import { EnderecoAtualPageModule } from './modal/endereco-atual/endereco-atual.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -33,7 +34,8 @@ import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
     FormsModule,
     ReactiveFormsModule,
     LoadingPageModule,
-    FotoperfilPageModule
+    FotoperfilPageModule,
+    EnderecoAtualPageModule
   ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },

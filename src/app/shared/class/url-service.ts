@@ -9,6 +9,8 @@ export class UrlService {
   static BACKEND_URL = 'http://localhost:54439';
   //static BACKEND_URL = 'http://34.68.18.75:8080';
 
+  static GMKey = 'AIzaSyA80PyFxRJVIlrTgA_beY_r_YOZtAFK-6w';
+
   constructor(private storage: StorageService, private router: Router, private http: HttpClient) {}
 
   async validateToken(token: string){
@@ -31,6 +33,12 @@ export class UrlService {
         .set('Content-Type', 'application/json')
         .set('Authorization', 'BEARER ' + token)
     });
+
+  }
+
+  async sendRequestPostCustom(url: string){
+
+    return this.http.post(url, "");
 
   }
 }
