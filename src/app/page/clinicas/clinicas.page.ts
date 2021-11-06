@@ -9,6 +9,7 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 import { ModalController, Platform } from '@ionic/angular';
 import { EnderecoAtualPage } from 'src/app/modal/endereco-atual/endereco-atual.page';
+import { EnderecoConfirmacaoPage } from 'src/app/modal/endereco-confirmacao/endereco-confirmacao.page';
 
 @Component({
   selector: 'app-clinicas',
@@ -135,10 +136,26 @@ export class ClinicasPage implements OnInit {
     return await loadingScreen.present();
   }
 
+  async exibirModalEnderecoConf(item: any){
+    const loadingScreen = await this.modalController.create({
+      component: EnderecoConfirmacaoPage,
+      componentProps: {
+        item: item
+      }
+    });
+
+    loadingScreen.onDidDismiss()
+      .then(async () => {
+      });
+
+    return await loadingScreen.present();
+  }
+
   async pageEnter(){
     let token = await this.storage.get("token");
     await this.urlService.validateToken(token);
     this.listaClinicas = undefined;
+    this.loading = true;
     this.checkPermission();
   }
 
@@ -147,8 +164,6 @@ export class ClinicasPage implements OnInit {
   }
 
   async getListaClinicas(coords: string){
-    this.loading = true;
-
     (await this.clinicasService.consultarListaClinica(coords))
       .subscribe((resp: any) => {
         this.listaClinicas = resp;

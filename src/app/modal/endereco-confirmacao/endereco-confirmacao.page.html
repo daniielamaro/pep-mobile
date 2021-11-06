@@ -1,0 +1,40 @@
+<ion-content >
+  <div class="content">
+
+    <div class="closebtarea">
+      <ion-button (click)="closeModal()" class="btclose">
+        <ion-icon slot="icon-only" name="close"></ion-icon>
+      </ion-button>
+    </div>
+
+    <div class="areaendereco">
+      <ion-text class="nomeclinica" color="primary">
+        <span>{{item.clinica.nomeClinica}}</span>
+      </ion-text>
+      <ion-text class="enderecoclinica" color="secondary">
+        <span>{{item.clinica.endereco.logradouro +
+          (item.clinica.endereco.numero ? ", "+item.clinica.endereco.numero : ", S/N") +
+          " - " +item.clinica.endereco.bairro+", "+item.clinica.endereco.localidade+", "+item.clinica.endereco.uf}}</span>
+      </ion-text>
+      <ion-text class="distanciaduracao">
+        <span>{{'Distancia: ' +
+          formatarDistancia(item.distancia)
+        }}</span>
+      </ion-text>
+      <ion-text class="distanciaduracao">
+        <span>{{'Tempo estimado de caminhada: ' +
+          formatarTempo(item.duracao)
+        }}</span>
+      </ion-text>
+    </div>
+
+    <div class="areabt row">
+      <div style="padding: 0;" class="col s12">
+        <ion-button (click)="abrirClinica(item.clinica)" color="primary" expand="block">
+          Abrir no mapa
+        </ion-button>
+      </div>
+    </div>
+
+  </div>
+</ion-content>

@@ -18,6 +18,7 @@ import { LocationAccuracy } from '@ionic-native/location-accuracy/ngx';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 import { EnderecoAtualPageModule } from './modal/endereco-atual/endereco-atual.module';
+import { EnderecoConfirmacaoPageModule } from './modal/endereco-confirmacao/endereco-confirmacao.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -35,7 +36,8 @@ import { EnderecoAtualPageModule } from './modal/endereco-atual/endereco-atual.m
     ReactiveFormsModule,
     LoadingPageModule,
     FotoperfilPageModule,
-    EnderecoAtualPageModule
+    EnderecoAtualPageModule,
+    EnderecoConfirmacaoPageModule
   ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },

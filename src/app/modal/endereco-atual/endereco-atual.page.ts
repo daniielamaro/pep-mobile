@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
-import { StorageService } from 'src/app/shared/class/storage.service';
 import { EnderecoAtualService } from './endereco-atual.service';
 
 @Component({
