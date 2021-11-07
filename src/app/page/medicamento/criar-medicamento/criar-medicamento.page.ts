@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { StorageService } from 'src/app/shared/class/storage.service';
 import { MedicamentoService } from '../medicamento.service';
 import { ModalController, ToastController } from '@ionic/angular';
 import { LoadingPage } from 'src/app/loading/loading.page';
 import { UrlService } from 'src/app/shared/class/url-service';
-import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-criar-medicamento',
@@ -15,6 +14,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class CriarMedicamentoPage implements OnInit {
 
   user: any;
+  idMedicamento: string;
 
   nome: string;
   numQuantidade: number;
@@ -30,13 +30,15 @@ export class CriarMedicamentoPage implements OnInit {
   publico: boolean;
   receita: any = null;
 
+  editando: boolean = false;
+
   constructor(
     private medicamentoService: MedicamentoService,
     public modalController: ModalController,
     public toastController: ToastController,
     private urlService: UrlService,
-    private dom: DomSanitizer,
     private router: Router,
+    private actvRouter: ActivatedRoute,
     private storage: StorageService)
   {
     this.router.events.subscribe((evt) => {
@@ -46,7 +48,50 @@ export class CriarMedicamentoPage implements OnInit {
     });
   }
 
-  async ngOnInit() {}
+  async ngOnInit() {
+    this.actvRouter.params.subscribe(async params => {
+      this.idMedicamento = params['id'];
+
+      if(this.idMedicamento != "0"){
+        this.editando = true;
+        (await this.medicamentoService.getMedicamentoById(this.idMedicamento))
+          .subscribe(
+            (resp: any) => {
+              console.log(resp)
+
+              this.nome = resp.nome;
+              this.numQuantidade = resp.numQuantidade;
+              this.tipoQuantidade = resp.tipoQuantidade;
+              this.outraQuantidade = resp.outraQuantidade;
+              this.numIntervalo = resp.numIntervalo;
+              this.tipoIntervalo = resp.tipoIntervalo;
+              this.outroIntervalo = resp.outroIntervalo;
+              this.temReceita = resp.tipoCadastro == 2 ? true : false;
+              this.usoContinuo = resp.usoContinuo;
+              this.dataInicio = resp.dataInicio;
+              this.dataTermino = resp.dataTermino;
+              this.publico = resp.publico;
+              this.receita = resp.receita;
+            },
+            error => {
+              if(error.status == 401 || error.status == 403){
+                this.storage.remove("user");
+                this.router.navigateByUrl("");
+              }else{
+                this.toastController.create({
+                  message: error.error,
+                  duration: 5000
+                }).then(toast => {
+                  toast.present();
+                });
+              }
+            }
+          );
+      }else {
+        this.editando = false;
+      }
+    });
+  }
 
   async pageEnter(){
     this.user = await this.storage.get("user");
@@ -154,6 +199,60 @@ export class CriarMedicamentoPage implements OnInit {
             this.closeLoadingScreen();
           });
     });
+  }
+
+  async editarMedicamento(){
+    this.showLoadingScreen()
+      .then(async () => {
+
+        let request = {
+          idMedicamento: this.idMedicamento,
+          nome: this.nome,
+          numQuantidade: this.numQuantidade ? Number(this.numQuantidade) : 0,
+          tipoQuantidade: this.tipoQuantidade,
+          outraQuantidade: this.outraQuantidade,
+          numIntervalo: this.numIntervalo ? Number(this.numIntervalo) : 0,
+          tipoIntervalo: this.tipoIntervalo,
+          outroIntervalo: this.outroIntervalo,
+          publico: this.publico,
+          tipoCadastro: this.temReceita ? 2 : 0,
+          receita: this.receita,
+          dataInicio: this.dataInicio,
+          dataTermino: this.dataTermino,
+          usoContinuo: this.usoContinuo
+        };
+
+        console.log(request);
+
+        (await this.medicamentoService.editarMedicamento(request))
+          .subscribe(() => {
+            this.router.navigateByUrl("/page/medicamentos");
+          },
+          error => {
+            if(error.status == 401 || error.status == 403){
+              this.storage.remove("user");
+              this.router.navigateByUrl("");
+            }else{
+              this.toastController.create({
+                message: error.error,
+                duration: 5000
+              }).then(toast => {
+                toast.present();
+              });
+            }
+          },
+          () => {
+            this.closeLoadingScreen();
+          });
+    });
+  }
+
+  selecionarArquivo(){
+    document.getElementById('selecao-arquivo').click();
+  }
+
+  removerArquivo(){
+    this.receita = null;
   }
 
   async showLoadingScreen() {

@@ -8,6 +8,40 @@
   justify-content: flex-start;
 }
 
+/* Esconde o input */
+.inputfilecustom {
+  display: none
+}
+
+/* Aparência que terá o seletor de arquivo */
+.inputfiletext {
+  background-color: var(--ion-color-primary) !important;
+  font-size: 14px;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  padding: 6px;
+}
+
+.removerarquivo{
+  background-color: red;
+  color: #fff;
+}
+
+.nomearquivo{
+    word-break: break-all;
+    white-space: normal;
+}
+
+.inputFileArea{
+  margin-top: 10px;
+}
+
+.inputFileArea ion-col{
+  padding-left: 0;
+  width: 100%;
+}
+
 .listaTipo{
   --placeholder-opacity: 0.5;
 }

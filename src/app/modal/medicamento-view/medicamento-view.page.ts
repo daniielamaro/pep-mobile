@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { MedicamentoViewService } from './medicamento-view.service';
 
@@ -16,7 +16,7 @@ export class MedicamentoViewPage implements OnInit {
 
   constructor(
     private medicamentoViewService: MedicamentoViewService,
-    private _sanitizer: DomSanitizer,
+    private router: Router,
     private modalController: ModalController
   ) { }
 
@@ -29,16 +29,21 @@ export class MedicamentoViewPage implements OnInit {
       });
   }
 
-  openReceita(receita: any){
-    let pdfWindow = window.open("");
+  // openReceita(receita: any){
+  //   let pdfWindow = window.open("");
 
-    pdfWindow.document.write('<html><head></head><body style="margin: 0; padding: 0;">');
-    pdfWindow.document.write(
-      "<iframe width='100%' height='100%' style='border:none;' frameBorder='0' src='data:application/pdf;base64, " +
-      encodeURI(receita.binario) + "'></iframe>"
-    );
-    pdfWindow.document.write('</body></html>');
+  //   pdfWindow.document.write('<html><head></head><body style="margin: 0; padding: 0;">');
+  //   pdfWindow.document.write(
+  //     "<iframe width='100%' height='100%' style='border:none;' frameBorder='0' src='data:application/pdf;base64, " +
+  //     encodeURI(receita.binario) + "'></iframe>"
+  //   );
+  //   pdfWindow.document.write('</body></html>');
 
+  // }
+
+  editarMedicamento(id: string){
+    this.router.navigateByUrl("/page/criar-medicamento/"+id);
+    this.closeModal();
   }
 
   closeModal(){

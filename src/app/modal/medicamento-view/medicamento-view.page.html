@@ -15,7 +15,7 @@
         <span>{{(medicamento.tipoQuantidade != "Outro" ? medicamento.numQuantidade + " " + medicamento.tipoQuantidade : medicamento.outraQuantidade)}}
           {{(medicamento.tipoIntervalo != "Outro" ? "a cada " + medicamento.numIntervalo + " " + medicamento.tipoIntervalo : medicamento.outroIntervalo)}}</span>
       </ion-text>
-      <ion-button *ngIf="medicamento.receita" style="margin-bottom: 10px;" (click)="openReceita(medicamento.receita)" color="primary" expand="block">Abrir receita</ion-button>
+      <!-- <ion-button *ngIf="medicamento.receita" style="margin-bottom: 10px;" (click)="openReceita(medicamento.receita)" color="primary" expand="block">Abrir receita</ion-button> -->
       <ion-text class="datafinal">
         <span>Começou: {{medicamento.dataInicio | date: 'dd/MMM/yyyy'}}</span>
       </ion-text>
@@ -50,7 +50,7 @@
 
     <div *ngIf="!loading" class="areabt row">
       <div style="padding: 0;" class="col s12">
-        <ion-button (click)="closeModal()" color="primary" expand="block">Editar medicamento</ion-button>
+        <ion-button (click)="editarMedicamento(medicamento.id)" color="primary" expand="block">Editar medicamento</ion-button>
       </div>
     </div>
 

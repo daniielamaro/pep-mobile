@@ -127,20 +127,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "AppModule": () => (/* binding */ AppModule)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! tslib */ 4762);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @angular/core */ 7716);
-/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @angular/platform-browser */ 9075);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! @angular/router */ 9895);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! tslib */ 4762);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @angular/core */ 7716);
+/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @angular/platform-browser */ 9075);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! @angular/router */ 9895);
 /* harmony import */ var _ionic_storage__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @ionic/storage */ 1628);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @ionic/angular */ 476);
-/* harmony import */ var _ionic_storage_angular__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @ionic/storage-angular */ 4925);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @ionic/angular */ 476);
+/* harmony import */ var _ionic_storage_angular__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @ionic/storage-angular */ 4925);
 /* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./app.component */ 5041);
 /* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./app-routing.module */ 158);
 /* harmony import */ var _shared_class_url_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./shared/class/url-service */ 2567);
 /* harmony import */ var _shared_class_storage_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./shared/class/storage.service */ 6578);
 /* harmony import */ var _shared_auth_auth_guard__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./shared/auth/auth.guard */ 5337);
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @angular/common/http */ 1841);
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! @angular/forms */ 3679);
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! @angular/common/http */ 1841);
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! @angular/forms */ 3679);
 /* harmony import */ var _loading_loading_module__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./loading/loading.module */ 3416);
 /* harmony import */ var _modal_fotoperfil_fotoperfil_module__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./modal/fotoperfil/fotoperfil.module */ 9737);
 /* harmony import */ var _ionic_native_location_accuracy_ngx__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ionic-native/location-accuracy/ngx */ 6030);
@@ -149,6 +149,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modal_endereco_atual_endereco_atual_module__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./modal/endereco-atual/endereco-atual.module */ 9102);
 /* harmony import */ var _modal_endereco_confirmacao_endereco_confirmacao_module__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./modal/endereco-confirmacao/endereco-confirmacao.module */ 9462);
 /* harmony import */ var _modal_medicamento_view_medicamento_view_module__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./modal/medicamento-view/medicamento-view.module */ 5476);
+/* harmony import */ var _ionic_native_document_viewer_ngx__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @ionic-native/document-viewer/ngx */ 1663);
+
 
 
 
@@ -173,21 +175,21 @@ __webpack_require__.r(__webpack_exports__);
 
 let AppModule = class AppModule {
 };
-AppModule = (0,tslib__WEBPACK_IMPORTED_MODULE_14__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_15__.NgModule)({
+AppModule = (0,tslib__WEBPACK_IMPORTED_MODULE_15__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_16__.NgModule)({
         declarations: [_app_component__WEBPACK_IMPORTED_MODULE_1__.AppComponent],
         entryComponents: [],
         imports: [
-            _angular_platform_browser__WEBPACK_IMPORTED_MODULE_16__.BrowserModule,
-            _ionic_angular__WEBPACK_IMPORTED_MODULE_17__.IonicModule.forRoot(),
-            _ionic_storage_angular__WEBPACK_IMPORTED_MODULE_18__.IonicStorageModule.forRoot({
+            _angular_platform_browser__WEBPACK_IMPORTED_MODULE_17__.BrowserModule,
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_18__.IonicModule.forRoot(),
+            _ionic_storage_angular__WEBPACK_IMPORTED_MODULE_19__.IonicStorageModule.forRoot({
                 name: '__mydb',
                 driverOrder: [_ionic_storage__WEBPACK_IMPORTED_MODULE_0__.Drivers.IndexedDB, _ionic_storage__WEBPACK_IMPORTED_MODULE_0__.Drivers.LocalStorage]
             }),
             _app_routing_module__WEBPACK_IMPORTED_MODULE_2__.AppRoutingModule,
-            _angular_common_http__WEBPACK_IMPORTED_MODULE_19__.HttpClientModule,
-            _angular_forms__WEBPACK_IMPORTED_MODULE_20__.FormsModule,
-            _angular_forms__WEBPACK_IMPORTED_MODULE_20__.ReactiveFormsModule,
+            _angular_common_http__WEBPACK_IMPORTED_MODULE_20__.HttpClientModule,
+            _angular_forms__WEBPACK_IMPORTED_MODULE_21__.FormsModule,
+            _angular_forms__WEBPACK_IMPORTED_MODULE_21__.ReactiveFormsModule,
             _loading_loading_module__WEBPACK_IMPORTED_MODULE_6__.LoadingPageModule,
             _modal_fotoperfil_fotoperfil_module__WEBPACK_IMPORTED_MODULE_7__.FotoperfilPageModule,
             _modal_endereco_atual_endereco_atual_module__WEBPACK_IMPORTED_MODULE_11__.EnderecoAtualPageModule,
@@ -195,13 +197,14 @@ AppModule = (0,tslib__WEBPACK_IMPORTED_MODULE_14__.__decorate)([
             _modal_medicamento_view_medicamento_view_module__WEBPACK_IMPORTED_MODULE_13__.MedicamentoViewPageModule
         ],
         providers: [
-            { provide: _angular_router__WEBPACK_IMPORTED_MODULE_21__.RouteReuseStrategy, useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_17__.IonicRouteStrategy },
+            { provide: _angular_router__WEBPACK_IMPORTED_MODULE_22__.RouteReuseStrategy, useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_18__.IonicRouteStrategy },
             _shared_class_url_service__WEBPACK_IMPORTED_MODULE_3__.UrlService,
             _ionic_native_location_accuracy_ngx__WEBPACK_IMPORTED_MODULE_8__.LocationAccuracy,
             _ionic_native_geolocation_ngx__WEBPACK_IMPORTED_MODULE_9__.Geolocation,
             _ionic_native_android_permissions_ngx__WEBPACK_IMPORTED_MODULE_10__.AndroidPermissions,
             _shared_auth_auth_guard__WEBPACK_IMPORTED_MODULE_5__.AuthGuard,
-            _shared_class_storage_service__WEBPACK_IMPORTED_MODULE_4__.StorageService
+            _shared_class_storage_service__WEBPACK_IMPORTED_MODULE_4__.StorageService,
+            _ionic_native_document_viewer_ngx__WEBPACK_IMPORTED_MODULE_14__.DocumentViewer
         ],
         bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_1__.AppComponent],
     })
@@ -1121,13 +1124,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "MedicamentoViewPage": () => (/* binding */ MedicamentoViewPage)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! tslib */ 4762);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tslib */ 4762);
 /* harmony import */ var _raw_loader_medicamento_view_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !raw-loader!./medicamento-view.page.html */ 1619);
 /* harmony import */ var _medicamento_view_page_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./medicamento-view.page.scss */ 4019);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/core */ 7716);
-/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/platform-browser */ 9075);
+/* harmony import */ var _ionic_native_document_viewer_ngx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic-native/document-viewer/ngx */ 1663);
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic/angular */ 476);
-/* harmony import */ var _medicamento_view_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./medicamento-view.service */ 4778);
+/* harmony import */ var _medicamento_view_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./medicamento-view.service */ 4778);
 
 
 
@@ -1136,13 +1139,15 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let MedicamentoViewPage = class MedicamentoViewPage {
-    constructor(medicamentoViewService, _sanitizer, modalController) {
+    constructor(medicamentoViewService, document, modalController) {
         this.medicamentoViewService = medicamentoViewService;
-        this._sanitizer = _sanitizer;
+        this.document = document;
         this.modalController = modalController;
     }
     ngOnInit() {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__awaiter)(this, void 0, void 0, function* () {
+            console.log("Teste de log funcionou");
+            this.document.getSupportInfo();
             this.loading = true;
             (yield this.medicamentoViewService.getMedicamentoById(this.id))
                 .subscribe((resp) => {
@@ -1152,22 +1157,21 @@ let MedicamentoViewPage = class MedicamentoViewPage {
         });
     }
     openReceita(receita) {
-        let pdfWindow = window.open("");
-        pdfWindow.document.write('<html><head></head><body style="margin: 0; padding: 0;">');
-        pdfWindow.document.write("<iframe width='100%' height='100%' style='border:none;' frameBorder='0' src='data:application/pdf;base64, " +
-            encodeURI(receita.binario) + "'></iframe>");
-        pdfWindow.document.write('</body></html>');
+        const options = {
+            title: 'My PDF'
+        };
+        this.document.viewDocument('../../../assets/Unisuam.pdf', 'application/pdf', options);
     }
     closeModal() {
         this.modalController.dismiss();
     }
 };
 MedicamentoViewPage.ctorParameters = () => [
-    { type: _medicamento_view_service__WEBPACK_IMPORTED_MODULE_2__.MedicamentoViewService },
-    { type: _angular_platform_browser__WEBPACK_IMPORTED_MODULE_4__.DomSanitizer },
+    { type: _medicamento_view_service__WEBPACK_IMPORTED_MODULE_3__.MedicamentoViewService },
+    { type: _ionic_native_document_viewer_ngx__WEBPACK_IMPORTED_MODULE_2__.DocumentViewer },
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__.ModalController }
 ];
-MedicamentoViewPage = (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__decorate)([
+MedicamentoViewPage = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorate)([
     (0,_angular_core__WEBPACK_IMPORTED_MODULE_6__.Component)({
         selector: 'app-medicamento-view',
         template: _raw_loader_medicamento_view_page_html__WEBPACK_IMPORTED_MODULE_0__.default,

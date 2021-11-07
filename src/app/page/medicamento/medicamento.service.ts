@@ -15,4 +15,12 @@ export class MedicamentoService {
   async salvarMedicamento(request: any){
     return await this.urlService.sendRequestPost("/Medicamento/Cadastro", JSON.stringify(request));
   }
+
+  async editarMedicamento(request: any){
+    return await this.urlService.sendRequestPost("/Medicamento/EditarMedicamento", JSON.stringify(request));
+  }
+
+  async getMedicamentoById(id: string){
+    return await this.urlService.sendRequestPost("/Medicamento/ConsultarMedicamentoById?idMedicamento="+id);
+  }
 }

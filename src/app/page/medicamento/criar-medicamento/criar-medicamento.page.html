@@ -90,12 +90,38 @@
         </ion-col>
       </ion-row>
       <ion-row *ngIf="temReceita">
-        <ion-col class="item-form" size="12">
-          <ion-item style="--border-style: none; --padding-start: 0px;">
-            <ion-label color="primary" style="font-size: 18px !important;" position="stacked">Receita:</ion-label>
-            <ion-label *ngIf="!receita" color="secondary" style="font-size: 15px !important;" position="stacked">O arquivo precisa estar no formato PDF</ion-label>
-            <ion-input (change)="fileChange($event)" accept="application/pdf" type="file"></ion-input>
-          </ion-item>
+        <ion-col size="12">
+          <ion-row>
+            <ion-col size="12">
+              <ion-label color="primary">Receita: </ion-label>
+              <br/>
+              <ion-label *ngIf="!receita" color="secondary" style="font-size: 15px !important;" position="stacked">O arquivo precisa estar no formato PDF</ion-label>
+
+              <ion-row class="inputFileArea" *ngIf="receita">
+                <ion-col size="3">
+                  <ion-button (click)="removerArquivo()" color="danger" expand="block">
+                    <ion-icon name="close"></ion-icon>
+                  </ion-button>
+                </ion-col>
+                <ion-col size="9">
+                  <ion-button class="nomearquivo" color="primary" expand="block">
+                    {{receita.nome}}
+                  </ion-button>
+                </ion-col>
+              </ion-row>
+
+              <ion-row class="inputFileArea" *ngIf="!receita">
+                <ion-col size="12">
+                  <ion-button (click)="selecionarArquivo()" color="primary" expand="block">
+                    Selecionar
+                  </ion-button>
+                </ion-col>
+              </ion-row>
+
+
+              <input class="inputfilecustom" id='selecao-arquivo' (change)="fileChange($event)" type='file' accept="application/pdf"/>
+            </ion-col>
+          </ion-row>
         </ion-col>
       </ion-row>
       <ion-row>
@@ -131,8 +157,11 @@
         </ion-col>
       </ion-row>
       <ion-row>
-        <ion-col class="item-form-center" size="12">
+        <ion-col *ngIf="!editando" class="item-form-center" size="12">
           <ion-button (click)="salvarMedicamento()" [disabled]="!formularioValido()" color="primary" expand="block">Salvar Medicamento</ion-button>
+        </ion-col>
+        <ion-col *ngIf="editando" class="item-form-center" size="12">
+          <ion-button (click)="editarMedicamento()" [disabled]="!formularioValido()" color="primary" expand="block">Editar Medicamento</ion-button>
         </ion-col>
       </ion-row>
     </ion-grid>
