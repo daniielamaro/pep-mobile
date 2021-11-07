@@ -112,7 +112,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ionic_native_android_permissions_ngx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ionic-native/android-permissions/ngx */ 9315);
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @ionic/angular */ 476);
 /* harmony import */ var src_app_modal_endereco_atual_endereco_atual_page__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! src/app/modal/endereco-atual/endereco-atual.page */ 4136);
-/* harmony import */ var src_app_modal_endereco_atual_endereco_atual_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! src/app/modal/endereco-atual/endereco-atual.service */ 9371);
+/* harmony import */ var src_app_modal_endereco_confirmacao_endereco_confirmacao_page__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! src/app/modal/endereco-confirmacao/endereco-confirmacao.page */ 1170);
 
 
 
@@ -128,11 +128,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let ClinicasPage = class ClinicasPage {
-    constructor(router, storage, locationAccuracy, enderecoAtualService, modalController, geolocation, plt, androidPermissions, urlService, clinicasService) {
+    constructor(router, storage, locationAccuracy, modalController, geolocation, plt, androidPermissions, urlService, clinicasService) {
         this.router = router;
         this.storage = storage;
         this.locationAccuracy = locationAccuracy;
-        this.enderecoAtualService = enderecoAtualService;
         this.modalController = modalController;
         this.geolocation = geolocation;
         this.plt = plt;
@@ -223,11 +222,26 @@ let ClinicasPage = class ClinicasPage {
             return yield loadingScreen.present();
         });
     }
+    exibirModalEnderecoConf(item) {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_11__.__awaiter)(this, void 0, void 0, function* () {
+            const loadingScreen = yield this.modalController.create({
+                component: src_app_modal_endereco_confirmacao_endereco_confirmacao_page__WEBPACK_IMPORTED_MODULE_9__.EnderecoConfirmacaoPage,
+                componentProps: {
+                    item: item
+                }
+            });
+            loadingScreen.onDidDismiss()
+                .then(() => (0,tslib__WEBPACK_IMPORTED_MODULE_11__.__awaiter)(this, void 0, void 0, function* () {
+            }));
+            return yield loadingScreen.present();
+        });
+    }
     pageEnter() {
         return (0,tslib__WEBPACK_IMPORTED_MODULE_11__.__awaiter)(this, void 0, void 0, function* () {
             let token = yield this.storage.get("token");
             yield this.urlService.validateToken(token);
             this.listaClinicas = undefined;
+            this.loading = true;
             this.checkPermission();
         });
     }
@@ -236,7 +250,6 @@ let ClinicasPage = class ClinicasPage {
     }
     getListaClinicas(coords) {
         return (0,tslib__WEBPACK_IMPORTED_MODULE_11__.__awaiter)(this, void 0, void 0, function* () {
-            this.loading = true;
             (yield this.clinicasService.consultarListaClinica(coords))
                 .subscribe((resp) => {
                 this.listaClinicas = resp;
@@ -254,30 +267,6 @@ let ClinicasPage = class ClinicasPage {
         });
     }
     ngOnInit() { }
-    abrirClinica(clinica) {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_11__.__awaiter)(this, void 0, void 0, function* () {
-            (yield this.enderecoAtualService.getEnderecoByAddress(clinica.endereco.logradouro +
-                (clinica.endereco.numero ? ", " + clinica.endereco.numero : ", S/N") +
-                " - " + clinica.endereco.bairro))
-                .subscribe((resp) => {
-                if (resp.results.length > 0) {
-                    let location = resp.results[0].geometry.location;
-                    let coords = location.lat + "," + location.lng;
-                    let a = document.createElement("a");
-                    if (this.plataformas.includes("cordova")) {
-                        a.href = "geo:?q=" + coords;
-                        a.target = "_system";
-                    }
-                    else {
-                        a.href = "http://maps.google.com/maps?q=" + coords + "&ll=" + coords + "&z=18";
-                        a.target = "_blank";
-                    }
-                    document.body.appendChild(a);
-                    a.click();
-                }
-            });
-        });
-    }
     formatarDistancia(distancia) {
         if (distancia < 1000)
             return distancia + (distancia > 1 ? " metros" : " metro");
@@ -289,7 +278,6 @@ ClinicasPage.ctorParameters = () => [
     { type: _angular_router__WEBPACK_IMPORTED_MODULE_10__.Router },
     { type: src_app_shared_class_storage_service__WEBPACK_IMPORTED_MODULE_2__.StorageService },
     { type: _ionic_native_location_accuracy_ngx__WEBPACK_IMPORTED_MODULE_5__.LocationAccuracy },
-    { type: src_app_modal_endereco_atual_endereco_atual_service__WEBPACK_IMPORTED_MODULE_9__.EnderecoAtualService },
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_12__.ModalController },
     { type: _ionic_native_geolocation_ngx__WEBPACK_IMPORTED_MODULE_6__.Geolocation },
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_12__.Platform },
@@ -375,7 +363,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-content>\n  <div class=\"content\">\n    <div class=\"sector-novo-clinicas\">\n      <ion-grid>\n        <ion-row>\n          <ion-col size=\"12\">\n            <ion-button (click)=\"editarEndereco()\" color=\"primary\" expand=\"block\">Editar endereço</ion-button>\n            <div *ngIf=\"!listaClinicas || listaClinicas.length == 0 || loading\" class=\"area-lista-vazia\">\n              <span *ngIf=\"!loading\">{{mensagem}}</span>\n              <div *ngIf=\"loading\" class=\"preloader-wrapper big active\">\n                <div class=\"spinner-layer spinner-blue-only\">\n                  <div class=\"circle-clipper left\">\n                    <div class=\"circle\"></div>\n                  </div><div class=\"gap-patch\">\n                    <div class=\"circle\"></div>\n                  </div><div class=\"circle-clipper right\">\n                    <div class=\"circle\"></div>\n                  </div>\n                </div>\n              </div>\n            </div>\n            <ion-list *ngIf=\"!loading && listaClinicas && listaClinicas.length > 0\">\n\n              <ion-item (click)=\"abrirClinica(item.clinica)\" *ngFor=\"let item of listaClinicas\">\n                <ion-label class=\"ion-text-wrap\">\n                  <ion-grid>\n                    <ion-row>\n                      <ion-col class=\"clinicas-nome\" size=\"12\">\n                        <ion-text color=\"primary\">\n                          <h2>{{item.clinica.nomeClinica}}</h2>\n                        </ion-text>\n                      </ion-col>\n                    </ion-row>\n                    <ion-row>\n                      <ion-col class=\"clinicas-quantidade\" size=\"12\">\n                        <p>{{'Distancia: ' +\n                          formatarDistancia(item.distancia)\n                        }}</p>\n                      </ion-col>\n                    </ion-row>\n                    <ion-row>\n                      <ion-col class=\"clinicas-quantidade\" size=\"12\">\n                        <p>{{'Endereço: ' +\n                          item.clinica.endereco.logradouro +\n                          (item.clinica.endereco.numero ? \", \"+item.clinica.endereco.numero : \", S/N\") +\n                          \" - \" +item.clinica.endereco.bairro\n                        }}</p>\n                      </ion-col>\n                    </ion-row>\n                  </ion-grid>\n                </ion-label>\n              </ion-item>\n\n            </ion-list>\n          </ion-col>\n        </ion-row>\n      </ion-grid>\n    </div>\n\n  </div>\n</ion-content>\n");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-content>\n  <div class=\"content\">\n    <div class=\"sector-novo-clinicas\">\n      <ion-grid>\n        <ion-row>\n          <ion-col size=\"12\">\n            <ion-button *ngIf=\"!loading\" (click)=\"editarEndereco()\" color=\"primary\" expand=\"block\">Editar endereço</ion-button>\n            <div *ngIf=\"!listaClinicas || listaClinicas.length == 0 || loading\" class=\"area-lista-vazia\">\n              <span *ngIf=\"!loading\">{{mensagem}}</span>\n              <div *ngIf=\"loading\" class=\"preloader-wrapper big active\">\n                <div class=\"spinner-layer spinner-blue-only\">\n                  <div class=\"circle-clipper left\">\n                    <div class=\"circle\"></div>\n                  </div><div class=\"gap-patch\">\n                    <div class=\"circle\"></div>\n                  </div><div class=\"circle-clipper right\">\n                    <div class=\"circle\"></div>\n                  </div>\n                </div>\n              </div>\n            </div>\n            <ion-list *ngIf=\"!loading && listaClinicas && listaClinicas.length > 0\">\n\n              <ion-item (click)=\"exibirModalEnderecoConf(item)\" *ngFor=\"let item of listaClinicas\">\n                <ion-label class=\"ion-text-wrap\">\n                  <ion-grid>\n                    <ion-row>\n                      <ion-col class=\"clinicas-nome\" size=\"12\">\n                        <ion-text color=\"primary\">\n                          <h2>{{item.clinica.nomeClinica}}</h2>\n                        </ion-text>\n                      </ion-col>\n                    </ion-row>\n                    <ion-row>\n                      <ion-col class=\"clinicas-quantidade\" size=\"12\">\n                        <p>{{'Distancia: ' +\n                          formatarDistancia(item.distancia)\n                        }}</p>\n                      </ion-col>\n                    </ion-row>\n                    <ion-row>\n                      <ion-col class=\"clinicas-quantidade\" size=\"12\">\n                        <p>{{'Endereço: ' +\n                          item.clinica.endereco.logradouro +\n                          (item.clinica.endereco.numero ? \", \"+item.clinica.endereco.numero : \", S/N\") +\n                          \" - \" +item.clinica.endereco.bairro\n                        }}</p>\n                      </ion-col>\n                    </ion-row>\n                  </ion-grid>\n                </ion-label>\n              </ion-item>\n\n            </ion-list>\n          </ion-col>\n        </ion-row>\n      </ion-grid>\n    </div>\n\n  </div>\n</ion-content>\n");
 
 /***/ })
 

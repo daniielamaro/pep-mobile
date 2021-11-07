@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
+import { ModalController } from '@ionic/angular';
+import { MedicamentoViewPage } from 'src/app/modal/medicamento-view/medicamento-view.page';
 import { StorageService } from 'src/app/shared/class/storage.service';
 import { UrlService } from 'src/app/shared/class/url-service';
 import { ExameService } from '../exame/exame.service';
@@ -20,6 +22,7 @@ export class MedicamentoPage implements OnInit {
     private router: Router,
     private storage: StorageService,
     private urlService: UrlService,
+    private modalController: ModalController,
     private medicamentoService: MedicamentoService)
   {
     this.router.events.subscribe((evt) => {
@@ -56,6 +59,20 @@ export class MedicamentoPage implements OnInit {
         this.mensagem = error.error;
         this.loading = false;
       });
+  }
+
+  async abrirMedicamento(id: string){
+    const loadingScreen = await this.modalController.create({
+      component: MedicamentoViewPage,
+      componentProps: {
+        id: id
+      }
+    });
+
+    loadingScreen.onDidDismiss()
+      .then(async () => {});
+
+    return await loadingScreen.present();
   }
 
 }

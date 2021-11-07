@@ -20,6 +20,10 @@ const routes: Routes = [
   {
     path: 'cadastro',
     loadChildren: () => import('./cadastro/cadastro.module').then( m => m.CadastroPageModule)
+  },
+  {
+    path: 'medicamento-view',
+    loadChildren: () => import('./modal/medicamento-view/medicamento-view.module').then( m => m.MedicamentoViewPageModule)
   }
 ];
 

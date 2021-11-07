@@ -1,0 +1,58 @@
+<ion-content >
+  <div class="content">
+
+    <div *ngIf="!loading" class="closebtarea">
+      <ion-button (click)="closeModal()" [disabled]="loading" class="btclose">
+        <ion-icon slot="icon-only" name="close"></ion-icon>
+      </ion-button>
+    </div>
+
+    <div *ngIf="!loading" class="area">
+      <ion-text class="nomemedicamento" color="primary">
+        <span>{{medicamento.nome}}</span>
+      </ion-text>
+      <ion-text class="quantidade" color="secondary">
+        <span>{{(medicamento.tipoQuantidade != "Outro" ? medicamento.numQuantidade + " " + medicamento.tipoQuantidade : medicamento.outraQuantidade)}}
+          {{(medicamento.tipoIntervalo != "Outro" ? "a cada " + medicamento.numIntervalo + " " + medicamento.tipoIntervalo : medicamento.outroIntervalo)}}</span>
+      </ion-text>
+      <ion-button *ngIf="medicamento.receita" style="margin-bottom: 10px;" (click)="openReceita(medicamento.receita)" color="primary" expand="block">Abrir receita</ion-button>
+      <ion-text class="datafinal">
+        <span>Começou: {{medicamento.dataInicio | date: 'dd/MMM/yyyy'}}</span>
+      </ion-text>
+      <ion-text class="datafinal">
+        <span *ngIf="!medicamento.usoContinuo">Até: {{medicamento.dataTermino | date: 'dd/MMM/yyyy'}}</span>
+        <span *ngIf="medicamento.usoContinuo">Uso contínuo</span>
+      </ion-text>
+      <ion-text class="receitado">
+        Status:
+        <ion-text *ngIf="medicamento.tipoCadastro == 0" color="danger">Não receitado</ion-text>
+        <ion-text *ngIf="medicamento.tipoCadastro == 1" color="success">Receitado</ion-text>
+        <ion-text *ngIf="medicamento.tipoCadastro == 2" color="warning">Receitado manualmente</ion-text>
+      </ion-text>
+      <ion-text *ngIf="medicamento.tipoCadastro == 0" class="atencao" color="danger">
+        Atenção tomar medicamentos não receitados pelo médico pode trazer sérias consequências, como por exemplo, intoxicação.
+      </ion-text>
+    </div>
+
+    <div *ngIf="loading" class="area">
+      <div class="preloader-wrapper active">
+        <div class="spinner-layer spinner-blue-only">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div><div class="gap-patch">
+            <div class="circle"></div>
+          </div><div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="!loading" class="areabt row">
+      <div style="padding: 0;" class="col s12">
+        <ion-button (click)="closeModal()" color="primary" expand="block">Editar medicamento</ion-button>
+      </div>
+    </div>
+
+  </div>
+</ion-content>

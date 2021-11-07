@@ -19,7 +19,7 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 import { EnderecoAtualPageModule } from './modal/endereco-atual/endereco-atual.module';
 import { EnderecoConfirmacaoPageModule } from './modal/endereco-confirmacao/endereco-confirmacao.module';
-
+import { MedicamentoViewPageModule } from './modal/medicamento-view/medicamento-view.module';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -37,7 +37,8 @@ import { EnderecoConfirmacaoPageModule } from './modal/endereco-confirmacao/ende
     LoadingPageModule,
     FotoperfilPageModule,
     EnderecoAtualPageModule,
-    EnderecoConfirmacaoPageModule
+    EnderecoConfirmacaoPageModule,
+    MedicamentoViewPageModule
   ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },

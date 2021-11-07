@@ -1,0 +1,48 @@
+import { Component, OnInit } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
+import { ModalController } from '@ionic/angular';
+import { MedicamentoViewService } from './medicamento-view.service';
+
+@Component({
+  selector: 'app-medicamento-view',
+  templateUrl: './medicamento-view.page.html',
+  styleUrls: ['./medicamento-view.page.scss'],
+})
+export class MedicamentoViewPage implements OnInit {
+
+  id: string;
+  loading: boolean;
+  medicamento: any;
+
+  constructor(
+    private medicamentoViewService: MedicamentoViewService,
+    private _sanitizer: DomSanitizer,
+    private modalController: ModalController
+  ) { }
+
+  async ngOnInit() {
+    this.loading = true;
+    (await this.medicamentoViewService.getMedicamentoById(this.id))
+      .subscribe((resp: any) => {
+        this.loading = false;
+        this.medicamento = resp;
+      });
+  }
+
+  openReceita(receita: any){
+    let pdfWindow = window.open("");
+
+    pdfWindow.document.write('<html><head></head><body style="margin: 0; padding: 0;">');
+    pdfWindow.document.write(
+      "<iframe width='100%' height='100%' style='border:none;' frameBorder='0' src='data:application/pdf;base64, " +
+      encodeURI(receita.binario) + "'></iframe>"
+    );
+    pdfWindow.document.write('</body></html>');
+
+  }
+
+  closeModal(){
+    this.modalController.dismiss();
+  }
+
+}

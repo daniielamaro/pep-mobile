@@ -59,6 +59,10 @@ const routes = [
     {
         path: 'cadastro',
         loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_cadastro_cadastro_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./cadastro/cadastro.module */ 8379)).then(m => m.CadastroPageModule)
+    },
+    {
+        path: 'medicamento-view',
+        loadChildren: () => Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! ./modal/medicamento-view/medicamento-view.module */ 5476)).then(m => m.MedicamentoViewPageModule)
     }
 ];
 let AppRoutingModule = class AppRoutingModule {
@@ -123,26 +127,30 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "AppModule": () => (/* binding */ AppModule)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! tslib */ 4762);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @angular/core */ 7716);
-/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @angular/platform-browser */ 9075);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @angular/router */ 9895);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! tslib */ 4762);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @angular/core */ 7716);
+/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @angular/platform-browser */ 9075);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! @angular/router */ 9895);
 /* harmony import */ var _ionic_storage__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @ionic/storage */ 1628);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @ionic/angular */ 476);
-/* harmony import */ var _ionic_storage_angular__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @ionic/storage-angular */ 4925);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @ionic/angular */ 476);
+/* harmony import */ var _ionic_storage_angular__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @ionic/storage-angular */ 4925);
 /* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./app.component */ 5041);
 /* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./app-routing.module */ 158);
 /* harmony import */ var _shared_class_url_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./shared/class/url-service */ 2567);
 /* harmony import */ var _shared_class_storage_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./shared/class/storage.service */ 6578);
 /* harmony import */ var _shared_auth_auth_guard__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./shared/auth/auth.guard */ 5337);
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @angular/common/http */ 1841);
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @angular/forms */ 3679);
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @angular/common/http */ 1841);
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! @angular/forms */ 3679);
 /* harmony import */ var _loading_loading_module__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./loading/loading.module */ 3416);
 /* harmony import */ var _modal_fotoperfil_fotoperfil_module__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./modal/fotoperfil/fotoperfil.module */ 9737);
 /* harmony import */ var _ionic_native_location_accuracy_ngx__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ionic-native/location-accuracy/ngx */ 6030);
 /* harmony import */ var _ionic_native_geolocation_ngx__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @ionic-native/geolocation/ngx */ 7152);
 /* harmony import */ var _ionic_native_android_permissions_ngx__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @ionic-native/android-permissions/ngx */ 9315);
 /* harmony import */ var _modal_endereco_atual_endereco_atual_module__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./modal/endereco-atual/endereco-atual.module */ 9102);
+/* harmony import */ var _modal_endereco_confirmacao_endereco_confirmacao_module__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./modal/endereco-confirmacao/endereco-confirmacao.module */ 9462);
+/* harmony import */ var _modal_medicamento_view_medicamento_view_module__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./modal/medicamento-view/medicamento-view.module */ 5476);
+
+
 
 
 
@@ -165,27 +173,29 @@ __webpack_require__.r(__webpack_exports__);
 
 let AppModule = class AppModule {
 };
-AppModule = (0,tslib__WEBPACK_IMPORTED_MODULE_12__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_13__.NgModule)({
+AppModule = (0,tslib__WEBPACK_IMPORTED_MODULE_14__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_15__.NgModule)({
         declarations: [_app_component__WEBPACK_IMPORTED_MODULE_1__.AppComponent],
         entryComponents: [],
         imports: [
-            _angular_platform_browser__WEBPACK_IMPORTED_MODULE_14__.BrowserModule,
-            _ionic_angular__WEBPACK_IMPORTED_MODULE_15__.IonicModule.forRoot(),
-            _ionic_storage_angular__WEBPACK_IMPORTED_MODULE_16__.IonicStorageModule.forRoot({
+            _angular_platform_browser__WEBPACK_IMPORTED_MODULE_16__.BrowserModule,
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_17__.IonicModule.forRoot(),
+            _ionic_storage_angular__WEBPACK_IMPORTED_MODULE_18__.IonicStorageModule.forRoot({
                 name: '__mydb',
                 driverOrder: [_ionic_storage__WEBPACK_IMPORTED_MODULE_0__.Drivers.IndexedDB, _ionic_storage__WEBPACK_IMPORTED_MODULE_0__.Drivers.LocalStorage]
             }),
             _app_routing_module__WEBPACK_IMPORTED_MODULE_2__.AppRoutingModule,
-            _angular_common_http__WEBPACK_IMPORTED_MODULE_17__.HttpClientModule,
-            _angular_forms__WEBPACK_IMPORTED_MODULE_18__.FormsModule,
-            _angular_forms__WEBPACK_IMPORTED_MODULE_18__.ReactiveFormsModule,
+            _angular_common_http__WEBPACK_IMPORTED_MODULE_19__.HttpClientModule,
+            _angular_forms__WEBPACK_IMPORTED_MODULE_20__.FormsModule,
+            _angular_forms__WEBPACK_IMPORTED_MODULE_20__.ReactiveFormsModule,
             _loading_loading_module__WEBPACK_IMPORTED_MODULE_6__.LoadingPageModule,
             _modal_fotoperfil_fotoperfil_module__WEBPACK_IMPORTED_MODULE_7__.FotoperfilPageModule,
-            _modal_endereco_atual_endereco_atual_module__WEBPACK_IMPORTED_MODULE_11__.EnderecoAtualPageModule
+            _modal_endereco_atual_endereco_atual_module__WEBPACK_IMPORTED_MODULE_11__.EnderecoAtualPageModule,
+            _modal_endereco_confirmacao_endereco_confirmacao_module__WEBPACK_IMPORTED_MODULE_12__.EnderecoConfirmacaoPageModule,
+            _modal_medicamento_view_medicamento_view_module__WEBPACK_IMPORTED_MODULE_13__.MedicamentoViewPageModule
         ],
         providers: [
-            { provide: _angular_router__WEBPACK_IMPORTED_MODULE_19__.RouteReuseStrategy, useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_15__.IonicRouteStrategy },
+            { provide: _angular_router__WEBPACK_IMPORTED_MODULE_21__.RouteReuseStrategy, useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_17__.IonicRouteStrategy },
             _shared_class_url_service__WEBPACK_IMPORTED_MODULE_3__.UrlService,
             _ionic_native_location_accuracy_ngx__WEBPACK_IMPORTED_MODULE_8__.LocationAccuracy,
             _ionic_native_geolocation_ngx__WEBPACK_IMPORTED_MODULE_9__.Geolocation,
@@ -529,6 +539,233 @@ EnderecoAtualService = (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__decorate)([
 
 /***/ }),
 
+/***/ 6148:
+/*!***********************************************************************************!*\
+  !*** ./src/app/modal/endereco-confirmacao/endereco-confirmacao-routing.module.ts ***!
+  \***********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "EnderecoConfirmacaoPageRoutingModule": () => (/* binding */ EnderecoConfirmacaoPageRoutingModule)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! tslib */ 4762);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 7716);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ 9895);
+/* harmony import */ var _endereco_confirmacao_page__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./endereco-confirmacao.page */ 1170);
+
+
+
+
+const routes = [
+    {
+        path: '',
+        component: _endereco_confirmacao_page__WEBPACK_IMPORTED_MODULE_0__.EnderecoConfirmacaoPage
+    }
+];
+let EnderecoConfirmacaoPageRoutingModule = class EnderecoConfirmacaoPageRoutingModule {
+};
+EnderecoConfirmacaoPageRoutingModule = (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_2__.NgModule)({
+        imports: [_angular_router__WEBPACK_IMPORTED_MODULE_3__.RouterModule.forChild(routes)],
+        exports: [_angular_router__WEBPACK_IMPORTED_MODULE_3__.RouterModule],
+    })
+], EnderecoConfirmacaoPageRoutingModule);
+
+
+
+/***/ }),
+
+/***/ 9462:
+/*!***************************************************************************!*\
+  !*** ./src/app/modal/endereco-confirmacao/endereco-confirmacao.module.ts ***!
+  \***************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "EnderecoConfirmacaoPageModule": () => (/* binding */ EnderecoConfirmacaoPageModule)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tslib */ 4762);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core */ 7716);
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/common */ 8583);
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/forms */ 3679);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ionic/angular */ 476);
+/* harmony import */ var _endereco_confirmacao_routing_module__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./endereco-confirmacao-routing.module */ 6148);
+/* harmony import */ var _endereco_confirmacao_page__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./endereco-confirmacao.page */ 1170);
+/* harmony import */ var src_app_shared_class_url_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/shared/class/url-service */ 2567);
+/* harmony import */ var _endereco_confirmacao_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./endereco-confirmacao.service */ 2967);
+
+
+
+
+
+
+
+
+
+let EnderecoConfirmacaoPageModule = class EnderecoConfirmacaoPageModule {
+};
+EnderecoConfirmacaoPageModule = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_5__.NgModule)({
+        imports: [
+            _angular_common__WEBPACK_IMPORTED_MODULE_6__.CommonModule,
+            _angular_forms__WEBPACK_IMPORTED_MODULE_7__.FormsModule,
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_8__.IonicModule,
+            _endereco_confirmacao_routing_module__WEBPACK_IMPORTED_MODULE_0__.EnderecoConfirmacaoPageRoutingModule
+        ],
+        declarations: [_endereco_confirmacao_page__WEBPACK_IMPORTED_MODULE_1__.EnderecoConfirmacaoPage],
+        providers: [
+            _endereco_confirmacao_service__WEBPACK_IMPORTED_MODULE_3__.EnderecoConfirmacaoService,
+            src_app_shared_class_url_service__WEBPACK_IMPORTED_MODULE_2__.UrlService
+        ]
+    })
+], EnderecoConfirmacaoPageModule);
+
+
+
+/***/ }),
+
+/***/ 1170:
+/*!*************************************************************************!*\
+  !*** ./src/app/modal/endereco-confirmacao/endereco-confirmacao.page.ts ***!
+  \*************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "EnderecoConfirmacaoPage": () => (/* binding */ EnderecoConfirmacaoPage)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! tslib */ 4762);
+/* harmony import */ var _raw_loader_endereco_confirmacao_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !raw-loader!./endereco-confirmacao.page.html */ 6017);
+/* harmony import */ var _endereco_confirmacao_page_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./endereco-confirmacao.page.scss */ 2395);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core */ 7716);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic/angular */ 476);
+/* harmony import */ var _endereco_confirmacao_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./endereco-confirmacao.service */ 2967);
+
+
+
+
+
+
+let EnderecoConfirmacaoPage = class EnderecoConfirmacaoPage {
+    constructor(enderecoConfirmacaoService, plt, modalController) {
+        this.enderecoConfirmacaoService = enderecoConfirmacaoService;
+        this.plt = plt;
+        this.modalController = modalController;
+        this.plataformas = this.plt.platforms();
+    }
+    ngOnInit() {
+        console.log(this.item);
+    }
+    closeModal() {
+        this.modalController.dismiss();
+    }
+    abrirClinica(clinica) {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__awaiter)(this, void 0, void 0, function* () {
+            (yield this.enderecoConfirmacaoService.getEnderecoByAddress(clinica.endereco.logradouro +
+                (clinica.endereco.numero ? ", " + clinica.endereco.numero : ", S/N") +
+                " - " + clinica.endereco.bairro))
+                .subscribe((resp) => {
+                if (resp.results.length > 0) {
+                    let location = resp.results[0].geometry.location;
+                    let coords = location.lat + "," + location.lng;
+                    let a = document.createElement("a");
+                    if (this.plataformas.includes("cordova")) {
+                        a.href = "geo:?q=" + coords;
+                        a.target = "_system";
+                    }
+                    else {
+                        a.href = "http://maps.google.com/maps?q=" + coords + "&ll=" + coords + "&z=18";
+                        a.target = "_blank";
+                    }
+                    document.body.appendChild(a);
+                    a.click();
+                }
+            });
+        });
+    }
+    formatarDistancia(distancia) {
+        if (distancia < 1000)
+            return distancia + (distancia > 1 ? " metros" : " metro");
+        else
+            return (distancia / 1000).toFixed(1) + " Km";
+    }
+    formatarTempo(tempo) {
+        let dias = Math.floor(tempo / 86400);
+        let horas = Math.floor((tempo - (dias * 86400)) / 3600);
+        let minutos = Math.floor((tempo - (dias * 86400) - (horas * 3600)) / 60);
+        let segundos = (tempo - (dias * 86400) - (horas * 3600) - (minutos * 60));
+        if (dias > 0)
+            return dias > 1 ? dias + " dias" : dias + " dia";
+        else if (horas > 0)
+            return horas > 1 ? horas + " horas" : horas + " hora";
+        else if (minutos > 0)
+            return minutos > 1 ? minutos + " minutos" : minutos + " minuto";
+        else if (segundos > 0)
+            return segundos > 1 ? segundos + " segundos" : segundos + " segundo";
+    }
+};
+EnderecoConfirmacaoPage.ctorParameters = () => [
+    { type: _endereco_confirmacao_service__WEBPACK_IMPORTED_MODULE_2__.EnderecoConfirmacaoService },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__.Platform },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__.ModalController }
+];
+EnderecoConfirmacaoPage = (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_5__.Component)({
+        selector: 'app-endereco-confirmacao',
+        template: _raw_loader_endereco_confirmacao_page_html__WEBPACK_IMPORTED_MODULE_0__.default,
+        styles: [_endereco_confirmacao_page_scss__WEBPACK_IMPORTED_MODULE_1__.default]
+    })
+], EnderecoConfirmacaoPage);
+
+
+
+/***/ }),
+
+/***/ 2967:
+/*!****************************************************************************!*\
+  !*** ./src/app/modal/endereco-confirmacao/endereco-confirmacao.service.ts ***!
+  \****************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "EnderecoConfirmacaoService": () => (/* binding */ EnderecoConfirmacaoService)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! tslib */ 4762);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 7716);
+/* harmony import */ var src_app_shared_class_url_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/app/shared/class/url-service */ 2567);
+
+
+
+let EnderecoConfirmacaoService = class EnderecoConfirmacaoService {
+    constructor(urlService) {
+        this.urlService = urlService;
+    }
+    getEnderecoByAddress(address) {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__awaiter)(this, void 0, void 0, function* () {
+            return yield this.urlService.sendRequestPostCustom("https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&result_type=street_address&language=pt-BR&key=" + src_app_shared_class_url_service__WEBPACK_IMPORTED_MODULE_0__.UrlService.GMKey);
+        });
+    }
+};
+EnderecoConfirmacaoService.ctorParameters = () => [
+    { type: src_app_shared_class_url_service__WEBPACK_IMPORTED_MODULE_0__.UrlService }
+];
+EnderecoConfirmacaoService = (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_2__.Injectable)({
+        providedIn: 'root'
+    })
+], EnderecoConfirmacaoService);
+
+
+
+/***/ }),
+
 /***/ 7979:
 /*!***************************************************************!*\
   !*** ./src/app/modal/fotoperfil/fotoperfil-routing.module.ts ***!
@@ -779,6 +1016,204 @@ FotoperfilService = (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__decorate)([
         providedIn: 'root'
     })
 ], FotoperfilService);
+
+
+
+/***/ }),
+
+/***/ 8081:
+/*!***************************************************************************!*\
+  !*** ./src/app/modal/medicamento-view/medicamento-view-routing.module.ts ***!
+  \***************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "MedicamentoViewPageRoutingModule": () => (/* binding */ MedicamentoViewPageRoutingModule)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! tslib */ 4762);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 7716);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ 9895);
+/* harmony import */ var _medicamento_view_page__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./medicamento-view.page */ 8487);
+
+
+
+
+const routes = [
+    {
+        path: '',
+        component: _medicamento_view_page__WEBPACK_IMPORTED_MODULE_0__.MedicamentoViewPage
+    }
+];
+let MedicamentoViewPageRoutingModule = class MedicamentoViewPageRoutingModule {
+};
+MedicamentoViewPageRoutingModule = (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_2__.NgModule)({
+        imports: [_angular_router__WEBPACK_IMPORTED_MODULE_3__.RouterModule.forChild(routes)],
+        exports: [_angular_router__WEBPACK_IMPORTED_MODULE_3__.RouterModule],
+    })
+], MedicamentoViewPageRoutingModule);
+
+
+
+/***/ }),
+
+/***/ 5476:
+/*!*******************************************************************!*\
+  !*** ./src/app/modal/medicamento-view/medicamento-view.module.ts ***!
+  \*******************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "MedicamentoViewPageModule": () => (/* binding */ MedicamentoViewPageModule)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tslib */ 4762);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core */ 7716);
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/common */ 8583);
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/forms */ 3679);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ionic/angular */ 476);
+/* harmony import */ var _medicamento_view_routing_module__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./medicamento-view-routing.module */ 8081);
+/* harmony import */ var _medicamento_view_page__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./medicamento-view.page */ 8487);
+/* harmony import */ var src_app_shared_class_url_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/shared/class/url-service */ 2567);
+/* harmony import */ var _medicamento_view_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./medicamento-view.service */ 4778);
+
+
+
+
+
+
+
+
+
+let MedicamentoViewPageModule = class MedicamentoViewPageModule {
+};
+MedicamentoViewPageModule = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_5__.NgModule)({
+        imports: [
+            _angular_common__WEBPACK_IMPORTED_MODULE_6__.CommonModule,
+            _angular_forms__WEBPACK_IMPORTED_MODULE_7__.FormsModule,
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_8__.IonicModule,
+            _medicamento_view_routing_module__WEBPACK_IMPORTED_MODULE_0__.MedicamentoViewPageRoutingModule
+        ],
+        declarations: [_medicamento_view_page__WEBPACK_IMPORTED_MODULE_1__.MedicamentoViewPage],
+        providers: [
+            _medicamento_view_service__WEBPACK_IMPORTED_MODULE_3__.MedicamentoViewService,
+            src_app_shared_class_url_service__WEBPACK_IMPORTED_MODULE_2__.UrlService
+        ]
+    })
+], MedicamentoViewPageModule);
+
+
+
+/***/ }),
+
+/***/ 8487:
+/*!*****************************************************************!*\
+  !*** ./src/app/modal/medicamento-view/medicamento-view.page.ts ***!
+  \*****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "MedicamentoViewPage": () => (/* binding */ MedicamentoViewPage)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! tslib */ 4762);
+/* harmony import */ var _raw_loader_medicamento_view_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !raw-loader!./medicamento-view.page.html */ 1619);
+/* harmony import */ var _medicamento_view_page_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./medicamento-view.page.scss */ 4019);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/core */ 7716);
+/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/platform-browser */ 9075);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic/angular */ 476);
+/* harmony import */ var _medicamento_view_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./medicamento-view.service */ 4778);
+
+
+
+
+
+
+
+let MedicamentoViewPage = class MedicamentoViewPage {
+    constructor(medicamentoViewService, _sanitizer, modalController) {
+        this.medicamentoViewService = medicamentoViewService;
+        this._sanitizer = _sanitizer;
+        this.modalController = modalController;
+    }
+    ngOnInit() {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__awaiter)(this, void 0, void 0, function* () {
+            this.loading = true;
+            (yield this.medicamentoViewService.getMedicamentoById(this.id))
+                .subscribe((resp) => {
+                this.loading = false;
+                this.medicamento = resp;
+            });
+        });
+    }
+    openReceita(receita) {
+        let pdfWindow = window.open("");
+        pdfWindow.document.write('<html><head></head><body style="margin: 0; padding: 0;">');
+        pdfWindow.document.write("<iframe width='100%' height='100%' style='border:none;' frameBorder='0' src='data:application/pdf;base64, " +
+            encodeURI(receita.binario) + "'></iframe>");
+        pdfWindow.document.write('</body></html>');
+    }
+    closeModal() {
+        this.modalController.dismiss();
+    }
+};
+MedicamentoViewPage.ctorParameters = () => [
+    { type: _medicamento_view_service__WEBPACK_IMPORTED_MODULE_2__.MedicamentoViewService },
+    { type: _angular_platform_browser__WEBPACK_IMPORTED_MODULE_4__.DomSanitizer },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__.ModalController }
+];
+MedicamentoViewPage = (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_6__.Component)({
+        selector: 'app-medicamento-view',
+        template: _raw_loader_medicamento_view_page_html__WEBPACK_IMPORTED_MODULE_0__.default,
+        styles: [_medicamento_view_page_scss__WEBPACK_IMPORTED_MODULE_1__.default]
+    })
+], MedicamentoViewPage);
+
+
+
+/***/ }),
+
+/***/ 4778:
+/*!********************************************************************!*\
+  !*** ./src/app/modal/medicamento-view/medicamento-view.service.ts ***!
+  \********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "MedicamentoViewService": () => (/* binding */ MedicamentoViewService)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! tslib */ 4762);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 7716);
+/* harmony import */ var src_app_shared_class_url_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/app/shared/class/url-service */ 2567);
+
+
+
+let MedicamentoViewService = class MedicamentoViewService {
+    constructor(urlService) {
+        this.urlService = urlService;
+    }
+    getMedicamentoById(id) {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__awaiter)(this, void 0, void 0, function* () {
+            return yield this.urlService.sendRequestPost("/Medicamento/ConsultarMedicamentoById?idMedicamento=" + id);
+        });
+    }
+};
+MedicamentoViewService.ctorParameters = () => [
+    { type: src_app_shared_class_url_service__WEBPACK_IMPORTED_MODULE_0__.UrlService }
+];
+MedicamentoViewService = (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_2__.Injectable)({
+        providedIn: 'root'
+    })
+], MedicamentoViewService);
 
 
 
@@ -1386,6 +1821,21 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ 2395:
+/*!***************************************************************************!*\
+  !*** ./src/app/modal/endereco-confirmacao/endereco-confirmacao.page.scss ***!
+  \***************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("ion-content {\n  --background: transparent;\n}\n\n.content {\n  width: 100%;\n  height: 100%;\n  padding: 5vw;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n}\n\n.areaendereco {\n  background-color: #fff;\n  width: 100%;\n  height: auto;\n  padding: 3vw;\n  border-radius: 4vw;\n  z-index: 1000;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-direction: column;\n  color: #000;\n}\n\n.areaendereco .nomeclinica {\n  margin-bottom: 20px;\n  text-align: center;\n  font-size: large;\n}\n\n.areaendereco .enderecoclinica {\n  text-align: center;\n  font-size: medium;\n}\n\n.areaendereco .distanciaduracao {\n  text-align: left;\n  width: 100%;\n}\n\n.btclose {\n  --border-radius: 6vw;\n  --padding: 0;\n  --padding-start: 0;\n  --padding-end: 0;\n  width: 12vw;\n  height: 12vw;\n  --background:white;\n  color: var(--ion-color-primary);\n}\n\n.closebtarea {\n  display: flex;\n  justify-content: flex-end;\n  align-items: center;\n  width: 100%;\n}\n\n.areabt {\n  margin-top: 3vw;\n  width: 100%;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  width: 100%;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImVuZGVyZWNvLWNvbmZpcm1hY2FvLnBhZ2Uuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLHlCQUFBO0FBQ0Y7O0FBRUE7RUFDRSxXQUFBO0VBQ0EsWUFBQTtFQUNBLFlBQUE7RUFDQSxhQUFBO0VBQ0Esc0JBQUE7RUFDQSx1QkFBQTtFQUNBLG1CQUFBO0FBQ0Y7O0FBRUE7RUFDRSxzQkFBQTtFQUNBLFdBQUE7RUFDQSxZQUFBO0VBQ0EsWUFBQTtFQUNBLGtCQUFBO0VBQ0EsYUFBQTtFQUNBLGFBQUE7RUFDQSx1QkFBQTtFQUNBLG1CQUFBO0VBQ0Esc0JBQUE7RUFDQSxXQUFBO0FBQ0Y7O0FBRUE7RUFDRSxtQkFBQTtFQUNBLGtCQUFBO0VBQ0EsZ0JBQUE7QUFDRjs7QUFFQTtFQUNFLGtCQUFBO0VBQ0EsaUJBQUE7QUFDRjs7QUFFQTtFQUNFLGdCQUFBO0VBQ0EsV0FBQTtBQUNGOztBQUVBO0VBQ0Usb0JBQUE7RUFDQSxZQUFBO0VBQ0Esa0JBQUE7RUFDQSxnQkFBQTtFQUNBLFdBQUE7RUFDQSxZQUFBO0VBQ0Esa0JBQUE7RUFDQSwrQkFBQTtBQUNGOztBQUVBO0VBQ0UsYUFBQTtFQUNBLHlCQUFBO0VBQ0EsbUJBQUE7RUFDQSxXQUFBO0FBQ0Y7O0FBRUE7RUFDRSxlQUFBO0VBQ0EsV0FBQTtFQUNBLGFBQUE7RUFDQSx1QkFBQTtFQUNBLG1CQUFBO0VBQ0EsV0FBQTtBQUNGIiwiZmlsZSI6ImVuZGVyZWNvLWNvbmZpcm1hY2FvLnBhZ2Uuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbImlvbi1jb250ZW50e1xyXG4gIC0tYmFja2dyb3VuZDogdHJhbnNwYXJlbnQ7XHJcbn1cclxuXHJcbi5jb250ZW50e1xyXG4gIHdpZHRoOiAxMDAlO1xyXG4gIGhlaWdodDogMTAwJTtcclxuICBwYWRkaW5nOiA1dnc7XHJcbiAgZGlzcGxheTogZmxleDtcclxuICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xyXG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xyXG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XHJcbn1cclxuXHJcbi5hcmVhZW5kZXJlY297XHJcbiAgYmFja2dyb3VuZC1jb2xvcjogI2ZmZjtcclxuICB3aWR0aDogMTAwJTtcclxuICBoZWlnaHQ6IGF1dG87XHJcbiAgcGFkZGluZzogM3Z3O1xyXG4gIGJvcmRlci1yYWRpdXM6IDR2dztcclxuICB6LWluZGV4OiAxMDAwO1xyXG4gIGRpc3BsYXk6IGZsZXg7XHJcbiAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XHJcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcclxuICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xyXG4gIGNvbG9yOiAjMDAwO1xyXG59XHJcblxyXG4uYXJlYWVuZGVyZWNvIC5ub21lY2xpbmljYXtcclxuICBtYXJnaW4tYm90dG9tOiAyMHB4O1xyXG4gIHRleHQtYWxpZ246IGNlbnRlcjtcclxuICBmb250LXNpemU6IGxhcmdlO1xyXG59XHJcblxyXG4uYXJlYWVuZGVyZWNvIC5lbmRlcmVjb2NsaW5pY2F7XHJcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xyXG4gIGZvbnQtc2l6ZTogbWVkaXVtO1xyXG59XHJcblxyXG4uYXJlYWVuZGVyZWNvIC5kaXN0YW5jaWFkdXJhY2Fve1xyXG4gIHRleHQtYWxpZ246IGxlZnQ7XHJcbiAgd2lkdGg6IDEwMCU7XHJcbn1cclxuXHJcbi5idGNsb3Nle1xyXG4gIC0tYm9yZGVyLXJhZGl1czogNnZ3O1xyXG4gIC0tcGFkZGluZzogMDtcclxuICAtLXBhZGRpbmctc3RhcnQ6IDA7XHJcbiAgLS1wYWRkaW5nLWVuZDogMDtcclxuICB3aWR0aDogMTJ2dztcclxuICBoZWlnaHQ6IDEydnc7XHJcbiAgLS1iYWNrZ3JvdW5kOndoaXRlO1xyXG4gIGNvbG9yOiB2YXIoLS1pb24tY29sb3ItcHJpbWFyeSk7XHJcbn1cclxuXHJcbi5jbG9zZWJ0YXJlYXtcclxuICBkaXNwbGF5OiBmbGV4O1xyXG4gIGp1c3RpZnktY29udGVudDogZmxleC1lbmQ7XHJcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcclxuICB3aWR0aDogMTAwJTtcclxufVxyXG5cclxuLmFyZWFidHtcclxuICBtYXJnaW4tdG9wOiAzdnc7XHJcbiAgd2lkdGg6IDEwMCU7XHJcbiAgZGlzcGxheTogZmxleDtcclxuICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcclxuICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG4gIHdpZHRoOiAxMDAlO1xyXG59XHJcbiJdfQ== */");
+
+/***/ }),
+
 /***/ 6113:
 /*!*******************************************************!*\
   !*** ./src/app/modal/fotoperfil/fotoperfil.page.scss ***!
@@ -1398,6 +1848,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("ion-content {\n  --background: transparent;\n}\n\n.content {\n  width: 100%;\n  height: 100%;\n  padding: 5vw;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n}\n\n.areafoto {\n  background-color: #fff;\n  width: 100%;\n  height: auto;\n  padding: 3vw;\n  border-radius: 4vw;\n  z-index: 1000;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n\n.areafoto img {\n  width: 100%;\n  height: auto;\n}\n\n.btclose {\n  --border-radius: 6vw;\n  --padding: 0;\n  --padding-start: 0;\n  --padding-end: 0;\n  width: 12vw;\n  height: 12vw;\n  --background:white;\n  color: var(--ion-color-primary);\n}\n\n.closebtarea {\n  display: flex;\n  justify-content: flex-end;\n  align-items: center;\n  width: 100%;\n}\n\n.areabt {\n  margin-top: 3vw;\n  width: 100%;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  width: 100%;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImZvdG9wZXJmaWwucGFnZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UseUJBQUE7QUFDRjs7QUFFQTtFQUNFLFdBQUE7RUFDQSxZQUFBO0VBQ0EsWUFBQTtFQUNBLGFBQUE7RUFDQSxzQkFBQTtFQUNBLHVCQUFBO0VBQ0EsbUJBQUE7QUFDRjs7QUFFQTtFQUNFLHNCQUFBO0VBQ0EsV0FBQTtFQUNBLFlBQUE7RUFDQSxZQUFBO0VBQ0Esa0JBQUE7RUFDQSxhQUFBO0VBQ0EsYUFBQTtFQUNBLHVCQUFBO0VBQ0EsbUJBQUE7QUFDRjs7QUFFQTtFQUNFLFdBQUE7RUFDQSxZQUFBO0FBQ0Y7O0FBRUE7RUFDRSxvQkFBQTtFQUNBLFlBQUE7RUFDQSxrQkFBQTtFQUNBLGdCQUFBO0VBQ0EsV0FBQTtFQUNBLFlBQUE7RUFDQSxrQkFBQTtFQUNBLCtCQUFBO0FBQ0Y7O0FBRUE7RUFDRSxhQUFBO0VBQ0EseUJBQUE7RUFDQSxtQkFBQTtFQUNBLFdBQUE7QUFDRjs7QUFFQTtFQUNFLGVBQUE7RUFDQSxXQUFBO0VBQ0EsYUFBQTtFQUNBLHVCQUFBO0VBQ0EsbUJBQUE7RUFDQSxXQUFBO0FBQ0YiLCJmaWxlIjoiZm90b3BlcmZpbC5wYWdlLnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJpb24tY29udGVudHtcclxuICAtLWJhY2tncm91bmQ6IHRyYW5zcGFyZW50O1xyXG59XHJcblxyXG4uY29udGVudHtcclxuICB3aWR0aDogMTAwJTtcclxuICBoZWlnaHQ6IDEwMCU7XHJcbiAgcGFkZGluZzogNXZ3O1xyXG4gIGRpc3BsYXk6IGZsZXg7XHJcbiAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcclxuICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcclxuICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG59XHJcblxyXG4uYXJlYWZvdG97XHJcbiAgYmFja2dyb3VuZC1jb2xvcjogI2ZmZjtcclxuICB3aWR0aDogMTAwJTtcclxuICBoZWlnaHQ6IGF1dG87XHJcbiAgcGFkZGluZzogM3Z3O1xyXG4gIGJvcmRlci1yYWRpdXM6IDR2dztcclxuICB6LWluZGV4OiAxMDAwO1xyXG4gIGRpc3BsYXk6IGZsZXg7XHJcbiAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XHJcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcclxufVxyXG5cclxuLmFyZWFmb3RvIGltZ3tcclxuICB3aWR0aDogMTAwJTtcclxuICBoZWlnaHQ6IGF1dG87XHJcbn1cclxuXHJcbi5idGNsb3Nle1xyXG4gIC0tYm9yZGVyLXJhZGl1czogNnZ3O1xyXG4gIC0tcGFkZGluZzogMDtcclxuICAtLXBhZGRpbmctc3RhcnQ6IDA7XHJcbiAgLS1wYWRkaW5nLWVuZDogMDtcclxuICB3aWR0aDogMTJ2dztcclxuICBoZWlnaHQ6IDEydnc7XHJcbiAgLS1iYWNrZ3JvdW5kOndoaXRlO1xyXG4gIGNvbG9yOiB2YXIoLS1pb24tY29sb3ItcHJpbWFyeSk7XHJcbn1cclxuXHJcbi5jbG9zZWJ0YXJlYXtcclxuICBkaXNwbGF5OiBmbGV4O1xyXG4gIGp1c3RpZnktY29udGVudDogZmxleC1lbmQ7XHJcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcclxuICB3aWR0aDogMTAwJTtcclxufVxyXG5cclxuLmFyZWFidHtcclxuICBtYXJnaW4tdG9wOiAzdnc7XHJcbiAgd2lkdGg6IDEwMCU7XHJcbiAgZGlzcGxheTogZmxleDtcclxuICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcclxuICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG4gIHdpZHRoOiAxMDAlO1xyXG59XHJcbiJdfQ== */");
+
+/***/ }),
+
+/***/ 4019:
+/*!*******************************************************************!*\
+  !*** ./src/app/modal/medicamento-view/medicamento-view.page.scss ***!
+  \*******************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("ion-content {\n  --background: transparent;\n}\n\n.content {\n  width: 100%;\n  height: 100%;\n  padding: 5vw;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n}\n\n.area {\n  background-color: #fff;\n  width: 100%;\n  height: auto;\n  padding: 3vw;\n  border-radius: 4vw;\n  z-index: 1000;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-direction: column;\n  color: #000;\n}\n\n.area .nomemedicamento {\n  margin-bottom: 10px;\n  text-align: center;\n  font-size: large;\n}\n\n.area .quantidade {\n  margin-bottom: 15px;\n  text-align: center;\n  font-size: medium;\n}\n\n.area .datafinal {\n  text-align: left;\n  width: 100%;\n}\n\n.area .receitado {\n  text-align: left;\n  width: 100%;\n}\n\n.area .atencao {\n  font-size: medium;\n  text-align: center;\n  margin-top: 20px;\n}\n\n.btclose {\n  --border-radius: 6vw;\n  --padding: 0;\n  --padding-start: 0;\n  --padding-end: 0;\n  width: 12vw;\n  height: 12vw;\n  --background:white;\n  color: var(--ion-color-primary);\n}\n\n.closebtarea {\n  display: flex;\n  justify-content: flex-end;\n  align-items: center;\n  width: 100%;\n}\n\n.areabt {\n  margin-top: 3vw;\n  width: 100%;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  width: 100%;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIm1lZGljYW1lbnRvLXZpZXcucGFnZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UseUJBQUE7QUFDRjs7QUFFQTtFQUNFLFdBQUE7RUFDQSxZQUFBO0VBQ0EsWUFBQTtFQUNBLGFBQUE7RUFDQSxzQkFBQTtFQUNBLHVCQUFBO0VBQ0EsbUJBQUE7QUFDRjs7QUFFQTtFQUNFLHNCQUFBO0VBQ0EsV0FBQTtFQUNBLFlBQUE7RUFDQSxZQUFBO0VBQ0Esa0JBQUE7RUFDQSxhQUFBO0VBQ0EsYUFBQTtFQUNBLHVCQUFBO0VBQ0EsbUJBQUE7RUFDQSxzQkFBQTtFQUNBLFdBQUE7QUFDRjs7QUFFQTtFQUNFLG1CQUFBO0VBQ0Esa0JBQUE7RUFDQSxnQkFBQTtBQUNGOztBQUVBO0VBQ0UsbUJBQUE7RUFDQSxrQkFBQTtFQUNBLGlCQUFBO0FBQ0Y7O0FBRUE7RUFDRSxnQkFBQTtFQUNBLFdBQUE7QUFDRjs7QUFFQTtFQUNFLGdCQUFBO0VBQ0EsV0FBQTtBQUNGOztBQUVBO0VBQ0UsaUJBQUE7RUFDQSxrQkFBQTtFQUNBLGdCQUFBO0FBQ0Y7O0FBRUE7RUFDRSxvQkFBQTtFQUNBLFlBQUE7RUFDQSxrQkFBQTtFQUNBLGdCQUFBO0VBQ0EsV0FBQTtFQUNBLFlBQUE7RUFDQSxrQkFBQTtFQUNBLCtCQUFBO0FBQ0Y7O0FBRUE7RUFDRSxhQUFBO0VBQ0EseUJBQUE7RUFDQSxtQkFBQTtFQUNBLFdBQUE7QUFDRjs7QUFFQTtFQUNFLGVBQUE7RUFDQSxXQUFBO0VBQ0EsYUFBQTtFQUNBLHVCQUFBO0VBQ0EsbUJBQUE7RUFDQSxXQUFBO0FBQ0YiLCJmaWxlIjoibWVkaWNhbWVudG8tdmlldy5wYWdlLnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJpb24tY29udGVudHtcclxuICAtLWJhY2tncm91bmQ6IHRyYW5zcGFyZW50O1xyXG59XHJcblxyXG4uY29udGVudHtcclxuICB3aWR0aDogMTAwJTtcclxuICBoZWlnaHQ6IDEwMCU7XHJcbiAgcGFkZGluZzogNXZ3O1xyXG4gIGRpc3BsYXk6IGZsZXg7XHJcbiAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcclxuICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcclxuICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG59XHJcblxyXG4uYXJlYXtcclxuICBiYWNrZ3JvdW5kLWNvbG9yOiAjZmZmO1xyXG4gIHdpZHRoOiAxMDAlO1xyXG4gIGhlaWdodDogYXV0bztcclxuICBwYWRkaW5nOiAzdnc7XHJcbiAgYm9yZGVyLXJhZGl1czogNHZ3O1xyXG4gIHotaW5kZXg6IDEwMDA7XHJcbiAgZGlzcGxheTogZmxleDtcclxuICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcclxuICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG4gIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XHJcbiAgY29sb3I6ICMwMDA7XHJcbn1cclxuXHJcbi5hcmVhIC5ub21lbWVkaWNhbWVudG97XHJcbiAgbWFyZ2luLWJvdHRvbTogMTBweDtcclxuICB0ZXh0LWFsaWduOiBjZW50ZXI7XHJcbiAgZm9udC1zaXplOiBsYXJnZTtcclxufVxyXG5cclxuLmFyZWEgLnF1YW50aWRhZGV7XHJcbiAgbWFyZ2luLWJvdHRvbTogMTVweDtcclxuICB0ZXh0LWFsaWduOiBjZW50ZXI7XHJcbiAgZm9udC1zaXplOiBtZWRpdW07XHJcbn1cclxuXHJcbi5hcmVhIC5kYXRhZmluYWx7XHJcbiAgdGV4dC1hbGlnbjogbGVmdDtcclxuICB3aWR0aDogMTAwJTtcclxufVxyXG5cclxuLmFyZWEgLnJlY2VpdGFkb3tcclxuICB0ZXh0LWFsaWduOiBsZWZ0O1xyXG4gIHdpZHRoOiAxMDAlO1xyXG59XHJcblxyXG4uYXJlYSAuYXRlbmNhb3tcclxuICBmb250LXNpemU6IG1lZGl1bTtcclxuICB0ZXh0LWFsaWduOiBjZW50ZXI7XHJcbiAgbWFyZ2luLXRvcDogMjBweDtcclxufVxyXG5cclxuLmJ0Y2xvc2V7XHJcbiAgLS1ib3JkZXItcmFkaXVzOiA2dnc7XHJcbiAgLS1wYWRkaW5nOiAwO1xyXG4gIC0tcGFkZGluZy1zdGFydDogMDtcclxuICAtLXBhZGRpbmctZW5kOiAwO1xyXG4gIHdpZHRoOiAxMnZ3O1xyXG4gIGhlaWdodDogMTJ2dztcclxuICAtLWJhY2tncm91bmQ6d2hpdGU7XHJcbiAgY29sb3I6IHZhcigtLWlvbi1jb2xvci1wcmltYXJ5KTtcclxufVxyXG5cclxuLmNsb3NlYnRhcmVhe1xyXG4gIGRpc3BsYXk6IGZsZXg7XHJcbiAganVzdGlmeS1jb250ZW50OiBmbGV4LWVuZDtcclxuICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG4gIHdpZHRoOiAxMDAlO1xyXG59XHJcblxyXG4uYXJlYWJ0e1xyXG4gIG1hcmdpbi10b3A6IDN2dztcclxuICB3aWR0aDogMTAwJTtcclxuICBkaXNwbGF5OiBmbGV4O1xyXG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xyXG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XHJcbiAgd2lkdGg6IDEwMCU7XHJcbn1cclxuIl19 */");
 
 /***/ }),
 
@@ -1446,6 +1911,21 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ 6017:
+/*!*****************************************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/modal/endereco-confirmacao/endereco-confirmacao.page.html ***!
+  \*****************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-content >\n  <div class=\"content\">\n\n    <div class=\"closebtarea\">\n      <ion-button (click)=\"closeModal()\" class=\"btclose\">\n        <ion-icon slot=\"icon-only\" name=\"close\"></ion-icon>\n      </ion-button>\n    </div>\n\n    <div class=\"areaendereco\">\n      <ion-text class=\"nomeclinica\" color=\"primary\">\n        <span>{{item.clinica.nomeClinica}}</span>\n      </ion-text>\n      <ion-text class=\"enderecoclinica\" color=\"secondary\">\n        <span>{{item.clinica.endereco.logradouro +\n          (item.clinica.endereco.numero ? \", \"+item.clinica.endereco.numero : \", S/N\") +\n          \" - \" +item.clinica.endereco.bairro+\", \"+item.clinica.endereco.localidade+\", \"+item.clinica.endereco.uf}}</span>\n      </ion-text>\n      <ion-text class=\"distanciaduracao\">\n        <span>{{'Distancia: ' +\n          formatarDistancia(item.distancia)\n        }}</span>\n      </ion-text>\n      <ion-text class=\"distanciaduracao\">\n        <span>{{'Tempo estimado de caminhada: ' +\n          formatarTempo(item.duracao)\n        }}</span>\n      </ion-text>\n    </div>\n\n    <div class=\"areabt row\">\n      <div style=\"padding: 0;\" class=\"col s12\">\n        <ion-button (click)=\"abrirClinica(item.clinica)\" color=\"primary\" expand=\"block\">\n          Abrir no mapa\n        </ion-button>\n      </div>\n    </div>\n\n  </div>\n</ion-content>\n");
+
+/***/ }),
+
 /***/ 6718:
 /*!*********************************************************************************************!*\
   !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/modal/fotoperfil/fotoperfil.page.html ***!
@@ -1458,6 +1938,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-content >\n  <div class=\"content\">\n\n    <div *ngIf=\"!loadingPhoto\" class=\"closebtarea\">\n      <ion-button (click)=\"closeFoto()\" [disabled]=\"loadingPhoto\" class=\"btclose\">\n        <ion-icon slot=\"icon-only\" name=\"close\"></ion-icon>\n      </ion-button>\n    </div>\n\n    <div class=\"areafoto\">\n      <img *ngIf=\"user && user.fotoPerfil && !loadingPhoto\" [src]=\"'data:'+user.fotoPerfil.tipo+';base64,'+user.fotoPerfil.binario\" />\n      <img *ngIf=\"(!user || !user.fotoPerfil) && !loadingPhoto\" src=\"../../assets/nophoto.png\"  />\n      <div *ngIf=\"loadingPhoto\" class=\"preloader-wrapper active\">\n        <div class=\"spinner-layer spinner-blue-only\">\n          <div class=\"circle-clipper left\">\n            <div class=\"circle\"></div>\n          </div><div class=\"gap-patch\">\n            <div class=\"circle\"></div>\n          </div><div class=\"circle-clipper right\">\n            <div class=\"circle\"></div>\n          </div>\n        </div>\n      </div>\n    </div>\n\n    <div *ngIf=\"user && user.fotoPerfil && !loadingPhoto\" class=\"areabt row\">\n      <div style=\"padding: 0;\" class=\"col s6\">\n        <ion-button (click)=\"removerFoto()\" [disabled]=\"loadingPhoto\" color=\"danger\" expand=\"block\">Remover Foto</ion-button>\n      </div>\n      <div style=\"padding: 0;\" class=\"col s6\">\n        <ion-button (click)=\"mudarFoto()\" [disabled]=\"loadingPhoto\" color=\"primary\" expand=\"block\">Mudar Foto</ion-button>\n      </div>\n    </div>\n\n    <div *ngIf=\"user && !user.fotoPerfil && !loadingPhoto\" class=\"areabt row\">\n      <div style=\"padding: 0;\" class=\"col s12\">\n        <ion-button (click)=\"mudarFoto()\" [disabled]=\"loadingPhoto\" color=\"primary\" expand=\"block\">Adicionar Foto</ion-button>\n      </div>\n    </div>\n\n  </div>\n</ion-content>\n");
+
+/***/ }),
+
+/***/ 1619:
+/*!*********************************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/modal/medicamento-view/medicamento-view.page.html ***!
+  \*********************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-content >\n  <div class=\"content\">\n\n    <div *ngIf=\"!loading\" class=\"closebtarea\">\n      <ion-button (click)=\"closeModal()\" [disabled]=\"loading\" class=\"btclose\">\n        <ion-icon slot=\"icon-only\" name=\"close\"></ion-icon>\n      </ion-button>\n    </div>\n\n    <div *ngIf=\"!loading\" class=\"area\">\n      <ion-text class=\"nomemedicamento\" color=\"primary\">\n        <span>{{medicamento.nome}}</span>\n      </ion-text>\n      <ion-text class=\"quantidade\" color=\"secondary\">\n        <span>{{(medicamento.tipoQuantidade != \"Outro\" ? medicamento.numQuantidade + \" \" + medicamento.tipoQuantidade : medicamento.outraQuantidade)}}\n          {{(medicamento.tipoIntervalo != \"Outro\" ? \"a cada \" + medicamento.numIntervalo + \" \" + medicamento.tipoIntervalo : medicamento.outroIntervalo)}}</span>\n      </ion-text>\n      <ion-button *ngIf=\"medicamento.receita\" style=\"margin-bottom: 10px;\" (click)=\"openReceita(medicamento.receita)\" color=\"primary\" expand=\"block\">Abrir receita</ion-button>\n      <ion-text class=\"datafinal\">\n        <span>Começou: {{medicamento.dataInicio | date: 'dd/MMM/yyyy'}}</span>\n      </ion-text>\n      <ion-text class=\"datafinal\">\n        <span *ngIf=\"!medicamento.usoContinuo\">Até: {{medicamento.dataTermino | date: 'dd/MMM/yyyy'}}</span>\n        <span *ngIf=\"medicamento.usoContinuo\">Uso contínuo</span>\n      </ion-text>\n      <ion-text class=\"receitado\">\n        Status:\n        <ion-text *ngIf=\"medicamento.tipoCadastro == 0\" color=\"danger\">Não receitado</ion-text>\n        <ion-text *ngIf=\"medicamento.tipoCadastro == 1\" color=\"success\">Receitado</ion-text>\n        <ion-text *ngIf=\"medicamento.tipoCadastro == 2\" color=\"warning\">Receitado manualmente</ion-text>\n      </ion-text>\n      <ion-text *ngIf=\"medicamento.tipoCadastro == 0\" class=\"atencao\" color=\"danger\">\n        Atenção tomar medicamentos não receitados pelo médico pode trazer sérias consequências, como por exemplo, intoxicação.\n      </ion-text>\n    </div>\n\n    <div *ngIf=\"loading\" class=\"area\">\n      <div class=\"preloader-wrapper active\">\n        <div class=\"spinner-layer spinner-blue-only\">\n          <div class=\"circle-clipper left\">\n            <div class=\"circle\"></div>\n          </div><div class=\"gap-patch\">\n            <div class=\"circle\"></div>\n          </div><div class=\"circle-clipper right\">\n            <div class=\"circle\"></div>\n          </div>\n        </div>\n      </div>\n    </div>\n\n    <div *ngIf=\"!loading\" class=\"areabt row\">\n      <div style=\"padding: 0;\" class=\"col s12\">\n        <ion-button (click)=\"closeModal()\" color=\"primary\" expand=\"block\">Editar medicamento</ion-button>\n      </div>\n    </div>\n\n  </div>\n</ion-content>\n");
 
 /***/ })
 

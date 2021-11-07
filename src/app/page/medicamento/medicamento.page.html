@@ -20,7 +20,7 @@
             </div>
             <ion-list *ngIf="listaMedicamentos && listaMedicamentos.length > 0">
 
-              <ion-item *ngFor="let item of listaMedicamentos">
+              <ion-item (click)="abrirMedicamento(item.id)" *ngFor="let item of listaMedicamentos">
                 <ion-label class="ion-text-wrap">
                   <ion-grid>
                     <ion-row>
@@ -45,6 +45,11 @@
                           <p *ngIf="item.usoContinuo">Uso contínuo</p>
                         </ion-text>
                       </ion-col>
+                    </ion-row>
+                    <ion-row>
+                      <ion-text *ngIf="item.tipoCadastro == 0" color="danger">Não receitado</ion-text>
+                      <ion-text *ngIf="item.tipoCadastro == 1" color="success">Receitado</ion-text>
+                      <ion-text *ngIf="item.tipoCadastro == 2" color="warning">Receitado manualmente</ion-text>
                     </ion-row>
                   </ion-grid>
                 </ion-label>
