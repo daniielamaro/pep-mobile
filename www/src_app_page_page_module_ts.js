@@ -49,7 +49,7 @@ const routes = [
                 loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_page_medicamento_medicamento_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./medicamento/medicamento.module */ 6285)).then(m => m.MedicamentoPageModule)
             },
             {
-                path: 'criar-medicamento',
+                path: 'criar-medicamento/:id',
                 loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_page_medicamento_criar-medicamento_criar-medicamento_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./medicamento/criar-medicamento/criar-medicamento.module */ 4078)).then(m => m.CriarMedicamentoPageModule)
             },
             {

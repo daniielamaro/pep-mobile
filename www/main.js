@@ -1124,13 +1124,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "MedicamentoViewPage": () => (/* binding */ MedicamentoViewPage)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tslib */ 4762);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! tslib */ 4762);
 /* harmony import */ var _raw_loader_medicamento_view_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !raw-loader!./medicamento-view.page.html */ 1619);
 /* harmony import */ var _medicamento_view_page_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./medicamento-view.page.scss */ 4019);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/core */ 7716);
-/* harmony import */ var _ionic_native_document_viewer_ngx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic-native/document-viewer/ngx */ 1663);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ 9895);
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic/angular */ 476);
-/* harmony import */ var _medicamento_view_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./medicamento-view.service */ 4778);
+/* harmony import */ var _medicamento_view_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./medicamento-view.service */ 4778);
 
 
 
@@ -1139,15 +1139,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let MedicamentoViewPage = class MedicamentoViewPage {
-    constructor(medicamentoViewService, document, modalController) {
+    constructor(medicamentoViewService, router, modalController) {
         this.medicamentoViewService = medicamentoViewService;
-        this.document = document;
+        this.router = router;
         this.modalController = modalController;
     }
     ngOnInit() {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__awaiter)(this, void 0, void 0, function* () {
-            console.log("Teste de log funcionou");
-            this.document.getSupportInfo();
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__awaiter)(this, void 0, void 0, function* () {
             this.loading = true;
             (yield this.medicamentoViewService.getMedicamentoById(this.id))
                 .subscribe((resp) => {
@@ -1156,22 +1154,29 @@ let MedicamentoViewPage = class MedicamentoViewPage {
             });
         });
     }
-    openReceita(receita) {
-        const options = {
-            title: 'My PDF'
-        };
-        this.document.viewDocument('../../../assets/Unisuam.pdf', 'application/pdf', options);
+    // openReceita(receita: any){
+    //   let pdfWindow = window.open("");
+    //   pdfWindow.document.write('<html><head></head><body style="margin: 0; padding: 0;">');
+    //   pdfWindow.document.write(
+    //     "<iframe width='100%' height='100%' style='border:none;' frameBorder='0' src='data:application/pdf;base64, " +
+    //     encodeURI(receita.binario) + "'></iframe>"
+    //   );
+    //   pdfWindow.document.write('</body></html>');
+    // }
+    editarMedicamento(id) {
+        this.router.navigateByUrl("/page/criar-medicamento/" + id);
+        this.closeModal();
     }
     closeModal() {
         this.modalController.dismiss();
     }
 };
 MedicamentoViewPage.ctorParameters = () => [
-    { type: _medicamento_view_service__WEBPACK_IMPORTED_MODULE_3__.MedicamentoViewService },
-    { type: _ionic_native_document_viewer_ngx__WEBPACK_IMPORTED_MODULE_2__.DocumentViewer },
+    { type: _medicamento_view_service__WEBPACK_IMPORTED_MODULE_2__.MedicamentoViewService },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_4__.Router },
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__.ModalController }
 ];
-MedicamentoViewPage = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorate)([
+MedicamentoViewPage = (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__decorate)([
     (0,_angular_core__WEBPACK_IMPORTED_MODULE_6__.Component)({
         selector: 'app-medicamento-view',
         template: _raw_loader_medicamento_view_page_html__WEBPACK_IMPORTED_MODULE_0__.default,
@@ -1399,7 +1404,7 @@ let UrlService = UrlService_1 = class UrlService {
     }
     validateToken(token) {
         return (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__awaiter)(this, void 0, void 0, function* () {
-            (yield this.sendRequestPost("/Paciente/VerificarToken?token=" + token))
+            (yield this.sendRequestPost("/Usuario/VerificarToken?token=" + token))
                 .subscribe(() => { }, error => {
                 if (error.status == 400 || error.status == 401 || error.status == 403) {
                     this.storage.remove("user");
@@ -1956,7 +1961,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-content >\n  <div class=\"content\">\n\n    <div *ngIf=\"!loading\" class=\"closebtarea\">\n      <ion-button (click)=\"closeModal()\" [disabled]=\"loading\" class=\"btclose\">\n        <ion-icon slot=\"icon-only\" name=\"close\"></ion-icon>\n      </ion-button>\n    </div>\n\n    <div *ngIf=\"!loading\" class=\"area\">\n      <ion-text class=\"nomemedicamento\" color=\"primary\">\n        <span>{{medicamento.nome}}</span>\n      </ion-text>\n      <ion-text class=\"quantidade\" color=\"secondary\">\n        <span>{{(medicamento.tipoQuantidade != \"Outro\" ? medicamento.numQuantidade + \" \" + medicamento.tipoQuantidade : medicamento.outraQuantidade)}}\n          {{(medicamento.tipoIntervalo != \"Outro\" ? \"a cada \" + medicamento.numIntervalo + \" \" + medicamento.tipoIntervalo : medicamento.outroIntervalo)}}</span>\n      </ion-text>\n      <ion-button *ngIf=\"medicamento.receita\" style=\"margin-bottom: 10px;\" (click)=\"openReceita(medicamento.receita)\" color=\"primary\" expand=\"block\">Abrir receita</ion-button>\n      <ion-text class=\"datafinal\">\n        <span>Começou: {{medicamento.dataInicio | date: 'dd/MMM/yyyy'}}</span>\n      </ion-text>\n      <ion-text class=\"datafinal\">\n        <span *ngIf=\"!medicamento.usoContinuo\">Até: {{medicamento.dataTermino | date: 'dd/MMM/yyyy'}}</span>\n        <span *ngIf=\"medicamento.usoContinuo\">Uso contínuo</span>\n      </ion-text>\n      <ion-text class=\"receitado\">\n        Status:\n        <ion-text *ngIf=\"medicamento.tipoCadastro == 0\" color=\"danger\">Não receitado</ion-text>\n        <ion-text *ngIf=\"medicamento.tipoCadastro == 1\" color=\"success\">Receitado</ion-text>\n        <ion-text *ngIf=\"medicamento.tipoCadastro == 2\" color=\"warning\">Receitado manualmente</ion-text>\n      </ion-text>\n      <ion-text *ngIf=\"medicamento.tipoCadastro == 0\" class=\"atencao\" color=\"danger\">\n        Atenção tomar medicamentos não receitados pelo médico pode trazer sérias consequências, como por exemplo, intoxicação.\n      </ion-text>\n    </div>\n\n    <div *ngIf=\"loading\" class=\"area\">\n      <div class=\"preloader-wrapper active\">\n        <div class=\"spinner-layer spinner-blue-only\">\n          <div class=\"circle-clipper left\">\n            <div class=\"circle\"></div>\n          </div><div class=\"gap-patch\">\n            <div class=\"circle\"></div>\n          </div><div class=\"circle-clipper right\">\n            <div class=\"circle\"></div>\n          </div>\n        </div>\n      </div>\n    </div>\n\n    <div *ngIf=\"!loading\" class=\"areabt row\">\n      <div style=\"padding: 0;\" class=\"col s12\">\n        <ion-button (click)=\"closeModal()\" color=\"primary\" expand=\"block\">Editar medicamento</ion-button>\n      </div>\n    </div>\n\n  </div>\n</ion-content>\n");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-content >\n  <div class=\"content\">\n\n    <div *ngIf=\"!loading\" class=\"closebtarea\">\n      <ion-button (click)=\"closeModal()\" [disabled]=\"loading\" class=\"btclose\">\n        <ion-icon slot=\"icon-only\" name=\"close\"></ion-icon>\n      </ion-button>\n    </div>\n\n    <div *ngIf=\"!loading\" class=\"area\">\n      <ion-text class=\"nomemedicamento\" color=\"primary\">\n        <span>{{medicamento.nome}}</span>\n      </ion-text>\n      <ion-text class=\"quantidade\" color=\"secondary\">\n        <span>{{(medicamento.tipoQuantidade != \"Outro\" ? medicamento.numQuantidade + \" \" + medicamento.tipoQuantidade : medicamento.outraQuantidade)}}\n          {{(medicamento.tipoIntervalo != \"Outro\" ? \"a cada \" + medicamento.numIntervalo + \" \" + medicamento.tipoIntervalo : medicamento.outroIntervalo)}}</span>\n      </ion-text>\n      <!-- <ion-button *ngIf=\"medicamento.receita\" style=\"margin-bottom: 10px;\" (click)=\"openReceita(medicamento.receita)\" color=\"primary\" expand=\"block\">Abrir receita</ion-button> -->\n      <ion-text class=\"datafinal\">\n        <span>Começou: {{medicamento.dataInicio | date: 'dd/MMM/yyyy'}}</span>\n      </ion-text>\n      <ion-text class=\"datafinal\">\n        <span *ngIf=\"!medicamento.usoContinuo\">Até: {{medicamento.dataTermino | date: 'dd/MMM/yyyy'}}</span>\n        <span *ngIf=\"medicamento.usoContinuo\">Uso contínuo</span>\n      </ion-text>\n      <ion-text class=\"receitado\">\n        Status:\n        <ion-text *ngIf=\"medicamento.tipoCadastro == 0\" color=\"danger\">Não receitado</ion-text>\n        <ion-text *ngIf=\"medicamento.tipoCadastro == 1\" color=\"success\">Receitado</ion-text>\n        <ion-text *ngIf=\"medicamento.tipoCadastro == 2\" color=\"warning\">Receitado manualmente</ion-text>\n      </ion-text>\n      <ion-text *ngIf=\"medicamento.tipoCadastro == 0\" class=\"atencao\" color=\"danger\">\n        Atenção tomar medicamentos não receitados pelo médico pode trazer sérias consequências, como por exemplo, intoxicação.\n      </ion-text>\n    </div>\n\n    <div *ngIf=\"loading\" class=\"area\">\n      <div class=\"preloader-wrapper active\">\n        <div class=\"spinner-layer spinner-blue-only\">\n          <div class=\"circle-clipper left\">\n            <div class=\"circle\"></div>\n          </div><div class=\"gap-patch\">\n            <div class=\"circle\"></div>\n          </div><div class=\"circle-clipper right\">\n            <div class=\"circle\"></div>\n          </div>\n        </div>\n      </div>\n    </div>\n\n    <div *ngIf=\"!loading\" class=\"areabt row\">\n      <div style=\"padding: 0;\" class=\"col s12\">\n        <ion-button (click)=\"editarMedicamento(medicamento.id)\" color=\"primary\" expand=\"block\">Editar medicamento</ion-button>\n      </div>\n    </div>\n\n  </div>\n</ion-content>\n");
 
 /***/ })
 

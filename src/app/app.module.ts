@@ -20,6 +20,7 @@ import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 import { EnderecoAtualPageModule } from './modal/endereco-atual/endereco-atual.module';
 import { EnderecoConfirmacaoPageModule } from './modal/endereco-confirmacao/endereco-confirmacao.module';
 import { MedicamentoViewPageModule } from './modal/medicamento-view/medicamento-view.module';
+import { DocumentViewer } from '@ionic-native/document-viewer/ngx';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -47,7 +48,8 @@ import { MedicamentoViewPageModule } from './modal/medicamento-view/medicamento-
     Geolocation,
     AndroidPermissions,
     AuthGuard,
-    StorageService
+    StorageService,
+    DocumentViewer
   ],
   bootstrap: [AppComponent],
 })

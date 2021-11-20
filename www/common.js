@@ -571,6 +571,16 @@ let MedicamentoService = class MedicamentoService {
             return yield this.urlService.sendRequestPost("/Medicamento/Cadastro", JSON.stringify(request));
         });
     }
+    editarMedicamento(request) {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__awaiter)(this, void 0, void 0, function* () {
+            return yield this.urlService.sendRequestPost("/Medicamento/EditarMedicamento", JSON.stringify(request));
+        });
+    }
+    getMedicamentoById(id) {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__awaiter)(this, void 0, void 0, function* () {
+            return yield this.urlService.sendRequestPost("/Medicamento/ConsultarMedicamentoById?idMedicamento=" + id);
+        });
+    }
 };
 MedicamentoService.ctorParameters = () => [
     { type: src_app_shared_class_url_service__WEBPACK_IMPORTED_MODULE_0__.UrlService }

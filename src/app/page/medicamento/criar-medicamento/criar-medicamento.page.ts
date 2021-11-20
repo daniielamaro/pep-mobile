@@ -2,9 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { StorageService } from 'src/app/shared/class/storage.service';
 import { MedicamentoService } from '../medicamento.service';
-import { ModalController, ToastController } from '@ionic/angular';
+import { ModalController, Platform, ToastController } from '@ionic/angular';
 import { LoadingPage } from 'src/app/loading/loading.page';
 import { UrlService } from 'src/app/shared/class/url-service';
+import {File} from "@ionic-native/file";
+import { DocumentViewer, DocumentViewerOptions } from '@ionic-native/document-viewer/ngx';
 
 @Component({
   selector: 'app-criar-medicamento',
@@ -36,6 +38,7 @@ export class CriarMedicamentoPage implements OnInit {
     private medicamentoService: MedicamentoService,
     public modalController: ModalController,
     public toastController: ToastController,
+    private document: DocumentViewer,
     private urlService: UrlService,
     private router: Router,
     private actvRouter: ActivatedRoute,
@@ -57,8 +60,6 @@ export class CriarMedicamentoPage implements OnInit {
         (await this.medicamentoService.getMedicamentoById(this.idMedicamento))
           .subscribe(
             (resp: any) => {
-              console.log(resp)
-
               this.nome = resp.nome;
               this.numQuantidade = resp.numQuantidade;
               this.tipoQuantidade = resp.tipoQuantidade;
@@ -112,6 +113,61 @@ export class CriarMedicamentoPage implements OnInit {
     this.publico = undefined;
     this.receita = undefined;
   }
+
+  async abrirReceita(receita: any){
+
+    let blob = this.b64toBlob(receita.binario, receita.tipo);
+
+    File.checkDir(File.externalApplicationStorageDirectory, 'Receitas')
+        .then(_ => {
+          File.writeFile(File.externalApplicationStorageDirectory + 'Receitas/', receita.nome, blob, {replace: true}).then(response => {
+            const options: DocumentViewerOptions = {
+              title: 'Receita'
+            }
+
+            this.document.viewDocument(File.externalApplicationStorageDirectory + 'Receitas/'+receita.nome, receita.tipo, options);
+          }).catch(err => {
+
+          })
+        })
+        .catch(err => {
+          File.createDir(File.externalApplicationStorageDirectory, 'Receitas', false).then(result => {
+            File.writeFile(File.externalApplicationStorageDirectory + 'Receitas/', receita.nome, blob, {replace: true}).then(response => {
+              const options: DocumentViewerOptions = {
+                title: 'Receita'
+              }
+
+              this.document.viewDocument(File.externalApplicationStorageDirectory + 'Receitas/'+receita.nome, receita.tipo, options);
+            }).catch(err => {
+
+            })
+          })
+        });
+  }
+
+   //convert base64 to blob
+ b64toBlob(b64Data, contentType) {
+  contentType = contentType || '';
+  var sliceSize = 512;
+  var byteCharacters = atob(b64Data);
+  var byteArrays = [];
+
+  for (var offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+    var slice = byteCharacters.slice(offset, offset + sliceSize);
+
+    var byteNumbers = new Array(slice.length);
+    for (var i = 0; i < slice.length; i++) {
+      byteNumbers[i] = slice.charCodeAt(i);
+    }
+
+    var byteArray = new Uint8Array(byteNumbers);
+
+    byteArrays.push(byteArray);
+  }
+
+  var blob = new Blob(byteArrays, {type: contentType});
+  return blob;
+}
 
   fileChange(e){
     let arquivoPre = e.target.files[0];
@@ -221,8 +277,6 @@ export class CriarMedicamentoPage implements OnInit {
           dataTermino: this.dataTermino,
           usoContinuo: this.usoContinuo
         };
-
-        console.log(request);
 
         (await this.medicamentoService.editarMedicamento(request))
           .subscribe(() => {

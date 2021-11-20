@@ -6,15 +6,15 @@ import { StorageService } from './storage.service';
 @Injectable()
 export class UrlService {
 
-  static BACKEND_URL = 'http://localhost:54439';
-  //static BACKEND_URL = 'http://34.68.18.75:8080';
+  //static BACKEND_URL = 'http://localhost:54439';
+  static BACKEND_URL = 'http://34.68.18.75:8080';
 
   static GMKey = 'AIzaSyA80PyFxRJVIlrTgA_beY_r_YOZtAFK-6w';
 
   constructor(private storage: StorageService, private router: Router, private http: HttpClient) {}
 
   async validateToken(token: string){
-    (await this.sendRequestPost("/Paciente/VerificarToken?token="+token))
+    (await this.sendRequestPost("/Usuario/VerificarToken?token="+token))
       .subscribe(() => {},
       error => {
         if(error.status == 400 || error.status == 401 || error.status == 403){
