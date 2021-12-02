@@ -7,7 +7,7 @@ import { StorageService } from './storage.service';
 export class UrlService {
 
   //static BACKEND_URL = 'http://localhost:54439';
-  static BACKEND_URL = 'http://34.68.18.75:8080';
+  static BACKEND_URL = 'http://35.238.22.120:8080';
 
   static GMKey = 'AIzaSyA80PyFxRJVIlrTgA_beY_r_YOZtAFK-6w';
 

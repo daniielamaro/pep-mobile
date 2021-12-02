@@ -1429,8 +1429,8 @@ let UrlService = UrlService_1 = class UrlService {
         });
     }
 };
-//static BACKEND_URL = 'http://localhost:54439';
-UrlService.BACKEND_URL = 'http://34.68.18.75:8080';
+UrlService.BACKEND_URL = 'http://localhost:54439';
+//static BACKEND_URL = 'http://34.68.18.75:8080';
 UrlService.GMKey = 'AIzaSyA80PyFxRJVIlrTgA_beY_r_YOZtAFK-6w';
 UrlService.ctorParameters = () => [
     { type: _storage_service__WEBPACK_IMPORTED_MODULE_0__.StorageService },
